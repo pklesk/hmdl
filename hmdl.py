@@ -9,7 +9,6 @@ import math
 import cmath
 from numba.core.errors import NumbaPerformanceWarning
 import warnings
-from statsmodels.genmod.tests.test_glm_weights import weights
         
 warnings.simplefilter("ignore", category=NumbaPerformanceWarning) 
 

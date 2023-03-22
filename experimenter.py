@@ -435,7 +435,7 @@ if __name__ == "__main__":
             # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
             if EXPERIMENT_ID is None: # new experiment
                 data_description = {
-                    "name": "cifar-10", # current possibilities: "mnist", "olivetti", "cifar-10"
+                    "name": "mnist", # current possibilities: "mnist", "olivetti", "cifar-10"
                     "m_train_per_class_limit": None, # specify None if unlimitied
                     "m_test_per_class_limit": None, # specify None if unlimitied
                     "uniform_scaling": True,
@@ -450,7 +450,7 @@ if __name__ == "__main__":
                 m, height, width, n_channels = X_train.shape
                 n_classes = np.unique(y_train).size
                 hmdl_clf_description = [
-                    (hmdl.SequentialClassifier, {"n_epochs": 10**2, "n_batches": 50, "loss": "categorical_crossentropy", "learning_rate": 1e-3, "decay_rate": 0.0, "use_adam": True, "momentum_rate": 0.0, "gradient_clip": None}),
+                    (hmdl.SequentialClassifier, {"n_epochs": 10**2, "n_batches": 20, "loss": "categorical_crossentropy", "learning_rate": 1e-3, "decay_rate": 0.0, "use_adam": True, "momentum_rate": 0.0, "gradient_clip": None}),
                     # (hmdl.Conv2D, {"input_shape": (height, width, n_channels), "kernel_size": 9, "n_kernels": 64, "activation": "relu"}),
                     # (hmdl.MaxPool2D, {"pool_size": 2}),
                     # (hmdl.Dropout, {"rate": 0.125}),
@@ -458,12 +458,10 @@ if __name__ == "__main__":
                     # (hmdl.MaxPool2D, {"pool_size": 2}),
                     # (hmdl.Dropout, {"rate": 0.125}),                                        
                     (hmdl.Flatten, {"input_shape": (height, width, n_channels)}),
-                    (hmdl.Dense, {"n_neurons": 512, "activation": "relu"}),
-                    (hmdl.Dropout, {"rate": 0.25}),
-                    (hmdl.Dense, {"n_neurons": 512, "activation": "relu"}),                    
-                    (hmdl.Dropout, {"rate": 0.25}),                    
-                    (hmdl.Dense, {"n_neurons": 512, "activation": "relu"}),                    
-                    (hmdl.Dropout, {"rate": 0.25}),                    
+                    (hmdl.Dense, {"n_neurons": 128, "activation": "relu"}),
+                    (hmdl.Dropout, {"rate": 0.125}),
+                    (hmdl.Dense, {"n_neurons": 128, "activation": "relu"}),                    
+                    (hmdl.Dropout, {"rate": 0.125}),                                        
                     (hmdl.Dense, {"n_neurons": n_classes, "activation": "softmax"})            
                     ]
                 print(f"\nHMDL CLF DESCRIPTION:\n{list_to_str(hmdl_clf_description)}\n")
