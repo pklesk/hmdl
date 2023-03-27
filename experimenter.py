@@ -451,16 +451,14 @@ if __name__ == "__main__":
                 n_classes = np.unique(y_train).size
                 hmdl_clf_description = [
                     (hmdl.SequentialClassifier, {"n_epochs": 10**2, "n_batches": 20, "loss": "categorical_crossentropy", "learning_rate": 1e-3, "decay_rate": 0.0, "use_adam": True, "momentum_rate": 0.0, "gradient_clip": None}),
-                    # (hmdl.Conv2D, {"input_shape": (height, width, n_channels), "kernel_size": 9, "n_kernels": 64, "activation": "relu"}),
-                    # (hmdl.MaxPool2D, {"pool_size": 2}),
-                    # (hmdl.Dropout, {"rate": 0.125}),
+                    (hmdl.Conv2D, {"input_shape": (height, width, n_channels), "kernel_size": 7, "n_kernels": 64, "activation": "relu"}),
+                    (hmdl.MaxPool2D, {"pool_size": 2}),
+                    (hmdl.Dropout, {"rate": 0.125}),
                     # (hmdl.Conv2D, {"kernel_size": 7, "n_kernels": 128, "activation": "relu"}),
                     # (hmdl.MaxPool2D, {"pool_size": 2}),
                     # (hmdl.Dropout, {"rate": 0.125}),                                        
-                    (hmdl.Flatten, {"input_shape": (height, width, n_channels)}),
+                    (hmdl.Flatten, {}),
                     (hmdl.Dense, {"n_neurons": 128, "activation": "relu"}),
-                    (hmdl.Dropout, {"rate": 0.125}),
-                    (hmdl.Dense, {"n_neurons": 128, "activation": "relu"}),                    
                     (hmdl.Dropout, {"rate": 0.125}),                                        
                     (hmdl.Dense, {"n_neurons": n_classes, "activation": "softmax"})            
                     ]
