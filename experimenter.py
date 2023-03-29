@@ -10,6 +10,7 @@ from matplotlib import pyplot as plt
 from sklearn.datasets import fetch_olivetti_faces
 import sklearn.model_selection
 import tensorflow as tf
+tf.get_logger().setLevel("ERROR")
 from keras.datasets import cifar10, mnist
 import keras.models
 import keras.layers
