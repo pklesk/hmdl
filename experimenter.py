@@ -3,6 +3,7 @@ import numpy as np
 import hmdl
 import sys
 import os
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 import bz2
 import _pickle as cPickle
 import time 
@@ -11,7 +12,6 @@ from sklearn.datasets import fetch_olivetti_faces
 import sklearn.model_selection
 import tensorflow as tf
 tf.get_logger().setLevel("ERROR")
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 from keras.datasets import cifar10, mnist
 import keras.models
 import keras.layers
