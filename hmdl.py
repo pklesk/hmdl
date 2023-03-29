@@ -1643,8 +1643,9 @@ class SequentialClassifier(BaseEstimator, ClassifierMixin):
         self.learning_rate_now_ = self.learning_rate_
         self.fit_info_ = []
         print(f"[norms of weights -> l1: {self.weights_l1_norm():0.7}, l2: {self.weights_l2_norm():0.7}]")
-        for t in range(self.n_epochs_):
+        for t in range(self.n_epochs_):            
             print(f"EPOCH: {t + 1}/{self.n_epochs_}...")
+            t1_epoch = time.time()
             self.learning_rate_now_ *= 1.0 / (1.0 + self.decay_rate_ * t)             
             p = np.random.permutation(m)            
             for b in range(self.n_batches_):
@@ -1655,10 +1656,12 @@ class SequentialClassifier(BaseEstimator, ClassifierMixin):
                 self.forward(X_b, verbose_layers)
                 if verbose_fit_info:
                     self.memorize_fit_info(t, b, self.layers_[-1].output_, y_b, y_b_ord)
-                self.backward(y_b, t * self.n_batches_ + b, verbose_layers)          
+                self.backward(y_b, t * self.n_batches_ + b, verbose_layers)
+            t2_epoch = time.time()                          
             if verbose_fit_info:
                 self.print_fit_info(t)                
                 print(f"[norms of weights -> l1: {self.weights_l1_norm():0.8}, l2: {self.weights_l2_norm():0.8}]")
+                print(f"[epoch fit time: {t2_epoch - t1_epoch:0.8} s]")
         self.fit_ongoing_ = False
         t2 = time.time()
         self.prune_dev_references()
