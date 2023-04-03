@@ -478,8 +478,10 @@ if __name__ == "__main__":
                     # (hmdl.MaxPool2D, {"pool_size": 2}),
                     # (hmdl.Dropout, {"rate": 0.125}),                                        
                     (hmdl.Flatten, {"input_shape": (height, width, n_channels)}),
-                    (hmdl.Dense, {"n_neurons": 8, "activation": "relu"}),
+                    (hmdl.Dense, {"n_neurons": 64, "activation": "relu"}),
                     (hmdl.Dropout, {"rate": 0.25}),                                        
+                    (hmdl.Dense, {"n_neurons": 64, "activation": "relu"}),
+                    (hmdl.Dropout, {"rate": 0.25}),                        
                     (hmdl.Dense, {"n_neurons": n_classes, "activation": "softmax"})            
                     ]
                 print(f"\nHMDL CLF DESCRIPTION:\n{list_to_str(hmdl_clf_description)}\n")
