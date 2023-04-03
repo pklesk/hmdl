@@ -19,7 +19,7 @@ MIN_NON_ZERO = 1e-7
 MAX_IMG_SIDE = 256
 MAX_N_CHANNELS = 256
 MAX_N_KERNELS = 256
-CUDA_MAX_MEMORY_PER_CALL = 8 * 1024**2 # SO-FAR
+CUDA_MAX_MEMORY_PER_CALL = 8 * 1024**2 # suitable (based on experiments) for: NVIDIA Quadro M4000M
 
 DEBUG_VERBOSE_CONV = False
 DEBUG_VERBOSE_MAXPOOL = False
@@ -355,7 +355,7 @@ class Conv2D(Layer):
         bpg_h = (self.height_ + tile_size - 1) // tile_size
         bpg_w = (self.width_ + tile_size - 1) // tile_size            
         memory = self.input_.nbytes + self.weights_[0].nbytes + self.weights_[1].nbytes + self.output_.nbytes 
-        ratio = memory / (0.5 * CUDA_MAX_MEMORY_PER_CALL)
+        ratio = memory / CUDA_MAX_MEMORY_PER_CALL
         if ratio < 1.0:
             ratio = 1.0
         n_calls, call_ranges = prepare_call_ranges(self.input_.shape[0], int(np.ceil(ratio)))
@@ -1891,4 +1891,3 @@ class SequentialClassifier(BaseEstimator, ClassifierMixin):
         summary_str += f"FIT SETTINGS: [n_epochs: {self.n_epochs_}, n_batches: {self.n_batches_}, loss: {self.loss_name_}, learning_rate: {self.learning_rate_}, decay_rate: {self.decay_rate_}, use_adam: {self.use_adam_}, momentum_rate: {self.momentum_rate_}, gradient_clip: {self.gradient_clip_}]\n"
         summary_str += SEPARATOR
         return summary_str
-    

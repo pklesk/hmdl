@@ -231,7 +231,7 @@ def prepare_data(description, seed):
 def gpu_props():
     gpu = cuda.get_current_device()
     props = {}
-    props["name"] = gpu.name
+    props["name"] = gpu.name.decode("ASCII")
     props["max_threads_per_block"] = gpu.MAX_THREADS_PER_BLOCK
     props["max_block_dim_x"] = gpu.MAX_BLOCK_DIM_X
     props["max_block_dim_y"] = gpu.MAX_BLOCK_DIM_Y
@@ -266,6 +266,11 @@ def gpu_props():
     props["cores_per_SM"] = CC_CORES_PER_SM_DICT.get(gpu.compute_capability)
     props["cores_total"] = props["cores_per_SM"] * gpu.MULTIPROCESSOR_COUNT
     return props    
+
+def clean_gpu_name(name):
+    name = name.lower()
+    name = name.replace(" ", "_")    
+    return name
 
 def keras_weights_l1_norm(keras_clf):
     norm = 0.0
@@ -413,12 +418,22 @@ if __name__ == "__main__":
     
     set_tf_global_determinism(seed=0) # this is just a 'reset' seed; actual seed for experiment specified later on, in data description
     
+    gpu_name_clean = clean_gpu_name(cuda.get_current_device().name.decode("ASCII"))
+    print(f"GPU NAME (CLEAN): {gpu_name_clean}")
+    FOLDER_GPU_NAME = gpu_name_clean + "/" 
+    if not os.path.exists(FOLDER_EXPERIMENTS + FOLDER_GPU_NAME):
+        os.makedirs(FOLDER_EXPERIMENTS + FOLDER_GPU_NAME)
+    if not os.path.exists(FOLDER_HMDL_CLFS + FOLDER_GPU_NAME):        
+        os.makedirs(FOLDER_HMDL_CLFS + FOLDER_GPU_NAME)    
+    if not os.path.exists(FOLDER_KERAS_CLFS + FOLDER_GPU_NAME):
+        os.makedirs(FOLDER_KERAS_CLFS + FOLDER_GPU_NAME)        
+    
     log_file = None
     if EXPERIMENT_ID is not None:
-        log_file = open(FOLDER_EXPERIMENTS + EXPERIMENT_ID + SUFFIX_EXPERIMENT_LOG, "w+")
+        log_file = open(FOLDER_EXPERIMENTS + FOLDER_GPU_NAME + EXPERIMENT_ID + SUFFIX_EXPERIMENT_LOG, "w+")
         logger = Logger(log_file)
         sys.stdout = logger    
-    print("EXPERIMENT ID: " + ("None [new experiment]" if EXPERIMENT_ID is None else EXPERIMENT_ID + " [to be reproduced]"))          
+    print("EXPERIMENT ID: " + ("None [new experiment]" if EXPERIMENT_ID is None else EXPERIMENT_ID + " [to be reproduced]"))
     
     t1 = time.time()
     
@@ -437,12 +452,12 @@ if __name__ == "__main__":
             # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
             if EXPERIMENT_ID is None: # new experiment
                 data_description = {
-                    "name": "mnist", # current possibilities: "mnist", "olivetti", "cifar-10"
+                    "name": "olivetti", # current possibilities: "mnist", "olivetti", "cifar-10"
                     "m_train_per_class_limit": None, # specify None if unlimitied
                     "m_test_per_class_limit": None, # specify None if unlimitied
                     "uniform_scaling": True,
                     "seed": 0,
-                    "n_repetitions": 1
+                    "n_repetitions": 10
                     }
                 print(f"\nDATA DESCRIPTION:\n{dict_to_str(data_description)}\n")
                 seed = data_description["seed"]
@@ -452,30 +467,33 @@ if __name__ == "__main__":
                 m, height, width, n_channels = X_train.shape
                 n_classes = np.unique(y_train).size
                 hmdl_clf_description = [
-                    (hmdl.SequentialClassifier, {"n_epochs": 10**2, "n_batches": 20, "loss": "categorical_crossentropy", "learning_rate": 1e-3, "decay_rate": 0.0, "use_adam": True, "momentum_rate": 0.0, "gradient_clip": None}),
-                    (hmdl.Conv2D, {"input_shape": (height, width, n_channels), "kernel_size": 7, "n_kernels": 64, "activation": "relu"}),
-                    (hmdl.MaxPool2D, {"pool_size": 2}),
-                    (hmdl.Dropout, {"rate": 0.125}),
-                    # (hmdl.Conv2D, {"kernel_size": 7, "n_kernels": 128, "activation": "relu"}),
+                    (hmdl.SequentialClassifier, {"n_epochs": 10**2, "n_batches": 10, "loss": "categorical_crossentropy", "learning_rate": 1e-3, "decay_rate": 0.0, "use_adam": True, "momentum_rate": 0.0, "gradient_clip": None}),
+                    # (hmdl.Conv2D, {"input_shape": (height, width, n_channels), "kernel_size": 5, "n_kernels": 32, "activation": "relu"}),
+                    # (hmdl.Conv2D, {"kernel_size": 5, "n_kernels": 32, "activation": "relu"}),
+                    # (hmdl.MaxPool2D, {"pool_size": 2}),
+                    # (hmdl.Dropout, {"rate": 0.125}),
+                    # (hmdl.Conv2D, {"kernel_size": 3, "n_kernels": 64, "activation": "relu"}),
+                    # (hmdl.Conv2D, {"kernel_size": 3, "n_kernels": 64, "activation": "relu"}),
                     # (hmdl.MaxPool2D, {"pool_size": 2}),
                     # (hmdl.Dropout, {"rate": 0.125}),                                        
-                    (hmdl.Flatten, {}),
-                    (hmdl.Dense, {"n_neurons": 128, "activation": "relu"}),
-                    (hmdl.Dropout, {"rate": 0.125}),                                        
+                    (hmdl.Flatten, {"input_shape": (height, width, n_channels)}),
+                    (hmdl.Dense, {"n_neurons": 8, "activation": "relu"}),
+                    (hmdl.Dropout, {"rate": 0.25}),                                        
                     (hmdl.Dense, {"n_neurons": n_classes, "activation": "softmax"})            
                     ]
                 print(f"\nHMDL CLF DESCRIPTION:\n{list_to_str(hmdl_clf_description)}\n")
                 EXPERIMENT_ID = hash_experiment(data_description, hmdl_clf_description)
-                do_pickle(FOLDER_EXPERIMENTS + EXPERIMENT_ID + SUFFIX_EXPERIMENT_BIN, [data_description, hmdl_clf_description])
-                log_file = open(FOLDER_EXPERIMENTS + EXPERIMENT_ID + SUFFIX_EXPERIMENT_LOG, "w+")
+                do_pickle(FOLDER_EXPERIMENTS + FOLDER_GPU_NAME + EXPERIMENT_ID + SUFFIX_EXPERIMENT_BIN, [data_description, hmdl_clf_description])
+                log_file = open(FOLDER_EXPERIMENTS + FOLDER_GPU_NAME + EXPERIMENT_ID + SUFFIX_EXPERIMENT_LOG, "w+")
                 logger = Logger(log_file)
+                logger.write_to_file_only(f"GPU NAME (CLEAN): {gpu_name_clean}\n")
                 logger.write_to_file_only("EXPERIMENT ID: None [new experiment]\n")
                 logger.write_to_file_only(f"\nDATA DESCRIPTION:\n{dict_to_str(data_description)}\n")
                 logger.write_to_file_only(f"\nHMDL CLF DESCRIPTION:\n{list_to_str(hmdl_clf_description)}\n")
                 sys.stdout = logger
                 print(f"\nABOUT TO RUN NEW EXPERIMENT WITH ID: {EXPERIMENT_ID} [generated]")          
             else:
-                [data_description, hmdl_clf_description] = do_unpickle(FOLDER_EXPERIMENTS + EXPERIMENT_ID + SUFFIX_EXPERIMENT_BIN) 
+                [data_description, hmdl_clf_description] = do_unpickle(FOLDER_EXPERIMENTS + FOLDER_GPU_NAME + EXPERIMENT_ID + SUFFIX_EXPERIMENT_BIN) 
                 print(f"\nDATA DESCRIPTION:\n{dict_to_str(data_description)}")
                 seed = data_description["seed"]
                 np.random.seed(seed)
@@ -486,7 +504,7 @@ if __name__ == "__main__":
                 print(f"\nABOUT TO REPRODUCE EXPERIMENT WITH ID: {EXPERIMENT_ID}")        
             if SHOW_SOME_DATA_IMAGES:
                 show_some_data_images(X_train[:SHOW_SOME_DATA_IMAGES_COUNT], title=f"SOME TRAIN IMAGES FROM DATA SET: {data_description['name']}", subtitles=y_train[:SHOW_SOME_DATA_IMAGES_COUNT])    
-            print(f"GPU PROPERTIES: {gpu_props()}")                
+            print(f"GPU PROPERTIES: {gpu_props()}")
         print("\n***")
         seed = data_description["seed"] + r
         print(f"REPETITION: {r + 1}/{n_repetitions}... [seed now: {seed}]")
@@ -522,7 +540,7 @@ if __name__ == "__main__":
             t2_eval = time.time()
             print(f"HMDL CLF ACC AND LOSS DONE. [time: {t2_eval - t1_eval} s]\n")
         
-        hmdl_clf_file_path = FOLDER_HMDL_CLFS + EXPERIMENT_ID + SUFFIX_HMDL_CLF_BIN
+        hmdl_clf_file_path = FOLDER_HMDL_CLFS + FOLDER_GPU_NAME + EXPERIMENT_ID + SUFFIX_HMDL_CLF_BIN
         if UNPICKLE_HMDL_CLF:
             hmdl_clf = build_hmdl_clf(hmdl_clf_description)                
             hmdl_clf.set_weights(do_unpickle(hmdl_clf_file_path))
@@ -575,7 +593,7 @@ if __name__ == "__main__":
             print(f"KERAS CLF ACC AND LOSS DONE. [time: {t2_eval - t1_eval} s]\n")
             
             if LOAD_KERAS_CLF:
-                keras_clf.load_weights(FOLDER_KERAS_CLFS + EXPERIMENT_ID + SUFFIX_KERAS_CLF_BIN)            
+                keras_clf.load_weights(FOLDER_KERAS_CLFS + FOLDER_GPU_NAME + EXPERIMENT_ID + SUFFIX_KERAS_CLF_BIN)            
             if FIT_OR_REFIT_KERAS_CLF:                                    
                 print(f"[keras clf norms of weights before fit -> l1: {keras_weights_l1_norm(keras_clf):0.7}, l2: {keras_weights_l2_norm(keras_clf):0.7}]\n")
                 n_epochs = hmdl_clf_description[0][1]["n_epochs"]
@@ -589,7 +607,7 @@ if __name__ == "__main__":
                 keras_fit_times.append(t2_fit - t1_fit)
                 print(f"\n[keras clf norms of weights after fit -> l1: {keras_weights_l1_norm(keras_clf):0.7}, l2: {keras_weights_l2_norm(keras_clf):0.7}]")
                 if SAVE_KERAS_CLF:
-                    keras_clf.save(FOLDER_KERAS_CLFS + EXPERIMENT_ID + SUFFIX_KERAS_CLF_BIN)
+                    keras_clf.save(FOLDER_KERAS_CLFS + FOLDER_GPU_NAME + EXPERIMENT_ID + SUFFIX_KERAS_CLF_BIN)
             
             if LOAD_KERAS_CLF or FIT_OR_REFIT_KERAS_CLF:
                 print("\nKERAS CLF ACC AND LOSS... [after fit]")
