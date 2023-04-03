@@ -269,7 +269,8 @@ def gpu_props():
 
 def clean_gpu_name(name):
     name = name.lower()
-    name = name.replace(" ", "_")    
+    name = name.replace(" ", "_")
+    name = name.replace(".", "_")    
     return name
 
 def keras_weights_l1_norm(keras_clf):

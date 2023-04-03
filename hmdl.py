@@ -19,7 +19,8 @@ MIN_NON_ZERO = 1e-7
 MAX_IMG_SIDE = 256
 MAX_N_CHANNELS = 256
 MAX_N_KERNELS = 256
-CUDA_MAX_MEMORY_PER_CALL = 8 * 1024**2 # suitable (based on experiments) for: NVIDIA Quadro M4000M
+#CUDA_MAX_MEMORY_PER_CALL = 8 * 1024**2 # suitable (based on experiments) for: NVIDIA Quadro M4000M
+CUDA_MAX_MEMORY_PER_CALL = 256 * 1024**2 # suitable (based on experiments) for: GRID A100-7-40C
 
 DEBUG_VERBOSE_CONV = False
 DEBUG_VERBOSE_MAXPOOL = False
