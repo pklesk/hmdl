@@ -29,8 +29,8 @@ PICKLE_DATA = False # set True if given data set is read and generated for the f
 
 UNPICKLE_HMDL_CLF = False
 COPY_INITIAL_WEIGHTS_KERAS_TO_HMDL = False
-FIT_OR_REFIT_HMDL_CLF = True
-PICKLE_HMDL_CLF = True
+FIT_OR_REFIT_HMDL_CLF = False
+PICKLE_HMDL_CLF = False
 
 LOAD_KERAS_CLF = False
 COPY_INITIAL_WEIGHTS_HMDL_TO_KERAS = False
@@ -453,12 +453,12 @@ if __name__ == "__main__":
             # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
             if EXPERIMENT_ID is None: # new experiment
                 data_description = {
-                    "name": "olivetti", # current possibilities: "mnist", "olivetti", "cifar-10"
+                    "name": "cifar-10", # current possibilities: "mnist", "olivetti", "cifar-10"
                     "m_train_per_class_limit": None, # specify None if unlimitied
                     "m_test_per_class_limit": None, # specify None if unlimitied
                     "uniform_scaling": True,
                     "seed": 0,
-                    "n_repetitions": 10
+                    "n_repetitions": 1
                     }
                 print(f"\nDATA DESCRIPTION:\n{dict_to_str(data_description)}\n")
                 seed = data_description["seed"]
@@ -468,20 +468,26 @@ if __name__ == "__main__":
                 m, height, width, n_channels = X_train.shape
                 n_classes = np.unique(y_train).size
                 hmdl_clf_description = [
-                    (hmdl.SequentialClassifier, {"n_epochs": 10**2, "n_batches": 10, "loss": "categorical_crossentropy", "learning_rate": 1e-3, "decay_rate": 0.0, "use_adam": True, "momentum_rate": 0.0, "gradient_clip": None}),
-                    # (hmdl.Conv2D, {"input_shape": (height, width, n_channels), "kernel_size": 5, "n_kernels": 32, "activation": "relu"}),
-                    # (hmdl.Conv2D, {"kernel_size": 5, "n_kernels": 32, "activation": "relu"}),
-                    # (hmdl.MaxPool2D, {"pool_size": 2}),
-                    # (hmdl.Dropout, {"rate": 0.125}),
-                    # (hmdl.Conv2D, {"kernel_size": 3, "n_kernels": 64, "activation": "relu"}),
-                    # (hmdl.Conv2D, {"kernel_size": 3, "n_kernels": 64, "activation": "relu"}),
-                    # (hmdl.MaxPool2D, {"pool_size": 2}),
-                    # (hmdl.Dropout, {"rate": 0.125}),                                        
+                    (hmdl.SequentialClassifier, {"n_epochs": 10**2, "n_batches": 50, "loss": "categorical_crossentropy", "learning_rate": 1e-3, "decay_rate": 0.0, "use_adam": True, "momentum_rate": 0.0, "gradient_clip": None}),
+                    (hmdl.Conv2D, {"input_shape": (height, width, n_channels), "kernel_size": 3, "n_kernels": 64, "activation": "relu"}),
+                    (hmdl.Conv2D, {"kernel_size": 3, "n_kernels": 128, "activation": "relu"}),
+                    (hmdl.Conv2D, {"kernel_size": 3, "n_kernels": 128, "activation": "relu"}),
+                    (hmdl.MaxPool2D, {"pool_size": 2}),
+                    (hmdl.Dropout, {"rate": 0.125}),
+                    (hmdl.Conv2D, {"kernel_size": 3, "n_kernels": 256, "activation": "relu"}),
+                    (hmdl.Conv2D, {"kernel_size": 3, "n_kernels": 256, "activation": "relu"}),
+                    (hmdl.MaxPool2D, {"pool_size": 2}),
+                    (hmdl.Dropout, {"rate": 0.25}),
+                    (hmdl.Conv2D, {"kernel_size": 3, "n_kernels": 256, "activation": "relu"}),
+                    (hmdl.Conv2D, {"kernel_size": 3, "n_kernels": 256, "activation": "relu"}),
+                    (hmdl.MaxPool2D, {"pool_size": 2}),
+                    (hmdl.Dropout, {"rate": 0.25}),
+                    (hmdl.Conv2D, {"kernel_size": 3, "n_kernels": 256, "activation": "relu"}),
+                    (hmdl.Conv2D, {"kernel_size": 3, "n_kernels": 256, "activation": "relu"}),
+                    (hmdl.Dropout, {"rate": 0.5}),
                     (hmdl.Flatten, {"input_shape": (height, width, n_channels)}),
-                    (hmdl.Dense, {"n_neurons": 64, "activation": "relu"}),
-                    (hmdl.Dropout, {"rate": 0.25}),                                        
-                    (hmdl.Dense, {"n_neurons": 64, "activation": "relu"}),
-                    (hmdl.Dropout, {"rate": 0.25}),                        
+                    (hmdl.Dense, {"n_neurons": 512, "activation": "relu"}),
+                    (hmdl.Dropout, {"rate": 0.5}),                     
                     (hmdl.Dense, {"n_neurons": n_classes, "activation": "softmax"})            
                     ]
                 print(f"\nHMDL CLF DESCRIPTION:\n{list_to_str(hmdl_clf_description)}\n")
