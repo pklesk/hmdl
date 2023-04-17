@@ -1,0 +1,2819 @@
+GPU NAME (CLEAN): grid_a100-7-40c_mig_7g_40gb
+EXPERIMENT ID: None [new experiment]
+
+DATA DESCRIPTION:
+{name: mnist,
+ m_train_per_class_limit: None,
+ m_test_per_class_limit: None,
+ uniform_scaling: True,
+ seed: 0,
+ n_repetitions: 1}
+
+HMDL CLF DESCRIPTION:
+[(<class 'hmdl.SequentialClassifier'>, {'n_epochs': 100, 'n_batches': 20, 'loss': 'categorical_crossentropy', 'learning_rate': 0.001, 'decay_rate': 0.0, 'use_adam': True, 'momentum_rate': 0.0, 'gradient_clip': None}),
+ (<class 'hmdl.Flatten'>, {'input_shape': (28, 28, 1)}),
+ (<class 'hmdl.Dense'>, {'n_neurons': 512, 'activation': 'relu'}),
+ (<class 'hmdl.Dropout'>, {'rate': 0.125}),
+ (<class 'hmdl.Dense'>, {'n_neurons': 512, 'activation': 'relu'}),
+ (<class 'hmdl.Dropout'>, {'rate': 0.125}),
+ (<class 'hmdl.Dense'>, {'n_neurons': 512, 'activation': 'relu'}),
+ (<class 'hmdl.Dropout'>, {'rate': 0.125}),
+ (<class 'hmdl.Dense'>, {'n_neurons': 10, 'activation': 'softmax'})]
+
+ABOUT TO RUN NEW EXPERIMENT WITH ID: 0491196249 [generated]
+GPU PROPERTIES: {'name': 'GRID A100-7-40C MIG 7g.40gb', 'max_threads_per_block': 1024, 'max_block_dim_x': 1024, 'max_block_dim_y': 1024, 'max_block_dim_z': 64, 'max_grid_dim_x': 2147483647, 'max_grid_dim_y': 65535, 'max_grid_dim_z': 65535, 'max_shared_memory_per_block': 49152, 'async_engine_count': 7, 'can_map_host_memory': 1, 'multiprocessor_count': 98, 'warp_size': 32, 'unified_addressing': 1, 'pci_bus_id': 2, 'pci_device_id': 1, 'compute_capability': (8, 0), 'cores_per_SM': 64, 'cores_total': 6272}
+
+***
+REPETITION: 1/1... [seed now: 0]
+
+HMDL MODEL SUMMARY:
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NO. LAYER   TYPE        INPUT SHAPE             EXTRA INFO  ACTIVATION    OUTPUT SHAPE          DO FORWARD IMPL       DO BACKWARD IMPL      DO BACKWARD OUTPUT IMPL   L1 PENALTIES        L2 PENALTIES        PARAMS          
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+0   f0      Flatten     (None, 28, 28, 1)                                 (None, 784)                                                                                                                         0               
+1   d1      Dense       (None, 784)                         relu          (None, 512)           numpy                 numpy                 numpy                                                             401920          
+2   dr2     Dropout     (None, 512)             0.125                     (None, 512)                                                                                                                         0               
+3   d3      Dense       (None, 512)                         relu          (None, 512)           numpy                 numpy                 numpy                                                             262656          
+4   dr4     Dropout     (None, 512)             0.125                     (None, 512)                                                                                                                         0               
+5   d5      Dense       (None, 512)                         relu          (None, 512)           numpy                 numpy                 numpy                                                             262656          
+6   dr6     Dropout     (None, 512)             0.125                     (None, 512)                                                                                                                         0               
+7   d7      Dense       (None, 512)                         softmax       (None, 10)            numpy                 numpy                 numpy                                                             5130            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL PARAMS: 932362
+FIT SETTINGS: [n_epochs: 100, n_batches: 20, loss: categorical_crossentropy, learning_rate: 0.001, decay_rate: 0.0, use_adam: True, momentum_rate: 0.0, gradient_clip: None]
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HMDL MODEL STRUCTURE STRING: 28x28x1->F();D(512,relu);DR(0.125);D(512,relu);DR(0.125);D(512,relu);DR(0.125);D(10,softmax);
+HMDL MODEL STRUCTURE STRING FOR MATHEMATICA: {{28,28,1},{"F"},{"D",512,"relu"},{"DR",0.125},{"D",512,"relu"},{"DR",0.125},{"D",512,"relu"},{"DR",0.125},{"D",10,"softmax"}}
+
+HMDL CLF ACC AND LOSS... [before fit]
+[train acc: 0.0897, train loss: 3.1742186546325684]
+[test acc: 0.0908, test loss: 3.158921241760254]
+HMDL CLF ACC AND LOSS DONE. [time: 0.6130285263061523 s]
+
+HMDL FIT...
+[norms of weights -> l1: 46212.08, l2: 55.60205]
+EPOCH: 1/100...
+[fit info (epoch 1):
+ epoch: 1    batch: 1    loss: 3.873     acc: 0.089
+ epoch: 1    batch: 2    loss: 3.506     acc: 0.154
+ epoch: 1    batch: 3    loss: 3.807     acc: 0.2133
+ epoch: 1    batch: 4    loss: 3.136     acc: 0.3213
+ epoch: 1    batch: 5    loss: 2.783     acc: 0.189
+ epoch: 1    batch: 6    loss: 3.092     acc: 0.1833
+ epoch: 1    batch: 7    loss: 2.546     acc: 0.217
+ epoch: 1    batch: 8    loss: 1.879     acc: 0.3773
+ epoch: 1    batch: 9    loss: 1.986     acc: 0.3643
+ epoch: 1    batch: 10   loss: 1.769     acc: 0.284
+ epoch: 1    batch: 11   loss: 1.542     acc: 0.4887
+ epoch: 1    batch: 12   loss: 1.815     acc: 0.392
+ epoch: 1    batch: 13   loss: 1.578     acc: 0.4687
+ epoch: 1    batch: 14   loss: 1.506     acc: 0.5193
+ epoch: 1    batch: 15   loss: 1.577     acc: 0.446
+ epoch: 1    batch: 16   loss: 2.109     acc: 0.2177
+ epoch: 1    batch: 17   loss: 1.345     acc: 0.573
+ epoch: 1    batch: 18   loss: 1.188     acc: 0.599
+ epoch: 1    batch: 19   loss: 1.253     acc: 0.5893
+ epoch: 1    batch: 20   loss: 1.312     acc: 0.5477
+ means -->               loss: 2.18      acc: 0.3617]
+[norms of weights -> l1: 46305.42, l2: 55.774309]
+[epoch fit time: 2.3983755 s]
+EPOCH: 2/100...
+[fit info (epoch 2):
+ epoch: 2    batch: 1    loss: 1.202     acc: 0.6003
+ epoch: 2    batch: 2    loss: 1.389     acc: 0.5077
+ epoch: 2    batch: 3    loss: 1.299     acc: 0.5237
+ epoch: 2    batch: 4    loss: 1.261     acc: 0.5543
+ epoch: 2    batch: 5    loss: 1.117     acc: 0.596
+ epoch: 2    batch: 6    loss: 1.141     acc: 0.6207
+ epoch: 2    batch: 7    loss: 1.053     acc: 0.6623
+ epoch: 2    batch: 8    loss: 0.7895    acc: 0.7247
+ epoch: 2    batch: 9    loss: 0.8738    acc: 0.7403
+ epoch: 2    batch: 10   loss: 0.7417    acc: 0.7393
+ epoch: 2    batch: 11   loss: 1.085     acc: 0.6113
+ epoch: 2    batch: 12   loss: 0.8653    acc: 0.692
+ epoch: 2    batch: 13   loss: 0.8382    acc: 0.71
+ epoch: 2    batch: 14   loss: 0.7897    acc: 0.7243
+ epoch: 2    batch: 15   loss: 0.8893    acc: 0.6903
+ epoch: 2    batch: 16   loss: 0.8008    acc: 0.7247
+ epoch: 2    batch: 17   loss: 0.7561    acc: 0.7423
+ epoch: 2    batch: 18   loss: 0.7139    acc: 0.755
+ epoch: 2    batch: 19   loss: 0.658     acc: 0.8
+ epoch: 2    batch: 20   loss: 0.8305    acc: 0.7077
+ means -->               loss: 0.9546    acc: 0.6714]
+[norms of weights -> l1: 46381.631, l2: 55.900661]
+[epoch fit time: 2.378104 s]
+EPOCH: 3/100...
+[fit info (epoch 3):
+ epoch: 3    batch: 1    loss: 0.5796    acc: 0.8247
+ epoch: 3    batch: 2    loss: 0.6606    acc: 0.7847
+ epoch: 3    batch: 3    loss: 0.7117    acc: 0.7547
+ epoch: 3    batch: 4    loss: 0.5743    acc: 0.7947
+ epoch: 3    batch: 5    loss: 0.603     acc: 0.8127
+ epoch: 3    batch: 6    loss: 0.5979    acc: 0.813
+ epoch: 3    batch: 7    loss: 0.6059    acc: 0.8027
+ epoch: 3    batch: 8    loss: 0.5221    acc: 0.8403
+ epoch: 3    batch: 9    loss: 0.5949    acc: 0.804
+ epoch: 3    batch: 10   loss: 0.5273    acc: 0.8257
+ epoch: 3    batch: 11   loss: 0.5161    acc: 0.8387
+ epoch: 3    batch: 12   loss: 0.5538    acc: 0.8207
+ epoch: 3    batch: 13   loss: 0.5194    acc: 0.8297
+ epoch: 3    batch: 14   loss: 0.5265    acc: 0.8277
+ epoch: 3    batch: 15   loss: 0.4669    acc: 0.86
+ epoch: 3    batch: 16   loss: 0.4612    acc: 0.8587
+ epoch: 3    batch: 17   loss: 0.5528    acc: 0.8173
+ epoch: 3    batch: 18   loss: 0.6162    acc: 0.7913
+ epoch: 3    batch: 19   loss: 0.439     acc: 0.8677
+ epoch: 3    batch: 20   loss: 0.4735    acc: 0.855
+ means -->               loss: 0.5551    acc: 0.8212]
+[norms of weights -> l1: 46428.108, l2: 55.980089]
+[epoch fit time: 2.3905368 s]
+EPOCH: 4/100...
+[fit info (epoch 4):
+ epoch: 4    batch: 1    loss: 0.5324    acc: 0.8243
+ epoch: 4    batch: 2    loss: 0.5936    acc: 0.809
+ epoch: 4    batch: 3    loss: 0.46      acc: 0.8683
+ epoch: 4    batch: 4    loss: 0.4552    acc: 0.8583
+ epoch: 4    batch: 5    loss: 0.418     acc: 0.8773
+ epoch: 4    batch: 6    loss: 0.4647    acc: 0.8543
+ epoch: 4    batch: 7    loss: 0.466     acc: 0.851
+ epoch: 4    batch: 8    loss: 0.4404    acc: 0.861
+ epoch: 4    batch: 9    loss: 0.3985    acc: 0.876
+ epoch: 4    batch: 10   loss: 0.3926    acc: 0.8793
+ epoch: 4    batch: 11   loss: 0.4073    acc: 0.878
+ epoch: 4    batch: 12   loss: 0.5364    acc: 0.8347
+ epoch: 4    batch: 13   loss: 0.4236    acc: 0.8633
+ epoch: 4    batch: 14   loss: 0.4581    acc: 0.8417
+ epoch: 4    batch: 15   loss: 0.4479    acc: 0.8573
+ epoch: 4    batch: 16   loss: 0.3635    acc: 0.881
+ epoch: 4    batch: 17   loss: 0.4094    acc: 0.8753
+ epoch: 4    batch: 18   loss: 0.4775    acc: 0.844
+ epoch: 4    batch: 19   loss: 0.4394    acc: 0.8647
+ epoch: 4    batch: 20   loss: 0.4094    acc: 0.8817
+ means -->               loss: 0.4497    acc: 0.859]
+[norms of weights -> l1: 46457.822, l2: 56.03387]
+[epoch fit time: 2.3803091 s]
+EPOCH: 5/100...
+[fit info (epoch 5):
+ epoch: 5    batch: 1    loss: 0.3491    acc: 0.887
+ epoch: 5    batch: 2    loss: 0.389     acc: 0.8713
+ epoch: 5    batch: 3    loss: 0.4325    acc: 0.8667
+ epoch: 5    batch: 4    loss: 0.4136    acc: 0.8717
+ epoch: 5    batch: 5    loss: 0.3614    acc: 0.8837
+ epoch: 5    batch: 6    loss: 0.3184    acc: 0.9013
+ epoch: 5    batch: 7    loss: 0.3926    acc: 0.8783
+ epoch: 5    batch: 8    loss: 0.3976    acc: 0.8737
+ epoch: 5    batch: 9    loss: 0.3874    acc: 0.8833
+ epoch: 5    batch: 10   loss: 0.3726    acc: 0.885
+ epoch: 5    batch: 11   loss: 0.3939    acc: 0.879
+ epoch: 5    batch: 12   loss: 0.3798    acc: 0.888
+ epoch: 5    batch: 13   loss: 0.4343    acc: 0.8693
+ epoch: 5    batch: 14   loss: 0.3382    acc: 0.8983
+ epoch: 5    batch: 15   loss: 0.3982    acc: 0.8747
+ epoch: 5    batch: 16   loss: 0.4336    acc: 0.864
+ epoch: 5    batch: 17   loss: 0.4209    acc: 0.8717
+ epoch: 5    batch: 18   loss: 0.3247    acc: 0.899
+ epoch: 5    batch: 19   loss: 0.3332    acc: 0.9013
+ epoch: 5    batch: 20   loss: 0.3322    acc: 0.8963
+ means -->               loss: 0.3802    acc: 0.8822]
+[norms of weights -> l1: 46489.06, l2: 56.090032]
+[epoch fit time: 2.379225 s]
+EPOCH: 6/100...
+[fit info (epoch 6):
+ epoch: 6    batch: 1    loss: 0.3706    acc: 0.887
+ epoch: 6    batch: 2    loss: 0.3965    acc: 0.8773
+ epoch: 6    batch: 3    loss: 0.3656    acc: 0.888
+ epoch: 6    batch: 4    loss: 0.3652    acc: 0.8907
+ epoch: 6    batch: 5    loss: 0.3288    acc: 0.897
+ epoch: 6    batch: 6    loss: 0.3579    acc: 0.892
+ epoch: 6    batch: 7    loss: 0.3371    acc: 0.8943
+ epoch: 6    batch: 8    loss: 0.3619    acc: 0.8887
+ epoch: 6    batch: 9    loss: 0.3005    acc: 0.9073
+ epoch: 6    batch: 10   loss: 0.3085    acc: 0.912
+ epoch: 6    batch: 11   loss: 0.3087    acc: 0.9093
+ epoch: 6    batch: 12   loss: 0.2809    acc: 0.909
+ epoch: 6    batch: 13   loss: 0.342     acc: 0.9003
+ epoch: 6    batch: 14   loss: 0.3256    acc: 0.892
+ epoch: 6    batch: 15   loss: 0.3284    acc: 0.8953
+ epoch: 6    batch: 16   loss: 0.3008    acc: 0.913
+ epoch: 6    batch: 17   loss: 0.2641    acc: 0.918
+ epoch: 6    batch: 18   loss: 0.3131    acc: 0.904
+ epoch: 6    batch: 19   loss: 0.2727    acc: 0.913
+ epoch: 6    batch: 20   loss: 0.3187    acc: 0.9097
+ means -->               loss: 0.3274    acc: 0.8999]
+[norms of weights -> l1: 46523.705, l2: 56.152149]
+[epoch fit time: 2.3758228 s]
+EPOCH: 7/100...
+[fit info (epoch 7):
+ epoch: 7    batch: 1    loss: 0.2476    acc: 0.9233
+ epoch: 7    batch: 2    loss: 0.2756    acc: 0.9133
+ epoch: 7    batch: 3    loss: 0.217     acc: 0.9313
+ epoch: 7    batch: 4    loss: 0.2503    acc: 0.9253
+ epoch: 7    batch: 5    loss: 0.3071    acc: 0.9083
+ epoch: 7    batch: 6    loss: 0.3461    acc: 0.8893
+ epoch: 7    batch: 7    loss: 0.2952    acc: 0.905
+ epoch: 7    batch: 8    loss: 0.2871    acc: 0.916
+ epoch: 7    batch: 9    loss: 0.2632    acc: 0.9143
+ epoch: 7    batch: 10   loss: 0.293     acc: 0.904
+ epoch: 7    batch: 11   loss: 0.2707    acc: 0.918
+ epoch: 7    batch: 12   loss: 0.2721    acc: 0.9237
+ epoch: 7    batch: 13   loss: 0.2572    acc: 0.9253
+ epoch: 7    batch: 14   loss: 0.2634    acc: 0.915
+ epoch: 7    batch: 15   loss: 0.2178    acc: 0.932
+ epoch: 7    batch: 16   loss: 0.2743    acc: 0.9203
+ epoch: 7    batch: 17   loss: 0.2611    acc: 0.9197
+ epoch: 7    batch: 18   loss: 0.2713    acc: 0.919
+ epoch: 7    batch: 19   loss: 0.233     acc: 0.9293
+ epoch: 7    batch: 20   loss: 0.2354    acc: 0.925
+ means -->               loss: 0.2669    acc: 0.9179]
+[norms of weights -> l1: 46557.339, l2: 56.214959]
+[epoch fit time: 2.3907299 s]
+EPOCH: 8/100...
+[fit info (epoch 8):
+ epoch: 8    batch: 1    loss: 0.262     acc: 0.919
+ epoch: 8    batch: 2    loss: 0.2483    acc: 0.9213
+ epoch: 8    batch: 3    loss: 0.2345    acc: 0.926
+ epoch: 8    batch: 4    loss: 0.2361    acc: 0.9253
+ epoch: 8    batch: 5    loss: 0.2209    acc: 0.9303
+ epoch: 8    batch: 6    loss: 0.2339    acc: 0.929
+ epoch: 8    batch: 7    loss: 0.2527    acc: 0.9287
+ epoch: 8    batch: 8    loss: 0.2724    acc: 0.9083
+ epoch: 8    batch: 9    loss: 0.2173    acc: 0.9337
+ epoch: 8    batch: 10   loss: 0.2352    acc: 0.9273
+ epoch: 8    batch: 11   loss: 0.2319    acc: 0.93
+ epoch: 8    batch: 12   loss: 0.2315    acc: 0.929
+ epoch: 8    batch: 13   loss: 0.2275    acc: 0.9363
+ epoch: 8    batch: 14   loss: 0.2219    acc: 0.9343
+ epoch: 8    batch: 15   loss: 0.2936    acc: 0.9057
+ epoch: 8    batch: 16   loss: 0.198     acc: 0.9407
+ epoch: 8    batch: 17   loss: 0.2089    acc: 0.935
+ epoch: 8    batch: 18   loss: 0.2438    acc: 0.9263
+ epoch: 8    batch: 19   loss: 0.2314    acc: 0.9267
+ epoch: 8    batch: 20   loss: 0.2021    acc: 0.9363
+ means -->               loss: 0.2352    acc: 0.9275]
+[norms of weights -> l1: 46594.182, l2: 56.282422]
+[epoch fit time: 2.4764531 s]
+EPOCH: 9/100...
+[fit info (epoch 9):
+ epoch: 9    batch: 1    loss: 0.2194    acc: 0.9323
+ epoch: 9    batch: 2    loss: 0.2157    acc: 0.935
+ epoch: 9    batch: 3    loss: 0.2099    acc: 0.935
+ epoch: 9    batch: 4    loss: 0.2277    acc: 0.9317
+ epoch: 9    batch: 5    loss: 0.2261    acc: 0.9287
+ epoch: 9    batch: 6    loss: 0.282     acc: 0.9103
+ epoch: 9    batch: 7    loss: 0.2105    acc: 0.935
+ epoch: 9    batch: 8    loss: 0.2327    acc: 0.927
+ epoch: 9    batch: 9    loss: 0.2074    acc: 0.9323
+ epoch: 9    batch: 10   loss: 0.2391    acc: 0.922
+ epoch: 9    batch: 11   loss: 0.287     acc: 0.909
+ epoch: 9    batch: 12   loss: 0.2217    acc: 0.9343
+ epoch: 9    batch: 13   loss: 0.2009    acc: 0.9393
+ epoch: 9    batch: 14   loss: 0.1801    acc: 0.943
+ epoch: 9    batch: 15   loss: 0.1843    acc: 0.9423
+ epoch: 9    batch: 16   loss: 0.2134    acc: 0.9323
+ epoch: 9    batch: 17   loss: 0.2905    acc: 0.9097
+ epoch: 9    batch: 18   loss: 0.2352    acc: 0.9303
+ epoch: 9    batch: 19   loss: 0.192     acc: 0.9433
+ epoch: 9    batch: 20   loss: 0.2077    acc: 0.9327
+ means -->               loss: 0.2242    acc: 0.9303]
+[norms of weights -> l1: 46635.545, l2: 56.356297]
+[epoch fit time: 2.4489398 s]
+EPOCH: 10/100...
+[fit info (epoch 10):
+ epoch: 10   batch: 1    loss: 0.1855    acc: 0.9427
+ epoch: 10   batch: 2    loss: 0.2466    acc: 0.9263
+ epoch: 10   batch: 3    loss: 0.2314    acc: 0.9253
+ epoch: 10   batch: 4    loss: 0.2636    acc: 0.9233
+ epoch: 10   batch: 5    loss: 0.2016    acc: 0.9343
+ epoch: 10   batch: 6    loss: 0.2268    acc: 0.9317
+ epoch: 10   batch: 7    loss: 0.2072    acc: 0.9357
+ epoch: 10   batch: 8    loss: 0.2184    acc: 0.93
+ epoch: 10   batch: 9    loss: 0.2023    acc: 0.9423
+ epoch: 10   batch: 10   loss: 0.2624    acc: 0.9183
+ epoch: 10   batch: 11   loss: 0.2062    acc: 0.9387
+ epoch: 10   batch: 12   loss: 0.2045    acc: 0.9353
+ epoch: 10   batch: 13   loss: 0.2007    acc: 0.9367
+ epoch: 10   batch: 14   loss: 0.1688    acc: 0.947
+ epoch: 10   batch: 15   loss: 0.1884    acc: 0.9417
+ epoch: 10   batch: 16   loss: 0.2854    acc: 0.9097
+ epoch: 10   batch: 17   loss: 0.229     acc: 0.929
+ epoch: 10   batch: 18   loss: 0.1838    acc: 0.942
+ epoch: 10   batch: 19   loss: 0.1994    acc: 0.9437
+ epoch: 10   batch: 20   loss: 0.22      acc: 0.935
+ means -->               loss: 0.2166    acc: 0.9334]
+[norms of weights -> l1: 46681.06, l2: 56.43843]
+[epoch fit time: 2.3851604 s]
+EPOCH: 11/100...
+[fit info (epoch 11):
+ epoch: 11   batch: 1    loss: 0.2062    acc: 0.9387
+ epoch: 11   batch: 2    loss: 0.1875    acc: 0.9433
+ epoch: 11   batch: 3    loss: 0.1924    acc: 0.9437
+ epoch: 11   batch: 4    loss: 0.2077    acc: 0.934
+ epoch: 11   batch: 5    loss: 0.1853    acc: 0.9427
+ epoch: 11   batch: 6    loss: 0.1758    acc: 0.9463
+ epoch: 11   batch: 7    loss: 0.1922    acc: 0.937
+ epoch: 11   batch: 8    loss: 0.2065    acc: 0.9367
+ epoch: 11   batch: 9    loss: 0.1722    acc: 0.9463
+ epoch: 11   batch: 10   loss: 0.2369    acc: 0.9243
+ epoch: 11   batch: 11   loss: 0.1577    acc: 0.9503
+ epoch: 11   batch: 12   loss: 0.2128    acc: 0.9347
+ epoch: 11   batch: 13   loss: 0.189     acc: 0.942
+ epoch: 11   batch: 14   loss: 0.2199    acc: 0.941
+ epoch: 11   batch: 15   loss: 0.2022    acc: 0.9377
+ epoch: 11   batch: 16   loss: 0.1632    acc: 0.9447
+ epoch: 11   batch: 17   loss: 0.1941    acc: 0.9403
+ epoch: 11   batch: 18   loss: 0.1965    acc: 0.9403
+ epoch: 11   batch: 19   loss: 0.1963    acc: 0.939
+ epoch: 11   batch: 20   loss: 0.1987    acc: 0.9363
+ means -->               loss: 0.1947    acc: 0.94]
+[norms of weights -> l1: 46724.64, l2: 56.517279]
+[epoch fit time: 2.3934047 s]
+EPOCH: 12/100...
+[fit info (epoch 12):
+ epoch: 12   batch: 1    loss: 0.1526    acc: 0.9533
+ epoch: 12   batch: 2    loss: 0.1678    acc: 0.9493
+ epoch: 12   batch: 3    loss: 0.1651    acc: 0.9477
+ epoch: 12   batch: 4    loss: 0.1671    acc: 0.9527
+ epoch: 12   batch: 5    loss: 0.1714    acc: 0.9497
+ epoch: 12   batch: 6    loss: 0.1878    acc: 0.9463
+ epoch: 12   batch: 7    loss: 0.1723    acc: 0.9443
+ epoch: 12   batch: 8    loss: 0.1667    acc: 0.9513
+ epoch: 12   batch: 9    loss: 0.1477    acc: 0.9537
+ epoch: 12   batch: 10   loss: 0.2007    acc: 0.9337
+ epoch: 12   batch: 11   loss: 0.1565    acc: 0.9523
+ epoch: 12   batch: 12   loss: 0.1496    acc: 0.9567
+ epoch: 12   batch: 13   loss: 0.1533    acc: 0.9533
+ epoch: 12   batch: 14   loss: 0.1515    acc: 0.9503
+ epoch: 12   batch: 15   loss: 0.177     acc: 0.9413
+ epoch: 12   batch: 16   loss: 0.1472    acc: 0.9543
+ epoch: 12   batch: 17   loss: 0.2233    acc: 0.9263
+ epoch: 12   batch: 18   loss: 0.1714    acc: 0.9487
+ epoch: 12   batch: 19   loss: 0.1454    acc: 0.9523
+ epoch: 12   batch: 20   loss: 0.1378    acc: 0.9577
+ means -->               loss: 0.1656    acc: 0.9488]
+[norms of weights -> l1: 46764.42, l2: 56.591734]
+[epoch fit time: 2.3862808 s]
+EPOCH: 13/100...
+[fit info (epoch 13):
+ epoch: 13   batch: 1    loss: 0.1618    acc: 0.9477
+ epoch: 13   batch: 2    loss: 0.1479    acc: 0.956
+ epoch: 13   batch: 3    loss: 0.156     acc: 0.949
+ epoch: 13   batch: 4    loss: 0.1612    acc: 0.9523
+ epoch: 13   batch: 5    loss: 0.1886    acc: 0.9323
+ epoch: 13   batch: 6    loss: 0.1335    acc: 0.959
+ epoch: 13   batch: 7    loss: 0.1704    acc: 0.949
+ epoch: 13   batch: 8    loss: 0.132     acc: 0.9617
+ epoch: 13   batch: 9    loss: 0.1377    acc: 0.9597
+ epoch: 13   batch: 10   loss: 0.1486    acc: 0.957
+ epoch: 13   batch: 11   loss: 0.1906    acc: 0.939
+ epoch: 13   batch: 12   loss: 0.1361    acc: 0.9583
+ epoch: 13   batch: 13   loss: 0.1426    acc: 0.9567
+ epoch: 13   batch: 14   loss: 0.1522    acc: 0.951
+ epoch: 13   batch: 15   loss: 0.1413    acc: 0.9557
+ epoch: 13   batch: 16   loss: 0.1476    acc: 0.954
+ epoch: 13   batch: 17   loss: 0.1607    acc: 0.9497
+ epoch: 13   batch: 18   loss: 0.1626    acc: 0.955
+ epoch: 13   batch: 19   loss: 0.1327    acc: 0.9563
+ epoch: 13   batch: 20   loss: 0.1526    acc: 0.9543
+ means -->               loss: 0.1528    acc: 0.9527]
+[norms of weights -> l1: 46802.427, l2: 56.661381]
+[epoch fit time: 2.3893094 s]
+EPOCH: 14/100...
+[fit info (epoch 14):
+ epoch: 14   batch: 1    loss: 0.1729    acc: 0.9463
+ epoch: 14   batch: 2    loss: 0.1418    acc: 0.9573
+ epoch: 14   batch: 3    loss: 0.2066    acc: 0.9357
+ epoch: 14   batch: 4    loss: 0.1956    acc: 0.939
+ epoch: 14   batch: 5    loss: 0.1257    acc: 0.9607
+ epoch: 14   batch: 6    loss: 0.1315    acc: 0.9637
+ epoch: 14   batch: 7    loss: 0.1191    acc: 0.9603
+ epoch: 14   batch: 8    loss: 0.137     acc: 0.952
+ epoch: 14   batch: 9    loss: 0.1504    acc: 0.9517
+ epoch: 14   batch: 10   loss: 0.1487    acc: 0.9583
+ epoch: 14   batch: 11   loss: 0.1424    acc: 0.9563
+ epoch: 14   batch: 12   loss: 0.1472    acc: 0.9533
+ epoch: 14   batch: 13   loss: 0.1177    acc: 0.964
+ epoch: 14   batch: 14   loss: 0.1324    acc: 0.9613
+ epoch: 14   batch: 15   loss: 0.1531    acc: 0.9523
+ epoch: 14   batch: 16   loss: 0.1662    acc: 0.9507
+ epoch: 14   batch: 17   loss: 0.137     acc: 0.953
+ epoch: 14   batch: 18   loss: 0.1492    acc: 0.9537
+ epoch: 14   batch: 19   loss: 0.1523    acc: 0.9547
+ epoch: 14   batch: 20   loss: 0.1133    acc: 0.9643
+ means -->               loss: 0.147     acc: 0.9544]
+[norms of weights -> l1: 46841.026, l2: 56.731707]
+[epoch fit time: 2.3993304 s]
+EPOCH: 15/100...
+[fit info (epoch 15):
+ epoch: 15   batch: 1    loss: 0.1268    acc: 0.9647
+ epoch: 15   batch: 2    loss: 0.1239    acc: 0.96
+ epoch: 15   batch: 3    loss: 0.1169    acc: 0.9627
+ epoch: 15   batch: 4    loss: 0.2245    acc: 0.9307
+ epoch: 15   batch: 5    loss: 0.1097    acc: 0.965
+ epoch: 15   batch: 6    loss: 0.09572   acc: 0.9713
+ epoch: 15   batch: 7    loss: 0.1156    acc: 0.9663
+ epoch: 15   batch: 8    loss: 0.1256    acc: 0.9583
+ epoch: 15   batch: 9    loss: 0.1533    acc: 0.9507
+ epoch: 15   batch: 10   loss: 0.1602    acc: 0.9463
+ epoch: 15   batch: 11   loss: 0.1346    acc: 0.9613
+ epoch: 15   batch: 12   loss: 0.1754    acc: 0.9487
+ epoch: 15   batch: 13   loss: 0.1327    acc: 0.9613
+ epoch: 15   batch: 14   loss: 0.1278    acc: 0.962
+ epoch: 15   batch: 15   loss: 0.1264    acc: 0.959
+ epoch: 15   batch: 16   loss: 0.1382    acc: 0.9523
+ epoch: 15   batch: 17   loss: 0.1406    acc: 0.957
+ epoch: 15   batch: 18   loss: 0.1384    acc: 0.956
+ epoch: 15   batch: 19   loss: 0.127     acc: 0.963
+ epoch: 15   batch: 20   loss: 0.165     acc: 0.9513
+ means -->               loss: 0.1379    acc: 0.9574]
+[norms of weights -> l1: 46879.397, l2: 56.803397]
+[epoch fit time: 2.386302 s]
+EPOCH: 16/100...
+[fit info (epoch 16):
+ epoch: 16   batch: 1    loss: 0.1119    acc: 0.9667
+ epoch: 16   batch: 2    loss: 0.13      acc: 0.963
+ epoch: 16   batch: 3    loss: 0.158     acc: 0.953
+ epoch: 16   batch: 4    loss: 0.1278    acc: 0.956
+ epoch: 16   batch: 5    loss: 0.1424    acc: 0.9537
+ epoch: 16   batch: 6    loss: 0.1178    acc: 0.966
+ epoch: 16   batch: 7    loss: 0.1077    acc: 0.9653
+ epoch: 16   batch: 8    loss: 0.1014    acc: 0.969
+ epoch: 16   batch: 9    loss: 0.1456    acc: 0.9577
+ epoch: 16   batch: 10   loss: 0.1233    acc: 0.9597
+ epoch: 16   batch: 11   loss: 0.1334    acc: 0.9573
+ epoch: 16   batch: 12   loss: 0.1331    acc: 0.9577
+ epoch: 16   batch: 13   loss: 0.1273    acc: 0.9647
+ epoch: 16   batch: 14   loss: 0.1068    acc: 0.9697
+ epoch: 16   batch: 15   loss: 0.1176    acc: 0.9627
+ epoch: 16   batch: 16   loss: 0.1388    acc: 0.959
+ epoch: 16   batch: 17   loss: 0.1056    acc: 0.968
+ epoch: 16   batch: 18   loss: 0.1336    acc: 0.9613
+ epoch: 16   batch: 19   loss: 0.1539    acc: 0.9553
+ epoch: 16   batch: 20   loss: 0.1046    acc: 0.9673
+ means -->               loss: 0.126     acc: 0.9616]
+[norms of weights -> l1: 46919.502, l2: 56.877273]
+[epoch fit time: 2.4179657 s]
+EPOCH: 17/100...
+[fit info (epoch 17):
+ epoch: 17   batch: 1    loss: 0.1094    acc: 0.967
+ epoch: 17   batch: 2    loss: 0.1056    acc: 0.966
+ epoch: 17   batch: 3    loss: 0.09513   acc: 0.9677
+ epoch: 17   batch: 4    loss: 0.1131    acc: 0.966
+ epoch: 17   batch: 5    loss: 0.1183    acc: 0.959
+ epoch: 17   batch: 6    loss: 0.09227   acc: 0.9723
+ epoch: 17   batch: 7    loss: 0.1046    acc: 0.9703
+ epoch: 17   batch: 8    loss: 0.1252    acc: 0.9643
+ epoch: 17   batch: 9    loss: 0.1254    acc: 0.963
+ epoch: 17   batch: 10   loss: 0.1366    acc: 0.9583
+ epoch: 17   batch: 11   loss: 0.1219    acc: 0.9633
+ epoch: 17   batch: 12   loss: 0.1293    acc: 0.9577
+ epoch: 17   batch: 13   loss: 0.1452    acc: 0.9527
+ epoch: 17   batch: 14   loss: 0.1056    acc: 0.966
+ epoch: 17   batch: 15   loss: 0.1337    acc: 0.961
+ epoch: 17   batch: 16   loss: 0.1082    acc: 0.964
+ epoch: 17   batch: 17   loss: 0.09876   acc: 0.968
+ epoch: 17   batch: 18   loss: 0.1161    acc: 0.963
+ epoch: 17   batch: 19   loss: 0.1225    acc: 0.9567
+ epoch: 17   batch: 20   loss: 0.1114    acc: 0.9623
+ means -->               loss: 0.1159    acc: 0.9634]
+[norms of weights -> l1: 46956.694, l2: 56.946488]
+[epoch fit time: 2.4860008 s]
+EPOCH: 18/100...
+[fit info (epoch 18):
+ epoch: 18   batch: 1    loss: 0.08794   acc: 0.9727
+ epoch: 18   batch: 2    loss: 0.111     acc: 0.9643
+ epoch: 18   batch: 3    loss: 0.1157    acc: 0.9653
+ epoch: 18   batch: 4    loss: 0.1099    acc: 0.9647
+ epoch: 18   batch: 5    loss: 0.09389   acc: 0.971
+ epoch: 18   batch: 6    loss: 0.1229    acc: 0.964
+ epoch: 18   batch: 7    loss: 0.1047    acc: 0.9713
+ epoch: 18   batch: 8    loss: 0.1207    acc: 0.9613
+ epoch: 18   batch: 9    loss: 0.1006    acc: 0.968
+ epoch: 18   batch: 10   loss: 0.112     acc: 0.9647
+ epoch: 18   batch: 11   loss: 0.09652   acc: 0.972
+ epoch: 18   batch: 12   loss: 0.1012    acc: 0.9667
+ epoch: 18   batch: 13   loss: 0.1131    acc: 0.9637
+ epoch: 18   batch: 14   loss: 0.1169    acc: 0.965
+ epoch: 18   batch: 15   loss: 0.1168    acc: 0.965
+ epoch: 18   batch: 16   loss: 0.111     acc: 0.9643
+ epoch: 18   batch: 17   loss: 0.1039    acc: 0.9667
+ epoch: 18   batch: 18   loss: 0.1227    acc: 0.9623
+ epoch: 18   batch: 19   loss: 0.1076    acc: 0.9693
+ epoch: 18   batch: 20   loss: 0.1135    acc: 0.9677
+ means -->               loss: 0.1091    acc: 0.9665]
+[norms of weights -> l1: 46991.663, l2: 57.014231]
+[epoch fit time: 2.8366368 s]
+EPOCH: 19/100...
+[fit info (epoch 19):
+ epoch: 19   batch: 1    loss: 0.1065    acc: 0.9683
+ epoch: 19   batch: 2    loss: 0.09718   acc: 0.968
+ epoch: 19   batch: 3    loss: 0.08891   acc: 0.973
+ epoch: 19   batch: 4    loss: 0.09711   acc: 0.9687
+ epoch: 19   batch: 5    loss: 0.08754   acc: 0.9723
+ epoch: 19   batch: 6    loss: 0.1167    acc: 0.9657
+ epoch: 19   batch: 7    loss: 0.1317    acc: 0.959
+ epoch: 19   batch: 8    loss: 0.1391    acc: 0.954
+ epoch: 19   batch: 9    loss: 0.09893   acc: 0.9657
+ epoch: 19   batch: 10   loss: 0.08564   acc: 0.975
+ epoch: 19   batch: 11   loss: 0.1025    acc: 0.9657
+ epoch: 19   batch: 12   loss: 0.1254    acc: 0.961
+ epoch: 19   batch: 13   loss: 0.1234    acc: 0.9643
+ epoch: 19   batch: 14   loss: 0.09022   acc: 0.973
+ epoch: 19   batch: 15   loss: 0.1113    acc: 0.9653
+ epoch: 19   batch: 16   loss: 0.1093    acc: 0.965
+ epoch: 19   batch: 17   loss: 0.09757   acc: 0.968
+ epoch: 19   batch: 18   loss: 0.1509    acc: 0.9503
+ epoch: 19   batch: 19   loss: 0.1365    acc: 0.9597
+ epoch: 19   batch: 20   loss: 0.09147   acc: 0.972
+ means -->               loss: 0.1094    acc: 0.9657]
+[norms of weights -> l1: 47028.594, l2: 57.082889]
+[epoch fit time: 3.3299923 s]
+EPOCH: 20/100...
+[fit info (epoch 20):
+ epoch: 20   batch: 1    loss: 0.08695   acc: 0.975
+ epoch: 20   batch: 2    loss: 0.1394    acc: 0.9557
+ epoch: 20   batch: 3    loss: 0.1115    acc: 0.9657
+ epoch: 20   batch: 4    loss: 0.1273    acc: 0.9637
+ epoch: 20   batch: 5    loss: 0.1124    acc: 0.9647
+ epoch: 20   batch: 6    loss: 0.1224    acc: 0.9623
+ epoch: 20   batch: 7    loss: 0.09717   acc: 0.9673
+ epoch: 20   batch: 8    loss: 0.08494   acc: 0.9773
+ epoch: 20   batch: 9    loss: 0.124     acc: 0.9597
+ epoch: 20   batch: 10   loss: 0.1409    acc: 0.9543
+ epoch: 20   batch: 11   loss: 0.07987   acc: 0.9763
+ epoch: 20   batch: 12   loss: 0.08693   acc: 0.9717
+ epoch: 20   batch: 13   loss: 0.1024    acc: 0.968
+ epoch: 20   batch: 14   loss: 0.1234    acc: 0.9617
+ epoch: 20   batch: 15   loss: 0.1174    acc: 0.9633
+ epoch: 20   batch: 16   loss: 0.09997   acc: 0.967
+ epoch: 20   batch: 17   loss: 0.1153    acc: 0.9607
+ epoch: 20   batch: 18   loss: 0.09151   acc: 0.9723
+ epoch: 20   batch: 19   loss: 0.1189    acc: 0.9627
+ epoch: 20   batch: 20   loss: 0.1045    acc: 0.9673
+ means -->               loss: 0.1094    acc: 0.9658]
+[norms of weights -> l1: 47068.668, l2: 57.15498]
+[epoch fit time: 2.7145927 s]
+EPOCH: 21/100...
+[fit info (epoch 21):
+ epoch: 21   batch: 1    loss: 0.1145    acc: 0.965
+ epoch: 21   batch: 2    loss: 0.1116    acc: 0.962
+ epoch: 21   batch: 3    loss: 0.08466   acc: 0.9743
+ epoch: 21   batch: 4    loss: 0.1068    acc: 0.967
+ epoch: 21   batch: 5    loss: 0.1007    acc: 0.9703
+ epoch: 21   batch: 6    loss: 0.09712   acc: 0.9723
+ epoch: 21   batch: 7    loss: 0.1046    acc: 0.9677
+ epoch: 21   batch: 8    loss: 0.08571   acc: 0.9737
+ epoch: 21   batch: 9    loss: 0.1043    acc: 0.966
+ epoch: 21   batch: 10   loss: 0.09101   acc: 0.9703
+ epoch: 21   batch: 11   loss: 0.08412   acc: 0.975
+ epoch: 21   batch: 12   loss: 0.1106    acc: 0.9587
+ epoch: 21   batch: 13   loss: 0.1088    acc: 0.964
+ epoch: 21   batch: 14   loss: 0.08416   acc: 0.971
+ epoch: 21   batch: 15   loss: 0.09799   acc: 0.9673
+ epoch: 21   batch: 16   loss: 0.0953    acc: 0.971
+ epoch: 21   batch: 17   loss: 0.08483   acc: 0.972
+ epoch: 21   batch: 18   loss: 0.08868   acc: 0.969
+ epoch: 21   batch: 19   loss: 0.08187   acc: 0.9737
+ epoch: 21   batch: 20   loss: 0.1265    acc: 0.9603
+ means -->               loss: 0.09819   acc: 0.9685]
+[norms of weights -> l1: 47108.866, l2: 57.229284]
+[epoch fit time: 2.5065539 s]
+EPOCH: 22/100...
+[fit info (epoch 22):
+ epoch: 22   batch: 1    loss: 0.08962   acc: 0.9733
+ epoch: 22   batch: 2    loss: 0.08957   acc: 0.9713
+ epoch: 22   batch: 3    loss: 0.1015    acc: 0.9663
+ epoch: 22   batch: 4    loss: 0.07877   acc: 0.9753
+ epoch: 22   batch: 5    loss: 0.0907    acc: 0.9703
+ epoch: 22   batch: 6    loss: 0.1102    acc: 0.963
+ epoch: 22   batch: 7    loss: 0.08612   acc: 0.9747
+ epoch: 22   batch: 8    loss: 0.08489   acc: 0.9747
+ epoch: 22   batch: 9    loss: 0.08368   acc: 0.975
+ epoch: 22   batch: 10   loss: 0.08288   acc: 0.9747
+ epoch: 22   batch: 11   loss: 0.08253   acc: 0.9757
+ epoch: 22   batch: 12   loss: 0.09433   acc: 0.9703
+ epoch: 22   batch: 13   loss: 0.08939   acc: 0.973
+ epoch: 22   batch: 14   loss: 0.09513   acc: 0.9697
+ epoch: 22   batch: 15   loss: 0.09424   acc: 0.9707
+ epoch: 22   batch: 16   loss: 0.06443   acc: 0.9793
+ epoch: 22   batch: 17   loss: 0.08536   acc: 0.9723
+ epoch: 22   batch: 18   loss: 0.07052   acc: 0.9783
+ epoch: 22   batch: 19   loss: 0.08304   acc: 0.9753
+ epoch: 22   batch: 20   loss: 0.1063    acc: 0.966
+ means -->               loss: 0.08816   acc: 0.9725]
+[norms of weights -> l1: 47145.519, l2: 57.297083]
+[epoch fit time: 2.5625896 s]
+EPOCH: 23/100...
+[fit info (epoch 23):
+ epoch: 23   batch: 1    loss: 0.07797   acc: 0.975
+ epoch: 23   batch: 2    loss: 0.08051   acc: 0.979
+ epoch: 23   batch: 3    loss: 0.07457   acc: 0.976
+ epoch: 23   batch: 4    loss: 0.09597   acc: 0.968
+ epoch: 23   batch: 5    loss: 0.07218   acc: 0.979
+ epoch: 23   batch: 6    loss: 0.07233   acc: 0.9787
+ epoch: 23   batch: 7    loss: 0.1028    acc: 0.9697
+ epoch: 23   batch: 8    loss: 0.0791    acc: 0.9763
+ epoch: 23   batch: 9    loss: 0.07841   acc: 0.9777
+ epoch: 23   batch: 10   loss: 0.08613   acc: 0.971
+ epoch: 23   batch: 11   loss: 0.06585   acc: 0.978
+ epoch: 23   batch: 12   loss: 0.07549   acc: 0.978
+ epoch: 23   batch: 13   loss: 0.08108   acc: 0.9763
+ epoch: 23   batch: 14   loss: 0.07581   acc: 0.9777
+ epoch: 23   batch: 15   loss: 0.0648    acc: 0.9787
+ epoch: 23   batch: 16   loss: 0.07273   acc: 0.9757
+ epoch: 23   batch: 17   loss: 0.07439   acc: 0.976
+ epoch: 23   batch: 18   loss: 0.09448   acc: 0.97
+ epoch: 23   batch: 19   loss: 0.07414   acc: 0.978
+ epoch: 23   batch: 20   loss: 0.06895   acc: 0.9777
+ means -->               loss: 0.07838   acc: 0.9758]
+[norms of weights -> l1: 47180.302, l2: 57.361102]
+[epoch fit time: 2.6562238 s]
+EPOCH: 24/100...
+[fit info (epoch 24):
+ epoch: 24   batch: 1    loss: 0.06434   acc: 0.98
+ epoch: 24   batch: 2    loss: 0.09156   acc: 0.9683
+ epoch: 24   batch: 3    loss: 0.07106   acc: 0.9777
+ epoch: 24   batch: 4    loss: 0.09207   acc: 0.9707
+ epoch: 24   batch: 5    loss: 0.07894   acc: 0.975
+ epoch: 24   batch: 6    loss: 0.08445   acc: 0.9733
+ epoch: 24   batch: 7    loss: 0.05067   acc: 0.9823
+ epoch: 24   batch: 8    loss: 0.05627   acc: 0.9813
+ epoch: 24   batch: 9    loss: 0.0669    acc: 0.978
+ epoch: 24   batch: 10   loss: 0.08183   acc: 0.9727
+ epoch: 24   batch: 11   loss: 0.06359   acc: 0.9787
+ epoch: 24   batch: 12   loss: 0.0637    acc: 0.9773
+ epoch: 24   batch: 13   loss: 0.09169   acc: 0.9743
+ epoch: 24   batch: 14   loss: 0.07698   acc: 0.9767
+ epoch: 24   batch: 15   loss: 0.07738   acc: 0.977
+ epoch: 24   batch: 16   loss: 0.09159   acc: 0.9717
+ epoch: 24   batch: 17   loss: 0.09739   acc: 0.9707
+ epoch: 24   batch: 18   loss: 0.06144   acc: 0.9813
+ epoch: 24   batch: 19   loss: 0.07291   acc: 0.977
+ epoch: 24   batch: 20   loss: 0.06133   acc: 0.98
+ means -->               loss: 0.07481   acc: 0.9762]
+[norms of weights -> l1: 47211.666, l2: 57.420346]
+[epoch fit time: 2.7770975 s]
+EPOCH: 25/100...
+[fit info (epoch 25):
+ epoch: 25   batch: 1    loss: 0.08021   acc: 0.972
+ epoch: 25   batch: 2    loss: 0.06351   acc: 0.9833
+ epoch: 25   batch: 3    loss: 0.08727   acc: 0.9713
+ epoch: 25   batch: 4    loss: 0.08402   acc: 0.9773
+ epoch: 25   batch: 5    loss: 0.06137   acc: 0.983
+ epoch: 25   batch: 6    loss: 0.06552   acc: 0.981
+ epoch: 25   batch: 7    loss: 0.06565   acc: 0.9817
+ epoch: 25   batch: 8    loss: 0.08507   acc: 0.9723
+ epoch: 25   batch: 9    loss: 0.08357   acc: 0.974
+ epoch: 25   batch: 10   loss: 0.08688   acc: 0.9717
+ epoch: 25   batch: 11   loss: 0.06612   acc: 0.9787
+ epoch: 25   batch: 12   loss: 0.07515   acc: 0.9757
+ epoch: 25   batch: 13   loss: 0.04983   acc: 0.986
+ epoch: 25   batch: 14   loss: 0.08341   acc: 0.973
+ epoch: 25   batch: 15   loss: 0.06871   acc: 0.9793
+ epoch: 25   batch: 16   loss: 0.05909   acc: 0.9807
+ epoch: 25   batch: 17   loss: 0.08445   acc: 0.9747
+ epoch: 25   batch: 18   loss: 0.06272   acc: 0.9797
+ epoch: 25   batch: 19   loss: 0.08829   acc: 0.9767
+ epoch: 25   batch: 20   loss: 0.08974   acc: 0.9733
+ means -->               loss: 0.07453   acc: 0.9773]
+[norms of weights -> l1: 47245.105, l2: 57.481609]
+[epoch fit time: 2.6194751 s]
+EPOCH: 26/100...
+[fit info (epoch 26):
+ epoch: 26   batch: 1    loss: 0.06125   acc: 0.981
+ epoch: 26   batch: 2    loss: 0.07799   acc: 0.9793
+ epoch: 26   batch: 3    loss: 0.0756    acc: 0.9773
+ epoch: 26   batch: 4    loss: 0.07259   acc: 0.9757
+ epoch: 26   batch: 5    loss: 0.07752   acc: 0.9743
+ epoch: 26   batch: 6    loss: 0.07211   acc: 0.977
+ epoch: 26   batch: 7    loss: 0.07379   acc: 0.9753
+ epoch: 26   batch: 8    loss: 0.07039   acc: 0.977
+ epoch: 26   batch: 9    loss: 0.06363   acc: 0.9787
+ epoch: 26   batch: 10   loss: 0.05117   acc: 0.9823
+ epoch: 26   batch: 11   loss: 0.09444   acc: 0.9707
+ epoch: 26   batch: 12   loss: 0.07103   acc: 0.9773
+ epoch: 26   batch: 13   loss: 0.08357   acc: 0.97
+ epoch: 26   batch: 14   loss: 0.06558   acc: 0.9823
+ epoch: 26   batch: 15   loss: 0.08223   acc: 0.9713
+ epoch: 26   batch: 16   loss: 0.06924   acc: 0.9787
+ epoch: 26   batch: 17   loss: 0.06017   acc: 0.982
+ epoch: 26   batch: 18   loss: 0.05738   acc: 0.9823
+ epoch: 26   batch: 19   loss: 0.07225   acc: 0.978
+ epoch: 26   batch: 20   loss: 0.06899   acc: 0.978
+ means -->               loss: 0.07105   acc: 0.9774]
+[norms of weights -> l1: 47279.645, l2: 57.546176]
+[epoch fit time: 3.2316763 s]
+EPOCH: 27/100...
+[fit info (epoch 27):
+ epoch: 27   batch: 1    loss: 0.06989   acc: 0.9763
+ epoch: 27   batch: 2    loss: 0.06314   acc: 0.9787
+ epoch: 27   batch: 3    loss: 0.0579    acc: 0.982
+ epoch: 27   batch: 4    loss: 0.07571   acc: 0.9757
+ epoch: 27   batch: 5    loss: 0.084     acc: 0.9707
+ epoch: 27   batch: 6    loss: 0.06117   acc: 0.9793
+ epoch: 27   batch: 7    loss: 0.0928    acc: 0.9723
+ epoch: 27   batch: 8    loss: 0.07029   acc: 0.9783
+ epoch: 27   batch: 9    loss: 0.07346   acc: 0.9783
+ epoch: 27   batch: 10   loss: 0.09029   acc: 0.9733
+ epoch: 27   batch: 11   loss: 0.06872   acc: 0.98
+ epoch: 27   batch: 12   loss: 0.07001   acc: 0.9777
+ epoch: 27   batch: 13   loss: 0.07686   acc: 0.9753
+ epoch: 27   batch: 14   loss: 0.04661   acc: 0.9843
+ epoch: 27   batch: 15   loss: 0.06893   acc: 0.9807
+ epoch: 27   batch: 16   loss: 0.05837   acc: 0.9833
+ epoch: 27   batch: 17   loss: 0.07652   acc: 0.9747
+ epoch: 27   batch: 18   loss: 0.05313   acc: 0.9843
+ epoch: 27   batch: 19   loss: 0.06245   acc: 0.979
+ epoch: 27   batch: 20   loss: 0.06023   acc: 0.981
+ means -->               loss: 0.06902   acc: 0.9783]
+[norms of weights -> l1: 47315.317, l2: 57.610913]
+[epoch fit time: 3.1145563 s]
+EPOCH: 28/100...
+[fit info (epoch 28):
+ epoch: 28   batch: 1    loss: 0.06092   acc: 0.9823
+ epoch: 28   batch: 2    loss: 0.07923   acc: 0.9743
+ epoch: 28   batch: 3    loss: 0.06747   acc: 0.9783
+ epoch: 28   batch: 4    loss: 0.08125   acc: 0.9733
+ epoch: 28   batch: 5    loss: 0.06298   acc: 0.9803
+ epoch: 28   batch: 6    loss: 0.05324   acc: 0.9837
+ epoch: 28   batch: 7    loss: 0.06582   acc: 0.9813
+ epoch: 28   batch: 8    loss: 0.07461   acc: 0.979
+ epoch: 28   batch: 9    loss: 0.07079   acc: 0.9757
+ epoch: 28   batch: 10   loss: 0.07962   acc: 0.9737
+ epoch: 28   batch: 11   loss: 0.08906   acc: 0.971
+ epoch: 28   batch: 12   loss: 0.07267   acc: 0.976
+ epoch: 28   batch: 13   loss: 0.06031   acc: 0.982
+ epoch: 28   batch: 14   loss: 0.06533   acc: 0.978
+ epoch: 28   batch: 15   loss: 0.06231   acc: 0.9793
+ epoch: 28   batch: 16   loss: 0.06489   acc: 0.9793
+ epoch: 28   batch: 17   loss: 0.07928   acc: 0.9727
+ epoch: 28   batch: 18   loss: 0.0752    acc: 0.9747
+ epoch: 28   batch: 19   loss: 0.08957   acc: 0.974
+ epoch: 28   batch: 20   loss: 0.05486   acc: 0.9833
+ means -->               loss: 0.07047   acc: 0.9776]
+[norms of weights -> l1: 47352.154, l2: 57.679103]
+[epoch fit time: 2.9363787 s]
+EPOCH: 29/100...
+[fit info (epoch 29):
+ epoch: 29   batch: 1    loss: 0.04382   acc: 0.9863
+ epoch: 29   batch: 2    loss: 0.06345   acc: 0.9793
+ epoch: 29   batch: 3    loss: 0.06234   acc: 0.9803
+ epoch: 29   batch: 4    loss: 0.05177   acc: 0.9827
+ epoch: 29   batch: 5    loss: 0.05651   acc: 0.9843
+ epoch: 29   batch: 6    loss: 0.0608    acc: 0.982
+ epoch: 29   batch: 7    loss: 0.07012   acc: 0.9783
+ epoch: 29   batch: 8    loss: 0.06929   acc: 0.9777
+ epoch: 29   batch: 9    loss: 0.05755   acc: 0.9803
+ epoch: 29   batch: 10   loss: 0.08246   acc: 0.9723
+ epoch: 29   batch: 11   loss: 0.06883   acc: 0.9773
+ epoch: 29   batch: 12   loss: 0.05535   acc: 0.9817
+ epoch: 29   batch: 13   loss: 0.09642   acc: 0.9743
+ epoch: 29   batch: 14   loss: 0.05419   acc: 0.9827
+ epoch: 29   batch: 15   loss: 0.06799   acc: 0.9797
+ epoch: 29   batch: 16   loss: 0.06709   acc: 0.9763
+ epoch: 29   batch: 17   loss: 0.04845   acc: 0.984
+ epoch: 29   batch: 18   loss: 0.0624    acc: 0.979
+ epoch: 29   batch: 19   loss: 0.05463   acc: 0.9817
+ epoch: 29   batch: 20   loss: 0.08102   acc: 0.972
+ means -->               loss: 0.06372   acc: 0.9796]
+[norms of weights -> l1: 47388.005, l2: 57.74433]
+[epoch fit time: 2.6842058 s]
+EPOCH: 30/100...
+[fit info (epoch 30):
+ epoch: 30   batch: 1    loss: 0.0562    acc: 0.9817
+ epoch: 30   batch: 2    loss: 0.06179   acc: 0.983
+ epoch: 30   batch: 3    loss: 0.04459   acc: 0.984
+ epoch: 30   batch: 4    loss: 0.05142   acc: 0.984
+ epoch: 30   batch: 5    loss: 0.06044   acc: 0.9797
+ epoch: 30   batch: 6    loss: 0.06896   acc: 0.9747
+ epoch: 30   batch: 7    loss: 0.05069   acc: 0.9857
+ epoch: 30   batch: 8    loss: 0.06113   acc: 0.9813
+ epoch: 30   batch: 9    loss: 0.06066   acc: 0.9807
+ epoch: 30   batch: 10   loss: 0.04759   acc: 0.985
+ epoch: 30   batch: 11   loss: 0.07845   acc: 0.9763
+ epoch: 30   batch: 12   loss: 0.0599    acc: 0.9807
+ epoch: 30   batch: 13   loss: 0.0579    acc: 0.982
+ epoch: 30   batch: 14   loss: 0.07137   acc: 0.979
+ epoch: 30   batch: 15   loss: 0.07788   acc: 0.9777
+ epoch: 30   batch: 16   loss: 0.05998   acc: 0.983
+ epoch: 30   batch: 17   loss: 0.0534    acc: 0.9813
+ epoch: 30   batch: 18   loss: 0.04762   acc: 0.9843
+ epoch: 30   batch: 19   loss: 0.05881   acc: 0.9797
+ epoch: 30   batch: 20   loss: 0.06465   acc: 0.98
+ means -->               loss: 0.05967   acc: 0.9812]
+[norms of weights -> l1: 47421.478, l2: 57.807065]
+[epoch fit time: 2.513552 s]
+EPOCH: 31/100...
+[fit info (epoch 31):
+ epoch: 31   batch: 1    loss: 0.07711   acc: 0.9713
+ epoch: 31   batch: 2    loss: 0.1016    acc: 0.9667
+ epoch: 31   batch: 3    loss: 0.07429   acc: 0.975
+ epoch: 31   batch: 4    loss: 0.07416   acc: 0.9737
+ epoch: 31   batch: 5    loss: 0.08528   acc: 0.9737
+ epoch: 31   batch: 6    loss: 0.08683   acc: 0.9707
+ epoch: 31   batch: 7    loss: 0.08495   acc: 0.973
+ epoch: 31   batch: 8    loss: 0.07193   acc: 0.9727
+ epoch: 31   batch: 9    loss: 0.07046   acc: 0.978
+ epoch: 31   batch: 10   loss: 0.06378   acc: 0.9773
+ epoch: 31   batch: 11   loss: 0.09799   acc: 0.965
+ epoch: 31   batch: 12   loss: 0.05235   acc: 0.9817
+ epoch: 31   batch: 13   loss: 0.0442    acc: 0.9877
+ epoch: 31   batch: 14   loss: 0.06785   acc: 0.978
+ epoch: 31   batch: 15   loss: 0.06203   acc: 0.9827
+ epoch: 31   batch: 16   loss: 0.08057   acc: 0.9783
+ epoch: 31   batch: 17   loss: 0.0876    acc: 0.9707
+ epoch: 31   batch: 18   loss: 0.06199   acc: 0.9807
+ epoch: 31   batch: 19   loss: 0.05832   acc: 0.9807
+ epoch: 31   batch: 20   loss: 0.05167   acc: 0.9863
+ means -->               loss: 0.07274   acc: 0.9762]
+[norms of weights -> l1: 47463.104, l2: 57.881414]
+[epoch fit time: 2.4930868 s]
+EPOCH: 32/100...
+[fit info (epoch 32):
+ epoch: 32   batch: 1    loss: 0.07461   acc: 0.9763
+ epoch: 32   batch: 2    loss: 0.07307   acc: 0.9753
+ epoch: 32   batch: 3    loss: 0.0665    acc: 0.9807
+ epoch: 32   batch: 4    loss: 0.05564   acc: 0.982
+ epoch: 32   batch: 5    loss: 0.06425   acc: 0.9793
+ epoch: 32   batch: 6    loss: 0.04687   acc: 0.984
+ epoch: 32   batch: 7    loss: 0.04881   acc: 0.9827
+ epoch: 32   batch: 8    loss: 0.06309   acc: 0.9807
+ epoch: 32   batch: 9    loss: 0.05346   acc: 0.9807
+ epoch: 32   batch: 10   loss: 0.06294   acc: 0.979
+ epoch: 32   batch: 11   loss: 0.0573    acc: 0.98
+ epoch: 32   batch: 12   loss: 0.07492   acc: 0.973
+ epoch: 32   batch: 13   loss: 0.05884   acc: 0.981
+ epoch: 32   batch: 14   loss: 0.04478   acc: 0.984
+ epoch: 32   batch: 15   loss: 0.05824   acc: 0.979
+ epoch: 32   batch: 16   loss: 0.058     acc: 0.9783
+ epoch: 32   batch: 17   loss: 0.07701   acc: 0.9757
+ epoch: 32   batch: 18   loss: 0.06951   acc: 0.9767
+ epoch: 32   batch: 19   loss: 0.04734   acc: 0.984
+ epoch: 32   batch: 20   loss: 0.07622   acc: 0.9737
+ means -->               loss: 0.06157   acc: 0.9793]
+[norms of weights -> l1: 47505.083, l2: 57.957771]
+[epoch fit time: 2.5598702 s]
+EPOCH: 33/100...
+[fit info (epoch 33):
+ epoch: 33   batch: 1    loss: 0.06208   acc: 0.982
+ epoch: 33   batch: 2    loss: 0.0556    acc: 0.982
+ epoch: 33   batch: 3    loss: 0.03866   acc: 0.986
+ epoch: 33   batch: 4    loss: 0.05427   acc: 0.9813
+ epoch: 33   batch: 5    loss: 0.04662   acc: 0.9857
+ epoch: 33   batch: 6    loss: 0.06437   acc: 0.981
+ epoch: 33   batch: 7    loss: 0.04887   acc: 0.9837
+ epoch: 33   batch: 8    loss: 0.0637    acc: 0.978
+ epoch: 33   batch: 9    loss: 0.04814   acc: 0.9863
+ epoch: 33   batch: 10   loss: 0.05644   acc: 0.9817
+ epoch: 33   batch: 11   loss: 0.06109   acc: 0.98
+ epoch: 33   batch: 12   loss: 0.0554    acc: 0.984
+ epoch: 33   batch: 13   loss: 0.07317   acc: 0.976
+ epoch: 33   batch: 14   loss: 0.03632   acc: 0.9867
+ epoch: 33   batch: 15   loss: 0.07006   acc: 0.974
+ epoch: 33   batch: 16   loss: 0.05031   acc: 0.9853
+ epoch: 33   batch: 17   loss: 0.0605    acc: 0.9807
+ epoch: 33   batch: 18   loss: 0.06322   acc: 0.979
+ epoch: 33   batch: 19   loss: 0.04561   acc: 0.9843
+ epoch: 33   batch: 20   loss: 0.05403   acc: 0.9823
+ means -->               loss: 0.05542   acc: 0.982]
+[norms of weights -> l1: 47540.692, l2: 58.023321]
+[epoch fit time: 2.5163198 s]
+EPOCH: 34/100...
+[fit info (epoch 34):
+ epoch: 34   batch: 1    loss: 0.06919   acc: 0.977
+ epoch: 34   batch: 2    loss: 0.03473   acc: 0.9887
+ epoch: 34   batch: 3    loss: 0.05053   acc: 0.986
+ epoch: 34   batch: 4    loss: 0.03681   acc: 0.9883
+ epoch: 34   batch: 5    loss: 0.05322   acc: 0.9833
+ epoch: 34   batch: 6    loss: 0.0351    acc: 0.99
+ epoch: 34   batch: 7    loss: 0.04297   acc: 0.9857
+ epoch: 34   batch: 8    loss: 0.09006   acc: 0.973
+ epoch: 34   batch: 9    loss: 0.04089   acc: 0.986
+ epoch: 34   batch: 10   loss: 0.03746   acc: 0.9887
+ epoch: 34   batch: 11   loss: 0.05534   acc: 0.9813
+ epoch: 34   batch: 12   loss: 0.06803   acc: 0.9787
+ epoch: 34   batch: 13   loss: 0.07169   acc: 0.9757
+ epoch: 34   batch: 14   loss: 0.04951   acc: 0.9833
+ epoch: 34   batch: 15   loss: 0.05841   acc: 0.9807
+ epoch: 34   batch: 16   loss: 0.04792   acc: 0.984
+ epoch: 34   batch: 17   loss: 0.05482   acc: 0.9807
+ epoch: 34   batch: 18   loss: 0.05918   acc: 0.9823
+ epoch: 34   batch: 19   loss: 0.07848   acc: 0.9723
+ epoch: 34   batch: 20   loss: 0.09293   acc: 0.9697
+ means -->               loss: 0.05636   acc: 0.9818]
+[norms of weights -> l1: 47574.903, l2: 58.086596]
+[epoch fit time: 2.5598989 s]
+EPOCH: 35/100...
+[fit info (epoch 35):
+ epoch: 35   batch: 1    loss: 0.05451   acc: 0.9837
+ epoch: 35   batch: 2    loss: 0.03949   acc: 0.9893
+ epoch: 35   batch: 3    loss: 0.05484   acc: 0.9807
+ epoch: 35   batch: 4    loss: 0.06434   acc: 0.9807
+ epoch: 35   batch: 5    loss: 0.084     acc: 0.9707
+ epoch: 35   batch: 6    loss: 0.09615   acc: 0.9663
+ epoch: 35   batch: 7    loss: 0.06466   acc: 0.981
+ epoch: 35   batch: 8    loss: 0.05278   acc: 0.982
+ epoch: 35   batch: 9    loss: 0.05194   acc: 0.9837
+ epoch: 35   batch: 10   loss: 0.07045   acc: 0.975
+ epoch: 35   batch: 11   loss: 0.05303   acc: 0.9833
+ epoch: 35   batch: 12   loss: 0.0568    acc: 0.981
+ epoch: 35   batch: 13   loss: 0.04789   acc: 0.9843
+ epoch: 35   batch: 14   loss: 0.06007   acc: 0.9773
+ epoch: 35   batch: 15   loss: 0.07596   acc: 0.9783
+ epoch: 35   batch: 16   loss: 0.05525   acc: 0.98
+ epoch: 35   batch: 17   loss: 0.05324   acc: 0.9823
+ epoch: 35   batch: 18   loss: 0.06126   acc: 0.9803
+ epoch: 35   batch: 19   loss: 0.04306   acc: 0.9873
+ epoch: 35   batch: 20   loss: 0.05506   acc: 0.9817
+ means -->               loss: 0.05974   acc: 0.9804]
+[norms of weights -> l1: 47613.882, l2: 58.155219]
+[epoch fit time: 2.569926 s]
+EPOCH: 36/100...
+[fit info (epoch 36):
+ epoch: 36   batch: 1    loss: 0.0341    acc: 0.9893
+ epoch: 36   batch: 2    loss: 0.05226   acc: 0.984
+ epoch: 36   batch: 3    loss: 0.05013   acc: 0.986
+ epoch: 36   batch: 4    loss: 0.0607    acc: 0.978
+ epoch: 36   batch: 5    loss: 0.04069   acc: 0.9863
+ epoch: 36   batch: 6    loss: 0.04997   acc: 0.9837
+ epoch: 36   batch: 7    loss: 0.04814   acc: 0.984
+ epoch: 36   batch: 8    loss: 0.04921   acc: 0.9853
+ epoch: 36   batch: 9    loss: 0.03971   acc: 0.9877
+ epoch: 36   batch: 10   loss: 0.05453   acc: 0.9813
+ epoch: 36   batch: 11   loss: 0.06336   acc: 0.9793
+ epoch: 36   batch: 12   loss: 0.04329   acc: 0.9873
+ epoch: 36   batch: 13   loss: 0.05009   acc: 0.9883
+ epoch: 36   batch: 14   loss: 0.03746   acc: 0.9877
+ epoch: 36   batch: 15   loss: 0.04285   acc: 0.986
+ epoch: 36   batch: 16   loss: 0.05871   acc: 0.98
+ epoch: 36   batch: 17   loss: 0.0511    acc: 0.9813
+ epoch: 36   batch: 18   loss: 0.03089   acc: 0.992
+ epoch: 36   batch: 19   loss: 0.03615   acc: 0.989
+ epoch: 36   batch: 20   loss: 0.04471   acc: 0.988
+ means -->               loss: 0.0469    acc: 0.9852]
+[norms of weights -> l1: 47650.75, l2: 58.221691]
+[epoch fit time: 2.5237103 s]
+EPOCH: 37/100...
+[fit info (epoch 37):
+ epoch: 37   batch: 1    loss: 0.04486   acc: 0.9863
+ epoch: 37   batch: 2    loss: 0.05103   acc: 0.9807
+ epoch: 37   batch: 3    loss: 0.04621   acc: 0.985
+ epoch: 37   batch: 4    loss: 0.04202   acc: 0.987
+ epoch: 37   batch: 5    loss: 0.04639   acc: 0.986
+ epoch: 37   batch: 6    loss: 0.0255    acc: 0.9923
+ epoch: 37   batch: 7    loss: 0.03437   acc: 0.986
+ epoch: 37   batch: 8    loss: 0.0477    acc: 0.984
+ epoch: 37   batch: 9    loss: 0.04439   acc: 0.9863
+ epoch: 37   batch: 10   loss: 0.03841   acc: 0.988
+ epoch: 37   batch: 11   loss: 0.03803   acc: 0.986
+ epoch: 37   batch: 12   loss: 0.04201   acc: 0.988
+ epoch: 37   batch: 13   loss: 0.04475   acc: 0.9863
+ epoch: 37   batch: 14   loss: 0.03528   acc: 0.9873
+ epoch: 37   batch: 15   loss: 0.03777   acc: 0.9867
+ epoch: 37   batch: 16   loss: 0.0444    acc: 0.9867
+ epoch: 37   batch: 17   loss: 0.04518   acc: 0.9883
+ epoch: 37   batch: 18   loss: 0.04423   acc: 0.9863
+ epoch: 37   batch: 19   loss: 0.04781   acc: 0.9857
+ epoch: 37   batch: 20   loss: 0.08088   acc: 0.973
+ means -->               loss: 0.04406   acc: 0.9858]
+[norms of weights -> l1: 47681.628, l2: 58.279981]
+[epoch fit time: 2.5587263 s]
+EPOCH: 38/100...
+[fit info (epoch 38):
+ epoch: 38   batch: 1    loss: 0.04735   acc: 0.9833
+ epoch: 38   batch: 2    loss: 0.04199   acc: 0.9863
+ epoch: 38   batch: 3    loss: 0.05986   acc: 0.979
+ epoch: 38   batch: 4    loss: 0.05163   acc: 0.9853
+ epoch: 38   batch: 5    loss: 0.03341   acc: 0.9903
+ epoch: 38   batch: 6    loss: 0.05688   acc: 0.98
+ epoch: 38   batch: 7    loss: 0.04087   acc: 0.986
+ epoch: 38   batch: 8    loss: 0.03972   acc: 0.9863
+ epoch: 38   batch: 9    loss: 0.03669   acc: 0.987
+ epoch: 38   batch: 10   loss: 0.07252   acc: 0.9737
+ epoch: 38   batch: 11   loss: 0.08087   acc: 0.9773
+ epoch: 38   batch: 12   loss: 0.03933   acc: 0.987
+ epoch: 38   batch: 13   loss: 0.04832   acc: 0.983
+ epoch: 38   batch: 14   loss: 0.06604   acc: 0.9777
+ epoch: 38   batch: 15   loss: 0.03182   acc: 0.9887
+ epoch: 38   batch: 16   loss: 0.02876   acc: 0.99
+ epoch: 38   batch: 17   loss: 0.08994   acc: 0.9723
+ epoch: 38   batch: 18   loss: 0.05507   acc: 0.983
+ epoch: 38   batch: 19   loss: 0.03743   acc: 0.9873
+ epoch: 38   batch: 20   loss: 0.05247   acc: 0.985
+ means -->               loss: 0.05055   acc: 0.9834]
+[norms of weights -> l1: 47715.164, l2: 58.340586]
+[epoch fit time: 2.5866818 s]
+EPOCH: 39/100...
+[fit info (epoch 39):
+ epoch: 39   batch: 1    loss: 0.05942   acc: 0.982
+ epoch: 39   batch: 2    loss: 0.03655   acc: 0.9893
+ epoch: 39   batch: 3    loss: 0.05157   acc: 0.981
+ epoch: 39   batch: 4    loss: 0.0522    acc: 0.9847
+ epoch: 39   batch: 5    loss: 0.04865   acc: 0.9827
+ epoch: 39   batch: 6    loss: 0.05429   acc: 0.985
+ epoch: 39   batch: 7    loss: 0.0705    acc: 0.976
+ epoch: 39   batch: 8    loss: 0.03464   acc: 0.99
+ epoch: 39   batch: 9    loss: 0.03128   acc: 0.9903
+ epoch: 39   batch: 10   loss: 0.04999   acc: 0.9843
+ epoch: 39   batch: 11   loss: 0.04346   acc: 0.9857
+ epoch: 39   batch: 12   loss: 0.0627    acc: 0.978
+ epoch: 39   batch: 13   loss: 0.06283   acc: 0.981
+ epoch: 39   batch: 14   loss: 0.03626   acc: 0.9897
+ epoch: 39   batch: 15   loss: 0.03757   acc: 0.989
+ epoch: 39   batch: 16   loss: 0.04729   acc: 0.985
+ epoch: 39   batch: 17   loss: 0.03405   acc: 0.9887
+ epoch: 39   batch: 18   loss: 0.05465   acc: 0.9827
+ epoch: 39   batch: 19   loss: 0.04814   acc: 0.9847
+ epoch: 39   batch: 20   loss: 0.05536   acc: 0.9847
+ means -->               loss: 0.04857   acc: 0.9847]
+[norms of weights -> l1: 47752.327, l2: 58.408411]
+[epoch fit time: 3.5393791 s]
+EPOCH: 40/100...
+[fit info (epoch 40):
+ epoch: 40   batch: 1    loss: 0.03614   acc: 0.9903
+ epoch: 40   batch: 2    loss: 0.04201   acc: 0.9863
+ epoch: 40   batch: 3    loss: 0.03215   acc: 0.988
+ epoch: 40   batch: 4    loss: 0.05407   acc: 0.9843
+ epoch: 40   batch: 5    loss: 0.0404    acc: 0.9883
+ epoch: 40   batch: 6    loss: 0.05367   acc: 0.9833
+ epoch: 40   batch: 7    loss: 0.03142   acc: 0.9903
+ epoch: 40   batch: 8    loss: 0.02961   acc: 0.9907
+ epoch: 40   batch: 9    loss: 0.03974   acc: 0.9863
+ epoch: 40   batch: 10   loss: 0.04785   acc: 0.9843
+ epoch: 40   batch: 11   loss: 0.03992   acc: 0.987
+ epoch: 40   batch: 12   loss: 0.02838   acc: 0.991
+ epoch: 40   batch: 13   loss: 0.03263   acc: 0.9903
+ epoch: 40   batch: 14   loss: 0.05611   acc: 0.9813
+ epoch: 40   batch: 15   loss: 0.03722   acc: 0.986
+ epoch: 40   batch: 16   loss: 0.04264   acc: 0.985
+ epoch: 40   batch: 17   loss: 0.04892   acc: 0.9823
+ epoch: 40   batch: 18   loss: 0.05635   acc: 0.9803
+ epoch: 40   batch: 19   loss: 0.03923   acc: 0.9877
+ epoch: 40   batch: 20   loss: 0.03769   acc: 0.9863
+ means -->               loss: 0.04131   acc: 0.9865]
+[norms of weights -> l1: 47786.765, l2: 58.470684]
+[epoch fit time: 2.8676815 s]
+EPOCH: 41/100...
+[fit info (epoch 41):
+ epoch: 41   batch: 1    loss: 0.04892   acc: 0.985
+ epoch: 41   batch: 2    loss: 0.04384   acc: 0.9847
+ epoch: 41   batch: 3    loss: 0.03174   acc: 0.9927
+ epoch: 41   batch: 4    loss: 0.05311   acc: 0.9813
+ epoch: 41   batch: 5    loss: 0.04574   acc: 0.9833
+ epoch: 41   batch: 6    loss: 0.02736   acc: 0.9907
+ epoch: 41   batch: 7    loss: 0.05202   acc: 0.984
+ epoch: 41   batch: 8    loss: 0.03706   acc: 0.988
+ epoch: 41   batch: 9    loss: 0.0421    acc: 0.987
+ epoch: 41   batch: 10   loss: 0.04073   acc: 0.987
+ epoch: 41   batch: 11   loss: 0.04046   acc: 0.988
+ epoch: 41   batch: 12   loss: 0.03981   acc: 0.9883
+ epoch: 41   batch: 13   loss: 0.06263   acc: 0.981
+ epoch: 41   batch: 14   loss: 0.04065   acc: 0.986
+ epoch: 41   batch: 15   loss: 0.04586   acc: 0.9867
+ epoch: 41   batch: 16   loss: 0.03914   acc: 0.987
+ epoch: 41   batch: 17   loss: 0.04928   acc: 0.9823
+ epoch: 41   batch: 18   loss: 0.04833   acc: 0.9867
+ epoch: 41   batch: 19   loss: 0.03085   acc: 0.9903
+ epoch: 41   batch: 20   loss: 0.02762   acc: 0.9923
+ means -->               loss: 0.04236   acc: 0.9866]
+[norms of weights -> l1: 47821.115, l2: 58.532393]
+[epoch fit time: 2.7993915 s]
+EPOCH: 42/100...
+[fit info (epoch 42):
+ epoch: 42   batch: 1    loss: 0.03467   acc: 0.9897
+ epoch: 42   batch: 2    loss: 0.04984   acc: 0.9843
+ epoch: 42   batch: 3    loss: 0.03588   acc: 0.9867
+ epoch: 42   batch: 4    loss: 0.036     acc: 0.987
+ epoch: 42   batch: 5    loss: 0.04083   acc: 0.9893
+ epoch: 42   batch: 6    loss: 0.03569   acc: 0.989
+ epoch: 42   batch: 7    loss: 0.02483   acc: 0.9927
+ epoch: 42   batch: 8    loss: 0.03779   acc: 0.9867
+ epoch: 42   batch: 9    loss: 0.03486   acc: 0.9913
+ epoch: 42   batch: 10   loss: 0.04213   acc: 0.9837
+ epoch: 42   batch: 11   loss: 0.0362    acc: 0.9893
+ epoch: 42   batch: 12   loss: 0.02935   acc: 0.9917
+ epoch: 42   batch: 13   loss: 0.03692   acc: 0.986
+ epoch: 42   batch: 14   loss: 0.03564   acc: 0.99
+ epoch: 42   batch: 15   loss: 0.04434   acc: 0.985
+ epoch: 42   batch: 16   loss: 0.03371   acc: 0.9877
+ epoch: 42   batch: 17   loss: 0.04029   acc: 0.989
+ epoch: 42   batch: 18   loss: 0.03709   acc: 0.9853
+ epoch: 42   batch: 19   loss: 0.04553   acc: 0.984
+ epoch: 42   batch: 20   loss: 0.03928   acc: 0.986
+ means -->               loss: 0.03754   acc: 0.9877]
+[norms of weights -> l1: 47853.846, l2: 58.592311]
+[epoch fit time: 2.5568438 s]
+EPOCH: 43/100...
+[fit info (epoch 43):
+ epoch: 43   batch: 1    loss: 0.02774   acc: 0.9927
+ epoch: 43   batch: 2    loss: 0.02203   acc: 0.9943
+ epoch: 43   batch: 3    loss: 0.04992   acc: 0.982
+ epoch: 43   batch: 4    loss: 0.03017   acc: 0.9913
+ epoch: 43   batch: 5    loss: 0.02976   acc: 0.991
+ epoch: 43   batch: 6    loss: 0.03346   acc: 0.9897
+ epoch: 43   batch: 7    loss: 0.04643   acc: 0.984
+ epoch: 43   batch: 8    loss: 0.03634   acc: 0.988
+ epoch: 43   batch: 9    loss: 0.02788   acc: 0.9897
+ epoch: 43   batch: 10   loss: 0.03634   acc: 0.9897
+ epoch: 43   batch: 11   loss: 0.03093   acc: 0.9887
+ epoch: 43   batch: 12   loss: 0.03325   acc: 0.989
+ epoch: 43   batch: 13   loss: 0.03177   acc: 0.9913
+ epoch: 43   batch: 14   loss: 0.0423    acc: 0.9857
+ epoch: 43   batch: 15   loss: 0.03296   acc: 0.9897
+ epoch: 43   batch: 16   loss: 0.04933   acc: 0.9847
+ epoch: 43   batch: 17   loss: 0.03816   acc: 0.9883
+ epoch: 43   batch: 18   loss: 0.04679   acc: 0.985
+ epoch: 43   batch: 19   loss: 0.04434   acc: 0.985
+ epoch: 43   batch: 20   loss: 0.03365   acc: 0.9883
+ means -->               loss: 0.03618   acc: 0.9884]
+[norms of weights -> l1: 47887.743, l2: 58.653701]
+[epoch fit time: 2.5748951 s]
+EPOCH: 44/100...
+[fit info (epoch 44):
+ epoch: 44   batch: 1    loss: 0.03236   acc: 0.9897
+ epoch: 44   batch: 2    loss: 0.03444   acc: 0.987
+ epoch: 44   batch: 3    loss: 0.03217   acc: 0.9897
+ epoch: 44   batch: 4    loss: 0.03384   acc: 0.99
+ epoch: 44   batch: 5    loss: 0.03318   acc: 0.9897
+ epoch: 44   batch: 6    loss: 0.04007   acc: 0.9897
+ epoch: 44   batch: 7    loss: 0.02042   acc: 0.9953
+ epoch: 44   batch: 8    loss: 0.03265   acc: 0.991
+ epoch: 44   batch: 9    loss: 0.02707   acc: 0.9917
+ epoch: 44   batch: 10   loss: 0.02919   acc: 0.9897
+ epoch: 44   batch: 11   loss: 0.03429   acc: 0.988
+ epoch: 44   batch: 12   loss: 0.02939   acc: 0.9913
+ epoch: 44   batch: 13   loss: 0.04116   acc: 0.9877
+ epoch: 44   batch: 14   loss: 0.0387    acc: 0.9873
+ epoch: 44   batch: 15   loss: 0.02628   acc: 0.9903
+ epoch: 44   batch: 16   loss: 0.03561   acc: 0.9873
+ epoch: 44   batch: 17   loss: 0.03013   acc: 0.9913
+ epoch: 44   batch: 18   loss: 0.05008   acc: 0.9837
+ epoch: 44   batch: 19   loss: 0.05402   acc: 0.9803
+ epoch: 44   batch: 20   loss: 0.04124   acc: 0.987
+ means -->               loss: 0.03482   acc: 0.9889]
+[norms of weights -> l1: 47919.207, l2: 58.710395]
+[epoch fit time: 2.605134 s]
+EPOCH: 45/100...
+[fit info (epoch 45):
+ epoch: 45   batch: 1    loss: 0.02632   acc: 0.9927
+ epoch: 45   batch: 2    loss: 0.03663   acc: 0.989
+ epoch: 45   batch: 3    loss: 0.04296   acc: 0.985
+ epoch: 45   batch: 4    loss: 0.05664   acc: 0.9783
+ epoch: 45   batch: 5    loss: 0.0498    acc: 0.982
+ epoch: 45   batch: 6    loss: 0.03816   acc: 0.9897
+ epoch: 45   batch: 7    loss: 0.03948   acc: 0.9883
+ epoch: 45   batch: 8    loss: 0.04142   acc: 0.9863
+ epoch: 45   batch: 9    loss: 0.0414    acc: 0.9863
+ epoch: 45   batch: 10   loss: 0.03695   acc: 0.9867
+ epoch: 45   batch: 11   loss: 0.04909   acc: 0.9827
+ epoch: 45   batch: 12   loss: 0.03981   acc: 0.9867
+ epoch: 45   batch: 13   loss: 0.03495   acc: 0.9873
+ epoch: 45   batch: 14   loss: 0.03153   acc: 0.9887
+ epoch: 45   batch: 15   loss: 0.03631   acc: 0.9887
+ epoch: 45   batch: 16   loss: 0.03244   acc: 0.9893
+ epoch: 45   batch: 17   loss: 0.02238   acc: 0.9933
+ epoch: 45   batch: 18   loss: 0.04338   acc: 0.984
+ epoch: 45   batch: 19   loss: 0.03724   acc: 0.9893
+ epoch: 45   batch: 20   loss: 0.03285   acc: 0.9893
+ means -->               loss: 0.03849   acc: 0.9872]
+[norms of weights -> l1: 47953.501, l2: 58.77186]
+[epoch fit time: 2.5395145 s]
+EPOCH: 46/100...
+[fit info (epoch 46):
+ epoch: 46   batch: 1    loss: 0.03771   acc: 0.988
+ epoch: 46   batch: 2    loss: 0.04654   acc: 0.9837
+ epoch: 46   batch: 3    loss: 0.02893   acc: 0.991
+ epoch: 46   batch: 4    loss: 0.04015   acc: 0.9853
+ epoch: 46   batch: 5    loss: 0.02266   acc: 0.9923
+ epoch: 46   batch: 6    loss: 0.03472   acc: 0.989
+ epoch: 46   batch: 7    loss: 0.04572   acc: 0.9863
+ epoch: 46   batch: 8    loss: 0.02599   acc: 0.9907
+ epoch: 46   batch: 9    loss: 0.03594   acc: 0.9883
+ epoch: 46   batch: 10   loss: 0.03601   acc: 0.9897
+ epoch: 46   batch: 11   loss: 0.03908   acc: 0.9873
+ epoch: 46   batch: 12   loss: 0.02898   acc: 0.99
+ epoch: 46   batch: 13   loss: 0.04639   acc: 0.9863
+ epoch: 46   batch: 14   loss: 0.0356    acc: 0.9887
+ epoch: 46   batch: 15   loss: 0.02059   acc: 0.995
+ epoch: 46   batch: 16   loss: 0.04272   acc: 0.987
+ epoch: 46   batch: 17   loss: 0.02537   acc: 0.992
+ epoch: 46   batch: 18   loss: 0.04414   acc: 0.9857
+ epoch: 46   batch: 19   loss: 0.03952   acc: 0.9867
+ epoch: 46   batch: 20   loss: 0.02801   acc: 0.991
+ means -->               loss: 0.03524   acc: 0.9887]
+[norms of weights -> l1: 47987.187, l2: 58.831161]
+[epoch fit time: 2.5326192 s]
+EPOCH: 47/100...
+[fit info (epoch 47):
+ epoch: 47   batch: 1    loss: 0.03512   acc: 0.9867
+ epoch: 47   batch: 2    loss: 0.03239   acc: 0.99
+ epoch: 47   batch: 3    loss: 0.02436   acc: 0.9927
+ epoch: 47   batch: 4    loss: 0.03092   acc: 0.9903
+ epoch: 47   batch: 5    loss: 0.02911   acc: 0.9883
+ epoch: 47   batch: 6    loss: 0.04719   acc: 0.986
+ epoch: 47   batch: 7    loss: 0.0405    acc: 0.986
+ epoch: 47   batch: 8    loss: 0.0238    acc: 0.994
+ epoch: 47   batch: 9    loss: 0.01971   acc: 0.9937
+ epoch: 47   batch: 10   loss: 0.03544   acc: 0.9897
+ epoch: 47   batch: 11   loss: 0.02258   acc: 0.9937
+ epoch: 47   batch: 12   loss: 0.0327    acc: 0.9893
+ epoch: 47   batch: 13   loss: 0.04426   acc: 0.9857
+ epoch: 47   batch: 14   loss: 0.0235    acc: 0.9923
+ epoch: 47   batch: 15   loss: 0.03227   acc: 0.99
+ epoch: 47   batch: 16   loss: 0.03282   acc: 0.9897
+ epoch: 47   batch: 17   loss: 0.03978   acc: 0.9853
+ epoch: 47   batch: 18   loss: 0.03371   acc: 0.9887
+ epoch: 47   batch: 19   loss: 0.02532   acc: 0.99
+ epoch: 47   batch: 20   loss: 0.03368   acc: 0.9877
+ means -->               loss: 0.03196   acc: 0.9895]
+[norms of weights -> l1: 48017.781, l2: 58.885674]
+[epoch fit time: 2.6216342 s]
+EPOCH: 48/100...
+[fit info (epoch 48):
+ epoch: 48   batch: 1    loss: 0.02353   acc: 0.9947
+ epoch: 48   batch: 2    loss: 0.04389   acc: 0.9833
+ epoch: 48   batch: 3    loss: 0.02458   acc: 0.993
+ epoch: 48   batch: 4    loss: 0.02554   acc: 0.991
+ epoch: 48   batch: 5    loss: 0.03063   acc: 0.9897
+ epoch: 48   batch: 6    loss: 0.02651   acc: 0.991
+ epoch: 48   batch: 7    loss: 0.03105   acc: 0.9903
+ epoch: 48   batch: 8    loss: 0.02397   acc: 0.992
+ epoch: 48   batch: 9    loss: 0.02509   acc: 0.9917
+ epoch: 48   batch: 10   loss: 0.05204   acc: 0.9833
+ epoch: 48   batch: 11   loss: 0.02614   acc: 0.9923
+ epoch: 48   batch: 12   loss: 0.03351   acc: 0.9893
+ epoch: 48   batch: 13   loss: 0.02971   acc: 0.989
+ epoch: 48   batch: 14   loss: 0.02668   acc: 0.9903
+ epoch: 48   batch: 15   loss: 0.0476    acc: 0.9833
+ epoch: 48   batch: 16   loss: 0.04469   acc: 0.9847
+ epoch: 48   batch: 17   loss: 0.03084   acc: 0.9877
+ epoch: 48   batch: 18   loss: 0.04217   acc: 0.9857
+ epoch: 48   batch: 19   loss: 0.0291    acc: 0.9893
+ epoch: 48   batch: 20   loss: 0.03275   acc: 0.991
+ means -->               loss: 0.0325    acc: 0.9891]
+[norms of weights -> l1: 48048.466, l2: 58.942317]
+[epoch fit time: 2.7147338 s]
+EPOCH: 49/100...
+[fit info (epoch 49):
+ epoch: 49   batch: 1    loss: 0.01918   acc: 0.995
+ epoch: 49   batch: 2    loss: 0.0263    acc: 0.992
+ epoch: 49   batch: 3    loss: 0.03367   acc: 0.9883
+ epoch: 49   batch: 4    loss: 0.02298   acc: 0.992
+ epoch: 49   batch: 5    loss: 0.02876   acc: 0.9883
+ epoch: 49   batch: 6    loss: 0.02569   acc: 0.9903
+ epoch: 49   batch: 7    loss: 0.03268   acc: 0.9897
+ epoch: 49   batch: 8    loss: 0.01989   acc: 0.995
+ epoch: 49   batch: 9    loss: 0.03317   acc: 0.9883
+ epoch: 49   batch: 10   loss: 0.02397   acc: 0.9923
+ epoch: 49   batch: 11   loss: 0.03323   acc: 0.9883
+ epoch: 49   batch: 12   loss: 0.01945   acc: 0.9937
+ epoch: 49   batch: 13   loss: 0.02922   acc: 0.989
+ epoch: 49   batch: 14   loss: 0.02445   acc: 0.9927
+ epoch: 49   batch: 15   loss: 0.02914   acc: 0.9893
+ epoch: 49   batch: 16   loss: 0.03234   acc: 0.9883
+ epoch: 49   batch: 17   loss: 0.02589   acc: 0.9917
+ epoch: 49   batch: 18   loss: 0.01635   acc: 0.9957
+ epoch: 49   batch: 19   loss: 0.03165   acc: 0.9903
+ epoch: 49   batch: 20   loss: 0.0288    acc: 0.9917
+ means -->               loss: 0.02684   acc: 0.9911]
+[norms of weights -> l1: 48078.654, l2: 58.997149]
+[epoch fit time: 2.645277 s]
+EPOCH: 50/100...
+[fit info (epoch 50):
+ epoch: 50   batch: 1    loss: 0.02137   acc: 0.9927
+ epoch: 50   batch: 2    loss: 0.01984   acc: 0.9943
+ epoch: 50   batch: 3    loss: 0.02435   acc: 0.993
+ epoch: 50   batch: 4    loss: 0.03166   acc: 0.9877
+ epoch: 50   batch: 5    loss: 0.03245   acc: 0.988
+ epoch: 50   batch: 6    loss: 0.0255    acc: 0.9917
+ epoch: 50   batch: 7    loss: 0.03672   acc: 0.9873
+ epoch: 50   batch: 8    loss: 0.02068   acc: 0.9937
+ epoch: 50   batch: 9    loss: 0.02977   acc: 0.992
+ epoch: 50   batch: 10   loss: 0.03283   acc: 0.9887
+ epoch: 50   batch: 11   loss: 0.02429   acc: 0.9923
+ epoch: 50   batch: 12   loss: 0.02131   acc: 0.9927
+ epoch: 50   batch: 13   loss: 0.02539   acc: 0.9917
+ epoch: 50   batch: 14   loss: 0.03288   acc: 0.9897
+ epoch: 50   batch: 15   loss: 0.01641   acc: 0.9933
+ epoch: 50   batch: 16   loss: 0.02526   acc: 0.9917
+ epoch: 50   batch: 17   loss: 0.03179   acc: 0.9883
+ epoch: 50   batch: 18   loss: 0.02273   acc: 0.9933
+ epoch: 50   batch: 19   loss: 0.03226   acc: 0.99
+ epoch: 50   batch: 20   loss: 0.02983   acc: 0.9893
+ means -->               loss: 0.02687   acc: 0.9911]
+[norms of weights -> l1: 48106.908, l2: 59.047808]
+[epoch fit time: 2.7129695 s]
+EPOCH: 51/100...
+[fit info (epoch 51):
+ epoch: 51   batch: 1    loss: 0.01987   acc: 0.9947
+ epoch: 51   batch: 2    loss: 0.02033   acc: 0.9933
+ epoch: 51   batch: 3    loss: 0.02775   acc: 0.991
+ epoch: 51   batch: 4    loss: 0.03214   acc: 0.9887
+ epoch: 51   batch: 5    loss: 0.02018   acc: 0.9947
+ epoch: 51   batch: 6    loss: 0.03037   acc: 0.9897
+ epoch: 51   batch: 7    loss: 0.02117   acc: 0.9933
+ epoch: 51   batch: 8    loss: 0.0265    acc: 0.9873
+ epoch: 51   batch: 9    loss: 0.01848   acc: 0.9943
+ epoch: 51   batch: 10   loss: 0.02366   acc: 0.993
+ epoch: 51   batch: 11   loss: 0.02458   acc: 0.9913
+ epoch: 51   batch: 12   loss: 0.02175   acc: 0.995
+ epoch: 51   batch: 13   loss: 0.02888   acc: 0.9897
+ epoch: 51   batch: 14   loss: 0.0371    acc: 0.9893
+ epoch: 51   batch: 15   loss: 0.02271   acc: 0.9933
+ epoch: 51   batch: 16   loss: 0.02868   acc: 0.989
+ epoch: 51   batch: 17   loss: 0.04171   acc: 0.9853
+ epoch: 51   batch: 18   loss: 0.02788   acc: 0.991
+ epoch: 51   batch: 19   loss: 0.02754   acc: 0.9917
+ epoch: 51   batch: 20   loss: 0.03042   acc: 0.99
+ means -->               loss: 0.02658   acc: 0.9913]
+[norms of weights -> l1: 48135.203, l2: 59.099657]
+[epoch fit time: 2.7888236 s]
+EPOCH: 52/100...
+[fit info (epoch 52):
+ epoch: 52   batch: 1    loss: 0.03246   acc: 0.9887
+ epoch: 52   batch: 2    loss: 0.0213    acc: 0.9923
+ epoch: 52   batch: 3    loss: 0.0325    acc: 0.9897
+ epoch: 52   batch: 4    loss: 0.02299   acc: 0.9913
+ epoch: 52   batch: 5    loss: 0.0284    acc: 0.99
+ epoch: 52   batch: 6    loss: 0.03733   acc: 0.9853
+ epoch: 52   batch: 7    loss: 0.02158   acc: 0.9917
+ epoch: 52   batch: 8    loss: 0.04      acc: 0.9887
+ epoch: 52   batch: 9    loss: 0.02693   acc: 0.991
+ epoch: 52   batch: 10   loss: 0.03784   acc: 0.987
+ epoch: 52   batch: 11   loss: 0.03924   acc: 0.9857
+ epoch: 52   batch: 12   loss: 0.01898   acc: 0.9933
+ epoch: 52   batch: 13   loss: 0.02796   acc: 0.9883
+ epoch: 52   batch: 14   loss: 0.02892   acc: 0.9913
+ epoch: 52   batch: 15   loss: 0.03551   acc: 0.987
+ epoch: 52   batch: 16   loss: 0.02548   acc: 0.991
+ epoch: 52   batch: 17   loss: 0.02365   acc: 0.993
+ epoch: 52   batch: 18   loss: 0.03983   acc: 0.9897
+ epoch: 52   batch: 19   loss: 0.02962   acc: 0.9907
+ epoch: 52   batch: 20   loss: 0.01735   acc: 0.994
+ means -->               loss: 0.02939   acc: 0.99]
+[norms of weights -> l1: 48166.141, l2: 59.155876]
+[epoch fit time: 2.9642947 s]
+EPOCH: 53/100...
+[fit info (epoch 53):
+ epoch: 53   batch: 1    loss: 0.02185   acc: 0.9937
+ epoch: 53   batch: 2    loss: 0.02117   acc: 0.9943
+ epoch: 53   batch: 3    loss: 0.02451   acc: 0.991
+ epoch: 53   batch: 4    loss: 0.03975   acc: 0.9867
+ epoch: 53   batch: 5    loss: 0.01939   acc: 0.9937
+ epoch: 53   batch: 6    loss: 0.02818   acc: 0.9917
+ epoch: 53   batch: 7    loss: 0.01748   acc: 0.9923
+ epoch: 53   batch: 8    loss: 0.02761   acc: 0.991
+ epoch: 53   batch: 9    loss: 0.02803   acc: 0.9917
+ epoch: 53   batch: 10   loss: 0.02625   acc: 0.9897
+ epoch: 53   batch: 11   loss: 0.01973   acc: 0.9937
+ epoch: 53   batch: 12   loss: 0.04417   acc: 0.9877
+ epoch: 53   batch: 13   loss: 0.0152    acc: 0.994
+ epoch: 53   batch: 14   loss: 0.02232   acc: 0.9937
+ epoch: 53   batch: 15   loss: 0.01947   acc: 0.9943
+ epoch: 53   batch: 16   loss: 0.0438    acc: 0.9873
+ epoch: 53   batch: 17   loss: 0.03586   acc: 0.986
+ epoch: 53   batch: 18   loss: 0.02313   acc: 0.9917
+ epoch: 53   batch: 19   loss: 0.02572   acc: 0.9907
+ epoch: 53   batch: 20   loss: 0.02859   acc: 0.9903
+ means -->               loss: 0.02661   acc: 0.9912]
+[norms of weights -> l1: 48195.98, l2: 59.210374]
+[epoch fit time: 2.6107581 s]
+EPOCH: 54/100...
+[fit info (epoch 54):
+ epoch: 54   batch: 1    loss: 0.01636   acc: 0.9947
+ epoch: 54   batch: 2    loss: 0.02073   acc: 0.9953
+ epoch: 54   batch: 3    loss: 0.02894   acc: 0.99
+ epoch: 54   batch: 4    loss: 0.01306   acc: 0.9963
+ epoch: 54   batch: 5    loss: 0.03058   acc: 0.9877
+ epoch: 54   batch: 6    loss: 0.03689   acc: 0.988
+ epoch: 54   batch: 7    loss: 0.0259    acc: 0.9933
+ epoch: 54   batch: 8    loss: 0.0403    acc: 0.9877
+ epoch: 54   batch: 9    loss: 0.03605   acc: 0.9853
+ epoch: 54   batch: 10   loss: 0.01682   acc: 0.9947
+ epoch: 54   batch: 11   loss: 0.02008   acc: 0.9943
+ epoch: 54   batch: 12   loss: 0.02374   acc: 0.9933
+ epoch: 54   batch: 13   loss: 0.03441   acc: 0.9893
+ epoch: 54   batch: 14   loss: 0.02377   acc: 0.9913
+ epoch: 54   batch: 15   loss: 0.03108   acc: 0.9903
+ epoch: 54   batch: 16   loss: 0.01781   acc: 0.995
+ epoch: 54   batch: 17   loss: 0.02139   acc: 0.994
+ epoch: 54   batch: 18   loss: 0.01651   acc: 0.9943
+ epoch: 54   batch: 19   loss: 0.02343   acc: 0.9917
+ epoch: 54   batch: 20   loss: 0.02133   acc: 0.9933
+ means -->               loss: 0.02496   acc: 0.992]
+[norms of weights -> l1: 48224.768, l2: 59.261247]
+[epoch fit time: 2.6315572 s]
+EPOCH: 55/100...
+[fit info (epoch 55):
+ epoch: 55   batch: 1    loss: 0.0259    acc: 0.992
+ epoch: 55   batch: 2    loss: 0.02944   acc: 0.989
+ epoch: 55   batch: 3    loss: 0.01685   acc: 0.9947
+ epoch: 55   batch: 4    loss: 0.0282    acc: 0.991
+ epoch: 55   batch: 5    loss: 0.02065   acc: 0.9927
+ epoch: 55   batch: 6    loss: 0.02045   acc: 0.994
+ epoch: 55   batch: 7    loss: 0.01873   acc: 0.994
+ epoch: 55   batch: 8    loss: 0.03488   acc: 0.987
+ epoch: 55   batch: 9    loss: 0.01987   acc: 0.992
+ epoch: 55   batch: 10   loss: 0.02647   acc: 0.99
+ epoch: 55   batch: 11   loss: 0.04508   acc: 0.986
+ epoch: 55   batch: 12   loss: 0.03681   acc: 0.9873
+ epoch: 55   batch: 13   loss: 0.03485   acc: 0.9883
+ epoch: 55   batch: 14   loss: 0.02965   acc: 0.9893
+ epoch: 55   batch: 15   loss: 0.03634   acc: 0.9857
+ epoch: 55   batch: 16   loss: 0.02907   acc: 0.9907
+ epoch: 55   batch: 17   loss: 0.02759   acc: 0.99
+ epoch: 55   batch: 18   loss: 0.02167   acc: 0.9917
+ epoch: 55   batch: 19   loss: 0.02071   acc: 0.9943
+ epoch: 55   batch: 20   loss: 0.02547   acc: 0.991
+ means -->               loss: 0.02743   acc: 0.9905]
+[norms of weights -> l1: 48252.624, l2: 59.312406]
+[epoch fit time: 2.8000596 s]
+EPOCH: 56/100...
+[fit info (epoch 56):
+ epoch: 56   batch: 1    loss: 0.02236   acc: 0.9917
+ epoch: 56   batch: 2    loss: 0.02153   acc: 0.993
+ epoch: 56   batch: 3    loss: 0.02371   acc: 0.9927
+ epoch: 56   batch: 4    loss: 0.02137   acc: 0.993
+ epoch: 56   batch: 5    loss: 0.0228    acc: 0.9923
+ epoch: 56   batch: 6    loss: 0.0311    acc: 0.988
+ epoch: 56   batch: 7    loss: 0.02144   acc: 0.993
+ epoch: 56   batch: 8    loss: 0.04189   acc: 0.9843
+ epoch: 56   batch: 9    loss: 0.02408   acc: 0.9923
+ epoch: 56   batch: 10   loss: 0.02952   acc: 0.99
+ epoch: 56   batch: 11   loss: 0.02289   acc: 0.994
+ epoch: 56   batch: 12   loss: 0.04447   acc: 0.986
+ epoch: 56   batch: 13   loss: 0.02631   acc: 0.99
+ epoch: 56   batch: 14   loss: 0.03504   acc: 0.988
+ epoch: 56   batch: 15   loss: 0.03978   acc: 0.985
+ epoch: 56   batch: 16   loss: 0.05146   acc: 0.9827
+ epoch: 56   batch: 17   loss: 0.03414   acc: 0.99
+ epoch: 56   batch: 18   loss: 0.03285   acc: 0.9883
+ epoch: 56   batch: 19   loss: 0.03447   acc: 0.9893
+ epoch: 56   batch: 20   loss: 0.04496   acc: 0.985
+ means -->               loss: 0.03131   acc: 0.9894]
+[norms of weights -> l1: 48285.576, l2: 59.370875]
+[epoch fit time: 3.0530062 s]
+EPOCH: 57/100...
+[fit info (epoch 57):
+ epoch: 57   batch: 1    loss: 0.03932   acc: 0.9883
+ epoch: 57   batch: 2    loss: 0.02251   acc: 0.9933
+ epoch: 57   batch: 3    loss: 0.03506   acc: 0.988
+ epoch: 57   batch: 4    loss: 0.03565   acc: 0.9867
+ epoch: 57   batch: 5    loss: 0.03349   acc: 0.987
+ epoch: 57   batch: 6    loss: 0.03871   acc: 0.9903
+ epoch: 57   batch: 7    loss: 0.02687   acc: 0.9923
+ epoch: 57   batch: 8    loss: 0.03561   acc: 0.9873
+ epoch: 57   batch: 9    loss: 0.0453    acc: 0.9843
+ epoch: 57   batch: 10   loss: 0.04429   acc: 0.985
+ epoch: 57   batch: 11   loss: 0.02502   acc: 0.9923
+ epoch: 57   batch: 12   loss: 0.03167   acc: 0.9897
+ epoch: 57   batch: 13   loss: 0.0497    acc: 0.9817
+ epoch: 57   batch: 14   loss: 0.05523   acc: 0.981
+ epoch: 57   batch: 15   loss: 0.04888   acc: 0.9837
+ epoch: 57   batch: 16   loss: 0.03075   acc: 0.9897
+ epoch: 57   batch: 17   loss: 0.03487   acc: 0.989
+ epoch: 57   batch: 18   loss: 0.02758   acc: 0.9933
+ epoch: 57   batch: 19   loss: 0.03037   acc: 0.9893
+ epoch: 57   batch: 20   loss: 0.04285   acc: 0.9857
+ means -->               loss: 0.03669   acc: 0.9879]
+[norms of weights -> l1: 48324.015, l2: 59.437562]
+[epoch fit time: 2.6518824 s]
+EPOCH: 58/100...
+[fit info (epoch 58):
+ epoch: 58   batch: 1    loss: 0.03888   acc: 0.9867
+ epoch: 58   batch: 2    loss: 0.03141   acc: 0.988
+ epoch: 58   batch: 3    loss: 0.02544   acc: 0.9917
+ epoch: 58   batch: 4    loss: 0.02683   acc: 0.992
+ epoch: 58   batch: 5    loss: 0.02921   acc: 0.9897
+ epoch: 58   batch: 6    loss: 0.03616   acc: 0.9903
+ epoch: 58   batch: 7    loss: 0.01969   acc: 0.995
+ epoch: 58   batch: 8    loss: 0.02997   acc: 0.9897
+ epoch: 58   batch: 9    loss: 0.02929   acc: 0.9913
+ epoch: 58   batch: 10   loss: 0.02849   acc: 0.9903
+ epoch: 58   batch: 11   loss: 0.02496   acc: 0.99
+ epoch: 58   batch: 12   loss: 0.04141   acc: 0.986
+ epoch: 58   batch: 13   loss: 0.01858   acc: 0.9953
+ epoch: 58   batch: 14   loss: 0.02315   acc: 0.9913
+ epoch: 58   batch: 15   loss: 0.02601   acc: 0.992
+ epoch: 58   batch: 16   loss: 0.02471   acc: 0.9927
+ epoch: 58   batch: 17   loss: 0.0303    acc: 0.9887
+ epoch: 58   batch: 18   loss: 0.0252    acc: 0.991
+ epoch: 58   batch: 19   loss: 0.01331   acc: 0.996
+ epoch: 58   batch: 20   loss: 0.04211   acc: 0.9857
+ means -->               loss: 0.02826   acc: 0.9907]
+[norms of weights -> l1: 48359.299, l2: 59.501337]
+[epoch fit time: 2.657793 s]
+EPOCH: 59/100...
+[fit info (epoch 59):
+ epoch: 59   batch: 1    loss: 0.01034   acc: 0.9973
+ epoch: 59   batch: 2    loss: 0.01837   acc: 0.9947
+ epoch: 59   batch: 3    loss: 0.013     acc: 0.997
+ epoch: 59   batch: 4    loss: 0.01908   acc: 0.993
+ epoch: 59   batch: 5    loss: 0.009575  acc: 0.9967
+ epoch: 59   batch: 6    loss: 0.01625   acc: 0.9943
+ epoch: 59   batch: 7    loss: 0.01141   acc: 0.9973
+ epoch: 59   batch: 8    loss: 0.02497   acc: 0.9903
+ epoch: 59   batch: 9    loss: 0.02934   acc: 0.9903
+ epoch: 59   batch: 10   loss: 0.02317   acc: 0.9927
+ epoch: 59   batch: 11   loss: 0.01224   acc: 0.996
+ epoch: 59   batch: 12   loss: 0.02519   acc: 0.9917
+ epoch: 59   batch: 13   loss: 0.01985   acc: 0.9927
+ epoch: 59   batch: 14   loss: 0.02648   acc: 0.9897
+ epoch: 59   batch: 15   loss: 0.02624   acc: 0.991
+ epoch: 59   batch: 16   loss: 0.01852   acc: 0.993
+ epoch: 59   batch: 17   loss: 0.02167   acc: 0.993
+ epoch: 59   batch: 18   loss: 0.01286   acc: 0.9963
+ epoch: 59   batch: 19   loss: 0.02453   acc: 0.9907
+ epoch: 59   batch: 20   loss: 0.01371   acc: 0.996
+ means -->               loss: 0.01884   acc: 0.9937]
+[norms of weights -> l1: 48387.539, l2: 59.552667]
+[epoch fit time: 2.6229057 s]
+EPOCH: 60/100...
+[fit info (epoch 60):
+ epoch: 60   batch: 1    loss: 0.02329   acc: 0.9917
+ epoch: 60   batch: 2    loss: 0.03319   acc: 0.9883
+ epoch: 60   batch: 3    loss: 0.01777   acc: 0.993
+ epoch: 60   batch: 4    loss: 0.02747   acc: 0.9917
+ epoch: 60   batch: 5    loss: 0.01743   acc: 0.9947
+ epoch: 60   batch: 6    loss: 0.02321   acc: 0.9913
+ epoch: 60   batch: 7    loss: 0.01581   acc: 0.9953
+ epoch: 60   batch: 8    loss: 0.0182    acc: 0.993
+ epoch: 60   batch: 9    loss: 0.01909   acc: 0.9943
+ epoch: 60   batch: 10   loss: 0.02653   acc: 0.991
+ epoch: 60   batch: 11   loss: 0.01735   acc: 0.9943
+ epoch: 60   batch: 12   loss: 0.01487   acc: 0.9957
+ epoch: 60   batch: 13   loss: 0.01629   acc: 0.9953
+ epoch: 60   batch: 14   loss: 0.01318   acc: 0.9953
+ epoch: 60   batch: 15   loss: 0.02697   acc: 0.991
+ epoch: 60   batch: 16   loss: 0.01919   acc: 0.9947
+ epoch: 60   batch: 17   loss: 0.01483   acc: 0.995
+ epoch: 60   batch: 18   loss: 0.0154    acc: 0.9957
+ epoch: 60   batch: 19   loss: 0.03524   acc: 0.9883
+ epoch: 60   batch: 20   loss: 0.01623   acc: 0.995
+ means -->               loss: 0.02058   acc: 0.9932]
+[norms of weights -> l1: 48412.705, l2: 59.597424]
+[epoch fit time: 2.5473535 s]
+EPOCH: 61/100...
+[fit info (epoch 61):
+ epoch: 61   batch: 1    loss: 0.01591   acc: 0.9937
+ epoch: 61   batch: 2    loss: 0.01777   acc: 0.993
+ epoch: 61   batch: 3    loss: 0.02485   acc: 0.991
+ epoch: 61   batch: 4    loss: 0.01605   acc: 0.9947
+ epoch: 61   batch: 5    loss: 0.02155   acc: 0.9917
+ epoch: 61   batch: 6    loss: 0.02457   acc: 0.993
+ epoch: 61   batch: 7    loss: 0.01519   acc: 0.995
+ epoch: 61   batch: 8    loss: 0.0153    acc: 0.995
+ epoch: 61   batch: 9    loss: 0.02463   acc: 0.993
+ epoch: 61   batch: 10   loss: 0.01486   acc: 0.996
+ epoch: 61   batch: 11   loss: 0.02196   acc: 0.9927
+ epoch: 61   batch: 12   loss: 0.02556   acc: 0.9917
+ epoch: 61   batch: 13   loss: 0.02102   acc: 0.994
+ epoch: 61   batch: 14   loss: 0.0154    acc: 0.9957
+ epoch: 61   batch: 15   loss: 0.02737   acc: 0.9903
+ epoch: 61   batch: 16   loss: 0.01982   acc: 0.9923
+ epoch: 61   batch: 17   loss: 0.03503   acc: 0.9877
+ epoch: 61   batch: 18   loss: 0.02103   acc: 0.9943
+ epoch: 61   batch: 19   loss: 0.01122   acc: 0.9967
+ epoch: 61   batch: 20   loss: 0.02714   acc: 0.9897
+ means -->               loss: 0.02081   acc: 0.993]
+[norms of weights -> l1: 48440.024, l2: 59.646308]
+[epoch fit time: 2.6542242 s]
+EPOCH: 62/100...
+[fit info (epoch 62):
+ epoch: 62   batch: 1    loss: 0.0433    acc: 0.9857
+ epoch: 62   batch: 2    loss: 0.01916   acc: 0.9947
+ epoch: 62   batch: 3    loss: 0.02583   acc: 0.991
+ epoch: 62   batch: 4    loss: 0.03178   acc: 0.989
+ epoch: 62   batch: 5    loss: 0.02722   acc: 0.991
+ epoch: 62   batch: 6    loss: 0.0169    acc: 0.9943
+ epoch: 62   batch: 7    loss: 0.03026   acc: 0.9897
+ epoch: 62   batch: 8    loss: 0.02052   acc: 0.9923
+ epoch: 62   batch: 9    loss: 0.02066   acc: 0.993
+ epoch: 62   batch: 10   loss: 0.02066   acc: 0.994
+ epoch: 62   batch: 11   loss: 0.01713   acc: 0.9947
+ epoch: 62   batch: 12   loss: 0.02347   acc: 0.992
+ epoch: 62   batch: 13   loss: 0.01806   acc: 0.9943
+ epoch: 62   batch: 14   loss: 0.01653   acc: 0.995
+ epoch: 62   batch: 15   loss: 0.02186   acc: 0.9943
+ epoch: 62   batch: 16   loss: 0.03453   acc: 0.988
+ epoch: 62   batch: 17   loss: 0.01407   acc: 0.9963
+ epoch: 62   batch: 18   loss: 0.02269   acc: 0.9927
+ epoch: 62   batch: 19   loss: 0.01714   acc: 0.9947
+ epoch: 62   batch: 20   loss: 0.02119   acc: 0.994
+ means -->               loss: 0.02315   acc: 0.9925]
+[norms of weights -> l1: 48469.945, l2: 59.69934]
+[epoch fit time: 2.5557308 s]
+EPOCH: 63/100...
+[fit info (epoch 63):
+ epoch: 63   batch: 1    loss: 0.01431   acc: 0.9963
+ epoch: 63   batch: 2    loss: 0.01479   acc: 0.996
+ epoch: 63   batch: 3    loss: 0.01349   acc: 0.9963
+ epoch: 63   batch: 4    loss: 0.01946   acc: 0.9947
+ epoch: 63   batch: 5    loss: 0.02426   acc: 0.9927
+ epoch: 63   batch: 6    loss: 0.02471   acc: 0.9927
+ epoch: 63   batch: 7    loss: 0.02233   acc: 0.9913
+ epoch: 63   batch: 8    loss: 0.02441   acc: 0.9917
+ epoch: 63   batch: 9    loss: 0.02197   acc: 0.991
+ epoch: 63   batch: 10   loss: 0.02088   acc: 0.9933
+ epoch: 63   batch: 11   loss: 0.01952   acc: 0.9937
+ epoch: 63   batch: 12   loss: 0.03606   acc: 0.9883
+ epoch: 63   batch: 13   loss: 0.0281    acc: 0.9893
+ epoch: 63   batch: 14   loss: 0.02539   acc: 0.991
+ epoch: 63   batch: 15   loss: 0.01438   acc: 0.9953
+ epoch: 63   batch: 16   loss: 0.01956   acc: 0.992
+ epoch: 63   batch: 17   loss: 0.01569   acc: 0.9943
+ epoch: 63   batch: 18   loss: 0.01609   acc: 0.9973
+ epoch: 63   batch: 19   loss: 0.02699   acc: 0.99
+ epoch: 63   batch: 20   loss: 0.02485   acc: 0.9907
+ means -->               loss: 0.02136   acc: 0.9929]
+[norms of weights -> l1: 48497.054, l2: 59.748325]
+[epoch fit time: 2.5521483 s]
+EPOCH: 64/100...
+[fit info (epoch 64):
+ epoch: 64   batch: 1    loss: 0.01459   acc: 0.9953
+ epoch: 64   batch: 2    loss: 0.0124    acc: 0.996
+ epoch: 64   batch: 3    loss: 0.01355   acc: 0.997
+ epoch: 64   batch: 4    loss: 0.01392   acc: 0.9957
+ epoch: 64   batch: 5    loss: 0.008151  acc: 0.998
+ epoch: 64   batch: 6    loss: 0.02788   acc: 0.9903
+ epoch: 64   batch: 7    loss: 0.02683   acc: 0.99
+ epoch: 64   batch: 8    loss: 0.02045   acc: 0.9927
+ epoch: 64   batch: 9    loss: 0.02528   acc: 0.991
+ epoch: 64   batch: 10   loss: 0.01723   acc: 0.995
+ epoch: 64   batch: 11   loss: 0.0112    acc: 0.996
+ epoch: 64   batch: 12   loss: 0.01462   acc: 0.995
+ epoch: 64   batch: 13   loss: 0.02761   acc: 0.99
+ epoch: 64   batch: 14   loss: 0.02026   acc: 0.994
+ epoch: 64   batch: 15   loss: 0.02556   acc: 0.9923
+ epoch: 64   batch: 16   loss: 0.02915   acc: 0.9907
+ epoch: 64   batch: 17   loss: 0.02047   acc: 0.9927
+ epoch: 64   batch: 18   loss: 0.01736   acc: 0.994
+ epoch: 64   batch: 19   loss: 0.0186    acc: 0.9933
+ epoch: 64   batch: 20   loss: 0.02013   acc: 0.9933
+ means -->               loss: 0.01926   acc: 0.9936]
+[norms of weights -> l1: 48523.623, l2: 59.794638]
+[epoch fit time: 2.813884 s]
+EPOCH: 65/100...
+[fit info (epoch 65):
+ epoch: 65   batch: 1    loss: 0.0156    acc: 0.9957
+ epoch: 65   batch: 2    loss: 0.01564   acc: 0.9933
+ epoch: 65   batch: 3    loss: 0.02081   acc: 0.9933
+ epoch: 65   batch: 4    loss: 0.02287   acc: 0.991
+ epoch: 65   batch: 5    loss: 0.0153    acc: 0.9947
+ epoch: 65   batch: 6    loss: 0.01435   acc: 0.995
+ epoch: 65   batch: 7    loss: 0.01744   acc: 0.9933
+ epoch: 65   batch: 8    loss: 0.02015   acc: 0.9923
+ epoch: 65   batch: 9    loss: 0.01136   acc: 0.996
+ epoch: 65   batch: 10   loss: 0.01661   acc: 0.9943
+ epoch: 65   batch: 11   loss: 0.0179    acc: 0.9937
+ epoch: 65   batch: 12   loss: 0.008034  acc: 0.9977
+ epoch: 65   batch: 13   loss: 0.01913   acc: 0.9937
+ epoch: 65   batch: 14   loss: 0.01627   acc: 0.9943
+ epoch: 65   batch: 15   loss: 0.01429   acc: 0.9957
+ epoch: 65   batch: 16   loss: 0.01005   acc: 0.9957
+ epoch: 65   batch: 17   loss: 0.02496   acc: 0.991
+ epoch: 65   batch: 18   loss: 0.01277   acc: 0.997
+ epoch: 65   batch: 19   loss: 0.01828   acc: 0.994
+ epoch: 65   batch: 20   loss: 0.01076   acc: 0.9963
+ means -->               loss: 0.01613   acc: 0.9944]
+[norms of weights -> l1: 48549.283, l2: 59.840212]
+[epoch fit time: 2.7194715 s]
+EPOCH: 66/100...
+[fit info (epoch 66):
+ epoch: 66   batch: 1    loss: 0.01199   acc: 0.9967
+ epoch: 66   batch: 2    loss: 0.01294   acc: 0.9957
+ epoch: 66   batch: 3    loss: 0.01313   acc: 0.9957
+ epoch: 66   batch: 4    loss: 0.01987   acc: 0.993
+ epoch: 66   batch: 5    loss: 0.01656   acc: 0.996
+ epoch: 66   batch: 6    loss: 0.02954   acc: 0.9913
+ epoch: 66   batch: 7    loss: 0.01235   acc: 0.9937
+ epoch: 66   batch: 8    loss: 0.006887  acc: 0.9983
+ epoch: 66   batch: 9    loss: 0.011     acc: 0.9963
+ epoch: 66   batch: 10   loss: 0.01513   acc: 0.9953
+ epoch: 66   batch: 11   loss: 0.009391  acc: 0.997
+ epoch: 66   batch: 12   loss: 0.01376   acc: 0.9943
+ epoch: 66   batch: 13   loss: 0.01187   acc: 0.9963
+ epoch: 66   batch: 14   loss: 0.01207   acc: 0.996
+ epoch: 66   batch: 15   loss: 0.01746   acc: 0.9953
+ epoch: 66   batch: 16   loss: 0.01514   acc: 0.9947
+ epoch: 66   batch: 17   loss: 0.009149  acc: 0.9963
+ epoch: 66   batch: 18   loss: 0.01613   acc: 0.995
+ epoch: 66   batch: 19   loss: 0.008041  acc: 0.9983
+ epoch: 66   batch: 20   loss: 0.0116    acc: 0.996
+ means -->               loss: 0.0137    acc: 0.9956]
+[norms of weights -> l1: 48571.753, l2: 59.881932]
+[epoch fit time: 2.7186275 s]
+EPOCH: 67/100...
+[fit info (epoch 67):
+ epoch: 67   batch: 1    loss: 0.01933   acc: 0.9923
+ epoch: 67   batch: 2    loss: 0.006042  acc: 0.999
+ epoch: 67   batch: 3    loss: 0.01891   acc: 0.994
+ epoch: 67   batch: 4    loss: 0.0229    acc: 0.9933
+ epoch: 67   batch: 5    loss: 0.009684  acc: 0.9977
+ epoch: 67   batch: 6    loss: 0.00808   acc: 0.9973
+ epoch: 67   batch: 7    loss: 0.01159   acc: 0.996
+ epoch: 67   batch: 8    loss: 0.009556  acc: 0.9963
+ epoch: 67   batch: 9    loss: 0.008692  acc: 0.9973
+ epoch: 67   batch: 10   loss: 0.00954   acc: 0.9973
+ epoch: 67   batch: 11   loss: 0.0179    acc: 0.9947
+ epoch: 67   batch: 12   loss: 0.01768   acc: 0.9943
+ epoch: 67   batch: 13   loss: 0.0103    acc: 0.9973
+ epoch: 67   batch: 14   loss: 0.01348   acc: 0.997
+ epoch: 67   batch: 15   loss: 0.01416   acc: 0.9947
+ epoch: 67   batch: 16   loss: 0.01303   acc: 0.996
+ epoch: 67   batch: 17   loss: 0.01577   acc: 0.995
+ epoch: 67   batch: 18   loss: 0.01671   acc: 0.9937
+ epoch: 67   batch: 19   loss: 0.01179   acc: 0.995
+ epoch: 67   batch: 20   loss: 0.006795  acc: 0.9977
+ means -->               loss: 0.0131    acc: 0.9958]
+[norms of weights -> l1: 48592.989, l2: 59.92061]
+[epoch fit time: 2.7791665 s]
+EPOCH: 68/100...
+[fit info (epoch 68):
+ epoch: 68   batch: 1    loss: 0.02377   acc: 0.989
+ epoch: 68   batch: 2    loss: 0.03508   acc: 0.989
+ epoch: 68   batch: 3    loss: 0.01189   acc: 0.9957
+ epoch: 68   batch: 4    loss: 0.01387   acc: 0.9947
+ epoch: 68   batch: 5    loss: 0.01955   acc: 0.9927
+ epoch: 68   batch: 6    loss: 0.01195   acc: 0.996
+ epoch: 68   batch: 7    loss: 0.0191    acc: 0.9933
+ epoch: 68   batch: 8    loss: 0.01304   acc: 0.9973
+ epoch: 68   batch: 9    loss: 0.01971   acc: 0.9933
+ epoch: 68   batch: 10   loss: 0.01907   acc: 0.9957
+ epoch: 68   batch: 11   loss: 0.01894   acc: 0.9957
+ epoch: 68   batch: 12   loss: 0.01036   acc: 0.9973
+ epoch: 68   batch: 13   loss: 0.01109   acc: 0.9963
+ epoch: 68   batch: 14   loss: 0.02249   acc: 0.9917
+ epoch: 68   batch: 15   loss: 0.01614   acc: 0.9947
+ epoch: 68   batch: 16   loss: 0.03298   acc: 0.9887
+ epoch: 68   batch: 17   loss: 0.01151   acc: 0.996
+ epoch: 68   batch: 18   loss: 0.008319  acc: 0.998
+ epoch: 68   batch: 19   loss: 0.01562   acc: 0.9953
+ epoch: 68   batch: 20   loss: 0.0461    acc: 0.9857
+ means -->               loss: 0.01903   acc: 0.9938]
+[norms of weights -> l1: 48619.396, l2: 59.96775]
+[epoch fit time: 2.7598314 s]
+EPOCH: 69/100...
+[fit info (epoch 69):
+ epoch: 69   batch: 1    loss: 0.02609   acc: 0.992
+ epoch: 69   batch: 2    loss: 0.02275   acc: 0.9933
+ epoch: 69   batch: 3    loss: 0.01799   acc: 0.9933
+ epoch: 69   batch: 4    loss: 0.02747   acc: 0.9913
+ epoch: 69   batch: 5    loss: 0.03869   acc: 0.9877
+ epoch: 69   batch: 6    loss: 0.02173   acc: 0.9943
+ epoch: 69   batch: 7    loss: 0.01413   acc: 0.9947
+ epoch: 69   batch: 8    loss: 0.02247   acc: 0.9947
+ epoch: 69   batch: 9    loss: 0.009015  acc: 0.9967
+ epoch: 69   batch: 10   loss: 0.0147    acc: 0.9957
+ epoch: 69   batch: 11   loss: 0.01742   acc: 0.9947
+ epoch: 69   batch: 12   loss: 0.02177   acc: 0.9917
+ epoch: 69   batch: 13   loss: 0.01922   acc: 0.993
+ epoch: 69   batch: 14   loss: 0.01793   acc: 0.9923
+ epoch: 69   batch: 15   loss: 0.01583   acc: 0.994
+ epoch: 69   batch: 16   loss: 0.01326   acc: 0.9967
+ epoch: 69   batch: 17   loss: 0.01795   acc: 0.9933
+ epoch: 69   batch: 18   loss: 0.02392   acc: 0.9917
+ epoch: 69   batch: 19   loss: 0.01944   acc: 0.9937
+ epoch: 69   batch: 20   loss: 0.01473   acc: 0.9957
+ means -->               loss: 0.01982   acc: 0.9935]
+[norms of weights -> l1: 48646.585, l2: 60.015818]
+[epoch fit time: 2.6726887 s]
+EPOCH: 70/100...
+[fit info (epoch 70):
+ epoch: 70   batch: 1    loss: 0.009435  acc: 0.9967
+ epoch: 70   batch: 2    loss: 0.02479   acc: 0.992
+ epoch: 70   batch: 3    loss: 0.02514   acc: 0.992
+ epoch: 70   batch: 4    loss: 0.01739   acc: 0.9947
+ epoch: 70   batch: 5    loss: 0.01655   acc: 0.994
+ epoch: 70   batch: 6    loss: 0.01671   acc: 0.995
+ epoch: 70   batch: 7    loss: 0.01968   acc: 0.993
+ epoch: 70   batch: 8    loss: 0.01483   acc: 0.9957
+ epoch: 70   batch: 9    loss: 0.01391   acc: 0.996
+ epoch: 70   batch: 10   loss: 0.01611   acc: 0.995
+ epoch: 70   batch: 11   loss: 0.02006   acc: 0.994
+ epoch: 70   batch: 12   loss: 0.007933  acc: 0.997
+ epoch: 70   batch: 13   loss: 0.01519   acc: 0.9957
+ epoch: 70   batch: 14   loss: 0.009058  acc: 0.9967
+ epoch: 70   batch: 15   loss: 0.01228   acc: 0.9967
+ epoch: 70   batch: 16   loss: 0.01379   acc: 0.9947
+ epoch: 70   batch: 17   loss: 0.01694   acc: 0.9943
+ epoch: 70   batch: 18   loss: 0.01769   acc: 0.994
+ epoch: 70   batch: 19   loss: 0.01908   acc: 0.9933
+ epoch: 70   batch: 20   loss: 0.01597   acc: 0.994
+ means -->               loss: 0.01613   acc: 0.9947]
+[norms of weights -> l1: 48671.594, l2: 60.06204]
+[epoch fit time: 2.5387688 s]
+EPOCH: 71/100...
+[fit info (epoch 71):
+ epoch: 71   batch: 1    loss: 0.007097  acc: 0.998
+ epoch: 71   batch: 2    loss: 0.01198   acc: 0.9947
+ epoch: 71   batch: 3    loss: 0.02274   acc: 0.9923
+ epoch: 71   batch: 4    loss: 0.01077   acc: 0.9967
+ epoch: 71   batch: 5    loss: 0.01798   acc: 0.995
+ epoch: 71   batch: 6    loss: 0.006626  acc: 0.9987
+ epoch: 71   batch: 7    loss: 0.01541   acc: 0.994
+ epoch: 71   batch: 8    loss: 0.0206    acc: 0.991
+ epoch: 71   batch: 9    loss: 0.01399   acc: 0.9943
+ epoch: 71   batch: 10   loss: 0.0275    acc: 0.9907
+ epoch: 71   batch: 11   loss: 0.0134    acc: 0.9957
+ epoch: 71   batch: 12   loss: 0.01541   acc: 0.996
+ epoch: 71   batch: 13   loss: 0.01122   acc: 0.9977
+ epoch: 71   batch: 14   loss: 0.01487   acc: 0.995
+ epoch: 71   batch: 15   loss: 0.0103    acc: 0.9973
+ epoch: 71   batch: 16   loss: 0.01868   acc: 0.994
+ epoch: 71   batch: 17   loss: 0.01334   acc: 0.9957
+ epoch: 71   batch: 18   loss: 0.01788   acc: 0.995
+ epoch: 71   batch: 19   loss: 0.01205   acc: 0.996
+ epoch: 71   batch: 20   loss: 0.01338   acc: 0.995
+ means -->               loss: 0.01476   acc: 0.9951]
+[norms of weights -> l1: 48693.644, l2: 60.101453]
+[epoch fit time: 2.547235 s]
+EPOCH: 72/100...
+[fit info (epoch 72):
+ epoch: 72   batch: 1    loss: 0.01604   acc: 0.9937
+ epoch: 72   batch: 2    loss: 0.01342   acc: 0.9943
+ epoch: 72   batch: 3    loss: 0.01104   acc: 0.9957
+ epoch: 72   batch: 4    loss: 0.0127    acc: 0.9957
+ epoch: 72   batch: 5    loss: 0.011     acc: 0.996
+ epoch: 72   batch: 6    loss: 0.01454   acc: 0.9943
+ epoch: 72   batch: 7    loss: 0.01671   acc: 0.9943
+ epoch: 72   batch: 8    loss: 0.02172   acc: 0.9933
+ epoch: 72   batch: 9    loss: 0.009076  acc: 0.997
+ epoch: 72   batch: 10   loss: 0.008268  acc: 0.9983
+ epoch: 72   batch: 11   loss: 0.01904   acc: 0.9923
+ epoch: 72   batch: 12   loss: 0.01434   acc: 0.9947
+ epoch: 72   batch: 13   loss: 0.01376   acc: 0.9947
+ epoch: 72   batch: 14   loss: 0.007529  acc: 0.998
+ epoch: 72   batch: 15   loss: 0.01253   acc: 0.9953
+ epoch: 72   batch: 16   loss: 0.01489   acc: 0.9947
+ epoch: 72   batch: 17   loss: 0.01102   acc: 0.997
+ epoch: 72   batch: 18   loss: 0.01251   acc: 0.9957
+ epoch: 72   batch: 19   loss: 0.01439   acc: 0.9953
+ epoch: 72   batch: 20   loss: 0.01329   acc: 0.9953
+ means -->               loss: 0.01339   acc: 0.9953]
+[norms of weights -> l1: 48717.174, l2: 60.142225]
+[epoch fit time: 2.5769641 s]
+EPOCH: 73/100...
+[fit info (epoch 73):
+ epoch: 73   batch: 1    loss: 0.009374  acc: 0.9973
+ epoch: 73   batch: 2    loss: 0.006739  acc: 0.9983
+ epoch: 73   batch: 3    loss: 0.005705  acc: 0.9977
+ epoch: 73   batch: 4    loss: 0.01091   acc: 0.9957
+ epoch: 73   batch: 5    loss: 0.0214    acc: 0.9923
+ epoch: 73   batch: 6    loss: 0.007345  acc: 0.998
+ epoch: 73   batch: 7    loss: 0.01516   acc: 0.994
+ epoch: 73   batch: 8    loss: 0.01242   acc: 0.9967
+ epoch: 73   batch: 9    loss: 0.01519   acc: 0.9947
+ epoch: 73   batch: 10   loss: 0.02001   acc: 0.994
+ epoch: 73   batch: 11   loss: 0.009025  acc: 0.9983
+ epoch: 73   batch: 12   loss: 0.01598   acc: 0.9947
+ epoch: 73   batch: 13   loss: 0.01019   acc: 0.9963
+ epoch: 73   batch: 14   loss: 0.0143    acc: 0.995
+ epoch: 73   batch: 15   loss: 0.01758   acc: 0.9947
+ epoch: 73   batch: 16   loss: 0.0123    acc: 0.9963
+ epoch: 73   batch: 17   loss: 0.01133   acc: 0.9957
+ epoch: 73   batch: 18   loss: 0.007028  acc: 0.9977
+ epoch: 73   batch: 19   loss: 0.03035   acc: 0.9907
+ epoch: 73   batch: 20   loss: 0.01056   acc: 0.9973
+ means -->               loss: 0.01314   acc: 0.9958]
+[norms of weights -> l1: 48739.19, l2: 60.182474]
+[epoch fit time: 2.5091248 s]
+EPOCH: 74/100...
+[fit info (epoch 74):
+ epoch: 74   batch: 1    loss: 0.007565  acc: 0.998
+ epoch: 74   batch: 2    loss: 0.01576   acc: 0.995
+ epoch: 74   batch: 3    loss: 0.01165   acc: 0.9963
+ epoch: 74   batch: 4    loss: 0.01777   acc: 0.9943
+ epoch: 74   batch: 5    loss: 0.01255   acc: 0.9953
+ epoch: 74   batch: 6    loss: 0.01632   acc: 0.9953
+ epoch: 74   batch: 7    loss: 0.01321   acc: 0.9963
+ epoch: 74   batch: 8    loss: 0.01742   acc: 0.9927
+ epoch: 74   batch: 9    loss: 0.01869   acc: 0.9927
+ epoch: 74   batch: 10   loss: 0.01308   acc: 0.9963
+ epoch: 74   batch: 11   loss: 0.01224   acc: 0.9957
+ epoch: 74   batch: 12   loss: 0.01984   acc: 0.994
+ epoch: 74   batch: 13   loss: 0.01242   acc: 0.996
+ epoch: 74   batch: 14   loss: 0.01593   acc: 0.9947
+ epoch: 74   batch: 15   loss: 0.01288   acc: 0.9957
+ epoch: 74   batch: 16   loss: 0.01212   acc: 0.9963
+ epoch: 74   batch: 17   loss: 0.01139   acc: 0.9963
+ epoch: 74   batch: 18   loss: 0.01578   acc: 0.9957
+ epoch: 74   batch: 19   loss: 0.01261   acc: 0.995
+ epoch: 74   batch: 20   loss: 0.02394   acc: 0.9917
+ means -->               loss: 0.01466   acc: 0.9952]
+[norms of weights -> l1: 48763.459, l2: 60.226714]
+[epoch fit time: 2.6024573 s]
+EPOCH: 75/100...
+[fit info (epoch 75):
+ epoch: 75   batch: 1    loss: 0.0137    acc: 0.9963
+ epoch: 75   batch: 2    loss: 0.01285   acc: 0.9947
+ epoch: 75   batch: 3    loss: 0.02572   acc: 0.9913
+ epoch: 75   batch: 4    loss: 0.01054   acc: 0.996
+ epoch: 75   batch: 5    loss: 0.01143   acc: 0.9973
+ epoch: 75   batch: 6    loss: 0.01052   acc: 0.9973
+ epoch: 75   batch: 7    loss: 0.02255   acc: 0.9913
+ epoch: 75   batch: 8    loss: 0.01431   acc: 0.993
+ epoch: 75   batch: 9    loss: 0.01439   acc: 0.9957
+ epoch: 75   batch: 10   loss: 0.01471   acc: 0.9943
+ epoch: 75   batch: 11   loss: 0.01113   acc: 0.9953
+ epoch: 75   batch: 12   loss: 0.01037   acc: 0.997
+ epoch: 75   batch: 13   loss: 0.02941   acc: 0.9887
+ epoch: 75   batch: 14   loss: 0.01484   acc: 0.995
+ epoch: 75   batch: 15   loss: 0.009058  acc: 0.9967
+ epoch: 75   batch: 16   loss: 0.008887  acc: 0.9973
+ epoch: 75   batch: 17   loss: 0.02567   acc: 0.989
+ epoch: 75   batch: 18   loss: 0.02204   acc: 0.993
+ epoch: 75   batch: 19   loss: 0.007383  acc: 0.9977
+ epoch: 75   batch: 20   loss: 0.01646   acc: 0.9953
+ means -->               loss: 0.0153    acc: 0.9946]
+[norms of weights -> l1: 48788.874, l2: 60.272176]
+[epoch fit time: 2.5972304 s]
+EPOCH: 76/100...
+[fit info (epoch 76):
+ epoch: 76   batch: 1    loss: 0.01092   acc: 0.9977
+ epoch: 76   batch: 2    loss: 0.01125   acc: 0.997
+ epoch: 76   batch: 3    loss: 0.01354   acc: 0.9953
+ epoch: 76   batch: 4    loss: 0.02029   acc: 0.993
+ epoch: 76   batch: 5    loss: 0.01938   acc: 0.9947
+ epoch: 76   batch: 6    loss: 0.01464   acc: 0.995
+ epoch: 76   batch: 7    loss: 0.01272   acc: 0.9957
+ epoch: 76   batch: 8    loss: 0.03477   acc: 0.9903
+ epoch: 76   batch: 9    loss: 0.006754  acc: 0.9983
+ epoch: 76   batch: 10   loss: 0.009962  acc: 0.9967
+ epoch: 76   batch: 11   loss: 0.01253   acc: 0.997
+ epoch: 76   batch: 12   loss: 0.0219    acc: 0.992
+ epoch: 76   batch: 13   loss: 0.01807   acc: 0.996
+ epoch: 76   batch: 14   loss: 0.01878   acc: 0.994
+ epoch: 76   batch: 15   loss: 0.01649   acc: 0.995
+ epoch: 76   batch: 16   loss: 0.01361   acc: 0.9953
+ epoch: 76   batch: 17   loss: 0.01135   acc: 0.996
+ epoch: 76   batch: 18   loss: 0.009484  acc: 0.9957
+ epoch: 76   batch: 19   loss: 0.01542   acc: 0.9963
+ epoch: 76   batch: 20   loss: 0.01586   acc: 0.996
+ means -->               loss: 0.01539   acc: 0.9953]
+[norms of weights -> l1: 48813.667, l2: 60.319003]
+[epoch fit time: 2.5757797 s]
+EPOCH: 77/100...
+[fit info (epoch 77):
+ epoch: 77   batch: 1    loss: 0.01062   acc: 0.9967
+ epoch: 77   batch: 2    loss: 0.01064   acc: 0.9967
+ epoch: 77   batch: 3    loss: 0.008198  acc: 0.9973
+ epoch: 77   batch: 4    loss: 0.02049   acc: 0.9943
+ epoch: 77   batch: 5    loss: 0.0131    acc: 0.9957
+ epoch: 77   batch: 6    loss: 0.01518   acc: 0.9953
+ epoch: 77   batch: 7    loss: 0.006407  acc: 0.9977
+ epoch: 77   batch: 8    loss: 0.01526   acc: 0.9953
+ epoch: 77   batch: 9    loss: 0.01256   acc: 0.9973
+ epoch: 77   batch: 10   loss: 0.008297  acc: 0.9973
+ epoch: 77   batch: 11   loss: 0.01429   acc: 0.995
+ epoch: 77   batch: 12   loss: 0.01462   acc: 0.995
+ epoch: 77   batch: 13   loss: 0.01297   acc: 0.9943
+ epoch: 77   batch: 14   loss: 0.01579   acc: 0.995
+ epoch: 77   batch: 15   loss: 0.01249   acc: 0.9957
+ epoch: 77   batch: 16   loss: 0.01064   acc: 0.997
+ epoch: 77   batch: 17   loss: 0.008475  acc: 0.9983
+ epoch: 77   batch: 18   loss: 0.02414   acc: 0.9927
+ epoch: 77   batch: 19   loss: 0.01917   acc: 0.9927
+ epoch: 77   batch: 20   loss: 0.02069   acc: 0.9937
+ means -->               loss: 0.0137    acc: 0.9957]
+[norms of weights -> l1: 48837.518, l2: 60.361255]
+[epoch fit time: 3.18677 s]
+EPOCH: 78/100...
+[fit info (epoch 78):
+ epoch: 78   batch: 1    loss: 0.009024  acc: 0.9977
+ epoch: 78   batch: 2    loss: 0.01293   acc: 0.9943
+ epoch: 78   batch: 3    loss: 0.01144   acc: 0.9967
+ epoch: 78   batch: 4    loss: 0.009801  acc: 0.9963
+ epoch: 78   batch: 5    loss: 0.02092   acc: 0.9927
+ epoch: 78   batch: 6    loss: 0.01547   acc: 0.995
+ epoch: 78   batch: 7    loss: 0.009227  acc: 0.9967
+ epoch: 78   batch: 8    loss: 0.009181  acc: 0.9973
+ epoch: 78   batch: 9    loss: 0.004701  acc: 0.9983
+ epoch: 78   batch: 10   loss: 0.01414   acc: 0.9943
+ epoch: 78   batch: 11   loss: 0.01623   acc: 0.9943
+ epoch: 78   batch: 12   loss: 0.009444  acc: 0.9963
+ epoch: 78   batch: 13   loss: 0.006574  acc: 0.9987
+ epoch: 78   batch: 14   loss: 0.01379   acc: 0.995
+ epoch: 78   batch: 15   loss: 0.01254   acc: 0.9957
+ epoch: 78   batch: 16   loss: 0.01662   acc: 0.9947
+ epoch: 78   batch: 17   loss: 0.01264   acc: 0.9957
+ epoch: 78   batch: 18   loss: 0.01354   acc: 0.996
+ epoch: 78   batch: 19   loss: 0.01497   acc: 0.9953
+ epoch: 78   batch: 20   loss: 0.01445   acc: 0.995
+ means -->               loss: 0.01238   acc: 0.9958]
+[norms of weights -> l1: 48860.033, l2: 60.40276]
+[epoch fit time: 2.8972158 s]
+EPOCH: 79/100...
+[fit info (epoch 79):
+ epoch: 79   batch: 1    loss: 0.009614  acc: 0.9973
+ epoch: 79   batch: 2    loss: 0.01317   acc: 0.996
+ epoch: 79   batch: 3    loss: 0.00982   acc: 0.9967
+ epoch: 79   batch: 4    loss: 0.007602  acc: 0.9973
+ epoch: 79   batch: 5    loss: 0.01737   acc: 0.9933
+ epoch: 79   batch: 6    loss: 0.01338   acc: 0.996
+ epoch: 79   batch: 7    loss: 0.008396  acc: 0.997
+ epoch: 79   batch: 8    loss: 0.01265   acc: 0.9957
+ epoch: 79   batch: 9    loss: 0.005068  acc: 0.9983
+ epoch: 79   batch: 10   loss: 0.01202   acc: 0.9957
+ epoch: 79   batch: 11   loss: 0.01038   acc: 0.9953
+ epoch: 79   batch: 12   loss: 0.007933  acc: 0.9973
+ epoch: 79   batch: 13   loss: 0.009213  acc: 0.997
+ epoch: 79   batch: 14   loss: 0.01506   acc: 0.9943
+ epoch: 79   batch: 15   loss: 0.01076   acc: 0.9967
+ epoch: 79   batch: 16   loss: 0.01895   acc: 0.9933
+ epoch: 79   batch: 17   loss: 0.01188   acc: 0.9967
+ epoch: 79   batch: 18   loss: 0.01147   acc: 0.995
+ epoch: 79   batch: 19   loss: 0.0109    acc: 0.9977
+ epoch: 79   batch: 20   loss: 0.008835  acc: 0.997
+ means -->               loss: 0.01122   acc: 0.9962]
+[norms of weights -> l1: 48882.467, l2: 60.442919]
+[epoch fit time: 3.0918825 s]
+EPOCH: 80/100...
+[fit info (epoch 80):
+ epoch: 80   batch: 1    loss: 0.01023   acc: 0.9967
+ epoch: 80   batch: 2    loss: 0.01241   acc: 0.997
+ epoch: 80   batch: 3    loss: 0.01034   acc: 0.997
+ epoch: 80   batch: 4    loss: 0.01666   acc: 0.995
+ epoch: 80   batch: 5    loss: 0.004168  acc: 0.9987
+ epoch: 80   batch: 6    loss: 0.01001   acc: 0.9967
+ epoch: 80   batch: 7    loss: 0.01106   acc: 0.9967
+ epoch: 80   batch: 8    loss: 0.00755   acc: 0.998
+ epoch: 80   batch: 9    loss: 0.008126  acc: 0.997
+ epoch: 80   batch: 10   loss: 0.01018   acc: 0.9967
+ epoch: 80   batch: 11   loss: 0.009494  acc: 0.9957
+ epoch: 80   batch: 12   loss: 0.01085   acc: 0.997
+ epoch: 80   batch: 13   loss: 0.006744  acc: 0.9973
+ epoch: 80   batch: 14   loss: 0.005382  acc: 0.9987
+ epoch: 80   batch: 15   loss: 0.007584  acc: 0.9973
+ epoch: 80   batch: 16   loss: 0.01517   acc: 0.994
+ epoch: 80   batch: 17   loss: 0.01983   acc: 0.993
+ epoch: 80   batch: 18   loss: 0.009832  acc: 0.9967
+ epoch: 80   batch: 19   loss: 0.007392  acc: 0.998
+ epoch: 80   batch: 20   loss: 0.01425   acc: 0.9963
+ means -->               loss: 0.01036   acc: 0.9967]
+[norms of weights -> l1: 48902.821, l2: 60.479084]
+[epoch fit time: 4.2893963 s]
+EPOCH: 81/100...
+[fit info (epoch 81):
+ epoch: 81   batch: 1    loss: 0.006058  acc: 0.9983
+ epoch: 81   batch: 2    loss: 0.008995  acc: 0.997
+ epoch: 81   batch: 3    loss: 0.02095   acc: 0.9923
+ epoch: 81   batch: 4    loss: 0.00957   acc: 0.997
+ epoch: 81   batch: 5    loss: 0.01185   acc: 0.9967
+ epoch: 81   batch: 6    loss: 0.005952  acc: 0.9987
+ epoch: 81   batch: 7    loss: 0.009926  acc: 0.998
+ epoch: 81   batch: 8    loss: 0.009975  acc: 0.9977
+ epoch: 81   batch: 9    loss: 0.01596   acc: 0.995
+ epoch: 81   batch: 10   loss: 0.008694  acc: 0.9973
+ epoch: 81   batch: 11   loss: 0.009326  acc: 0.998
+ epoch: 81   batch: 12   loss: 0.01066   acc: 0.996
+ epoch: 81   batch: 13   loss: 0.00711   acc: 0.998
+ epoch: 81   batch: 14   loss: 0.009282  acc: 0.998
+ epoch: 81   batch: 15   loss: 0.007359  acc: 0.9977
+ epoch: 81   batch: 16   loss: 0.01078   acc: 0.9963
+ epoch: 81   batch: 17   loss: 0.01474   acc: 0.9947
+ epoch: 81   batch: 18   loss: 0.00725   acc: 0.997
+ epoch: 81   batch: 19   loss: 0.01776   acc: 0.9937
+ epoch: 81   batch: 20   loss: 0.01478   acc: 0.9937
+ means -->               loss: 0.01085   acc: 0.9965]
+[norms of weights -> l1: 48922.409, l2: 60.515521]
+[epoch fit time: 4.004236 s]
+EPOCH: 82/100...
+[fit info (epoch 82):
+ epoch: 82   batch: 1    loss: 0.009409  acc: 0.9967
+ epoch: 82   batch: 2    loss: 0.00957   acc: 0.9973
+ epoch: 82   batch: 3    loss: 0.005857  acc: 0.998
+ epoch: 82   batch: 4    loss: 0.01102   acc: 0.997
+ epoch: 82   batch: 5    loss: 0.01287   acc: 0.9963
+ epoch: 82   batch: 6    loss: 0.00669   acc: 0.9977
+ epoch: 82   batch: 7    loss: 0.007531  acc: 0.9973
+ epoch: 82   batch: 8    loss: 0.02083   acc: 0.9927
+ epoch: 82   batch: 9    loss: 0.01845   acc: 0.9943
+ epoch: 82   batch: 10   loss: 0.0133    acc: 0.997
+ epoch: 82   batch: 11   loss: 0.01062   acc: 0.997
+ epoch: 82   batch: 12   loss: 0.01006   acc: 0.9967
+ epoch: 82   batch: 13   loss: 0.0128    acc: 0.9957
+ epoch: 82   batch: 14   loss: 0.01227   acc: 0.9967
+ epoch: 82   batch: 15   loss: 0.01454   acc: 0.9937
+ epoch: 82   batch: 16   loss: 0.01844   acc: 0.9937
+ epoch: 82   batch: 17   loss: 0.01716   acc: 0.9963
+ epoch: 82   batch: 18   loss: 0.01382   acc: 0.995
+ epoch: 82   batch: 19   loss: 0.01339   acc: 0.996
+ epoch: 82   batch: 20   loss: 0.005959  acc: 0.999
+ means -->               loss: 0.01223   acc: 0.9962]
+[norms of weights -> l1: 48943.151, l2: 60.553658]
+[epoch fit time: 3.7784564 s]
+EPOCH: 83/100...
+[fit info (epoch 83):
+ epoch: 83   batch: 1    loss: 0.01761   acc: 0.9933
+ epoch: 83   batch: 2    loss: 0.02364   acc: 0.992
+ epoch: 83   batch: 3    loss: 0.005637  acc: 0.999
+ epoch: 83   batch: 4    loss: 0.01065   acc: 0.9967
+ epoch: 83   batch: 5    loss: 0.006363  acc: 0.9987
+ epoch: 83   batch: 6    loss: 0.02307   acc: 0.9937
+ epoch: 83   batch: 7    loss: 0.01374   acc: 0.9953
+ epoch: 83   batch: 8    loss: 0.01094   acc: 0.9953
+ epoch: 83   batch: 9    loss: 0.01089   acc: 0.996
+ epoch: 83   batch: 10   loss: 0.01048   acc: 0.996
+ epoch: 83   batch: 11   loss: 0.005437  acc: 0.999
+ epoch: 83   batch: 12   loss: 0.016     acc: 0.9947
+ epoch: 83   batch: 13   loss: 0.009174  acc: 0.9967
+ epoch: 83   batch: 14   loss: 0.008612  acc: 0.997
+ epoch: 83   batch: 15   loss: 0.008232  acc: 0.997
+ epoch: 83   batch: 16   loss: 0.01274   acc: 0.9967
+ epoch: 83   batch: 17   loss: 0.0386    acc: 0.9857
+ epoch: 83   batch: 18   loss: 0.01232   acc: 0.996
+ epoch: 83   batch: 19   loss: 0.006263  acc: 0.9983
+ epoch: 83   batch: 20   loss: 0.01511   acc: 0.9947
+ means -->               loss: 0.01328   acc: 0.9956]
+[norms of weights -> l1: 48966.081, l2: 60.596158]
+[epoch fit time: 3.7465482 s]
+EPOCH: 84/100...
+[fit info (epoch 84):
+ epoch: 84   batch: 1    loss: 0.02743   acc: 0.991
+ epoch: 84   batch: 2    loss: 0.01709   acc: 0.9943
+ epoch: 84   batch: 3    loss: 0.009862  acc: 0.996
+ epoch: 84   batch: 4    loss: 0.01777   acc: 0.9957
+ epoch: 84   batch: 5    loss: 0.01026   acc: 0.9977
+ epoch: 84   batch: 6    loss: 0.01332   acc: 0.995
+ epoch: 84   batch: 7    loss: 0.01669   acc: 0.9943
+ epoch: 84   batch: 8    loss: 0.0142    acc: 0.9957
+ epoch: 84   batch: 9    loss: 0.0119    acc: 0.995
+ epoch: 84   batch: 10   loss: 0.01082   acc: 0.9963
+ epoch: 84   batch: 11   loss: 0.01215   acc: 0.9967
+ epoch: 84   batch: 12   loss: 0.01547   acc: 0.995
+ epoch: 84   batch: 13   loss: 0.01914   acc: 0.9933
+ epoch: 84   batch: 14   loss: 0.01255   acc: 0.9967
+ epoch: 84   batch: 15   loss: 0.01496   acc: 0.9947
+ epoch: 84   batch: 16   loss: 0.01779   acc: 0.9937
+ epoch: 84   batch: 17   loss: 0.01109   acc: 0.9957
+ epoch: 84   batch: 18   loss: 0.01494   acc: 0.9953
+ epoch: 84   batch: 19   loss: 0.0113    acc: 0.9957
+ epoch: 84   batch: 20   loss: 0.0222    acc: 0.9923
+ means -->               loss: 0.01505   acc: 0.995]
+[norms of weights -> l1: 48992.948, l2: 60.644762]
+[epoch fit time: 3.8639328 s]
+EPOCH: 85/100...
+[fit info (epoch 85):
+ epoch: 85   batch: 1    loss: 0.01167   acc: 0.997
+ epoch: 85   batch: 2    loss: 0.009256  acc: 0.9967
+ epoch: 85   batch: 3    loss: 0.01129   acc: 0.9967
+ epoch: 85   batch: 4    loss: 0.009971  acc: 0.9963
+ epoch: 85   batch: 5    loss: 0.0206    acc: 0.9913
+ epoch: 85   batch: 6    loss: 0.01746   acc: 0.993
+ epoch: 85   batch: 7    loss: 0.01038   acc: 0.9963
+ epoch: 85   batch: 8    loss: 0.01297   acc: 0.995
+ epoch: 85   batch: 9    loss: 0.008293  acc: 0.997
+ epoch: 85   batch: 10   loss: 0.01582   acc: 0.9943
+ epoch: 85   batch: 11   loss: 0.009414  acc: 0.9967
+ epoch: 85   batch: 12   loss: 0.01154   acc: 0.9973
+ epoch: 85   batch: 13   loss: 0.007676  acc: 0.9977
+ epoch: 85   batch: 14   loss: 0.009028  acc: 0.9963
+ epoch: 85   batch: 15   loss: 0.01198   acc: 0.9947
+ epoch: 85   batch: 16   loss: 0.01228   acc: 0.9957
+ epoch: 85   batch: 17   loss: 0.009233  acc: 0.998
+ epoch: 85   batch: 18   loss: 0.01475   acc: 0.995
+ epoch: 85   batch: 19   loss: 0.01428   acc: 0.9953
+ epoch: 85   batch: 20   loss: 0.01583   acc: 0.995
+ means -->               loss: 0.01219   acc: 0.9958]
+[norms of weights -> l1: 49018.39, l2: 60.691893]
+[epoch fit time: 3.8232245 s]
+EPOCH: 86/100...
+[fit info (epoch 86):
+ epoch: 86   batch: 1    loss: 0.01041   acc: 0.9957
+ epoch: 86   batch: 2    loss: 0.01473   acc: 0.9963
+ epoch: 86   batch: 3    loss: 0.00714   acc: 0.9977
+ epoch: 86   batch: 4    loss: 0.008877  acc: 0.9967
+ epoch: 86   batch: 5    loss: 0.01298   acc: 0.995
+ epoch: 86   batch: 6    loss: 0.008599  acc: 0.9977
+ epoch: 86   batch: 7    loss: 0.01006   acc: 0.997
+ epoch: 86   batch: 8    loss: 0.01297   acc: 0.9953
+ epoch: 86   batch: 9    loss: 0.01009   acc: 0.997
+ epoch: 86   batch: 10   loss: 0.007442  acc: 0.9977
+ epoch: 86   batch: 11   loss: 0.006481  acc: 0.9983
+ epoch: 86   batch: 12   loss: 0.0126    acc: 0.9977
+ epoch: 86   batch: 13   loss: 0.00663   acc: 0.9973
+ epoch: 86   batch: 14   loss: 0.01373   acc: 0.9967
+ epoch: 86   batch: 15   loss: 0.01718   acc: 0.9947
+ epoch: 86   batch: 16   loss: 0.003647  acc: 0.9987
+ epoch: 86   batch: 17   loss: 0.008087  acc: 0.9983
+ epoch: 86   batch: 18   loss: 0.01439   acc: 0.9943
+ epoch: 86   batch: 19   loss: 0.01307   acc: 0.9947
+ epoch: 86   batch: 20   loss: 0.01113   acc: 0.9957
+ means -->               loss: 0.01051   acc: 0.9966]
+[norms of weights -> l1: 49042.483, l2: 60.735531]
+[epoch fit time: 3.6894643 s]
+EPOCH: 87/100...
+[fit info (epoch 87):
+ epoch: 87   batch: 1    loss: 0.01056   acc: 0.9967
+ epoch: 87   batch: 2    loss: 0.01426   acc: 0.996
+ epoch: 87   batch: 3    loss: 0.01659   acc: 0.995
+ epoch: 87   batch: 4    loss: 0.01402   acc: 0.996
+ epoch: 87   batch: 5    loss: 0.005624  acc: 0.998
+ epoch: 87   batch: 6    loss: 0.01026   acc: 0.997
+ epoch: 87   batch: 7    loss: 0.01116   acc: 0.9967
+ epoch: 87   batch: 8    loss: 0.01313   acc: 0.9963
+ epoch: 87   batch: 9    loss: 0.01255   acc: 0.996
+ epoch: 87   batch: 10   loss: 0.01033   acc: 0.997
+ epoch: 87   batch: 11   loss: 0.01021   acc: 0.997
+ epoch: 87   batch: 12   loss: 0.01872   acc: 0.9937
+ epoch: 87   batch: 13   loss: 0.01403   acc: 0.996
+ epoch: 87   batch: 14   loss: 0.008529  acc: 0.9977
+ epoch: 87   batch: 15   loss: 0.01301   acc: 0.9953
+ epoch: 87   batch: 16   loss: 0.009652  acc: 0.997
+ epoch: 87   batch: 17   loss: 0.008749  acc: 0.9973
+ epoch: 87   batch: 18   loss: 0.01209   acc: 0.9967
+ epoch: 87   batch: 19   loss: 0.01691   acc: 0.994
+ epoch: 87   batch: 20   loss: 0.014     acc: 0.996
+ means -->               loss: 0.01222   acc: 0.9963]
+[norms of weights -> l1: 49065.168, l2: 60.776699]
+[epoch fit time: 3.893785 s]
+EPOCH: 88/100...
+[fit info (epoch 88):
+ epoch: 88   batch: 1    loss: 0.005353  acc: 0.9987
+ epoch: 88   batch: 2    loss: 0.008044  acc: 0.998
+ epoch: 88   batch: 3    loss: 0.01721   acc: 0.9953
+ epoch: 88   batch: 4    loss: 0.01616   acc: 0.9957
+ epoch: 88   batch: 5    loss: 0.01739   acc: 0.996
+ epoch: 88   batch: 6    loss: 0.01036   acc: 0.997
+ epoch: 88   batch: 7    loss: 0.01034   acc: 0.9963
+ epoch: 88   batch: 8    loss: 0.006461  acc: 0.9977
+ epoch: 88   batch: 9    loss: 0.01459   acc: 0.9937
+ epoch: 88   batch: 10   loss: 0.01094   acc: 0.9967
+ epoch: 88   batch: 11   loss: 0.007377  acc: 0.998
+ epoch: 88   batch: 12   loss: 0.005077  acc: 0.9987
+ epoch: 88   batch: 13   loss: 0.01456   acc: 0.9953
+ epoch: 88   batch: 14   loss: 0.008353  acc: 0.9973
+ epoch: 88   batch: 15   loss: 0.01404   acc: 0.9943
+ epoch: 88   batch: 16   loss: 0.02009   acc: 0.9943
+ epoch: 88   batch: 17   loss: 0.009323  acc: 0.9963
+ epoch: 88   batch: 18   loss: 0.01825   acc: 0.994
+ epoch: 88   batch: 19   loss: 0.008437  acc: 0.9967
+ epoch: 88   batch: 20   loss: 0.009848  acc: 0.997
+ means -->               loss: 0.01161   acc: 0.9963]
+[norms of weights -> l1: 49089.038, l2: 60.818526]
+[epoch fit time: 3.580143 s]
+EPOCH: 89/100...
+[fit info (epoch 89):
+ epoch: 89   batch: 1    loss: 0.009954  acc: 0.9963
+ epoch: 89   batch: 2    loss: 0.007304  acc: 0.9983
+ epoch: 89   batch: 3    loss: 0.01048   acc: 0.997
+ epoch: 89   batch: 4    loss: 0.01114   acc: 0.997
+ epoch: 89   batch: 5    loss: 0.01046   acc: 0.995
+ epoch: 89   batch: 6    loss: 0.01554   acc: 0.995
+ epoch: 89   batch: 7    loss: 0.00982   acc: 0.997
+ epoch: 89   batch: 8    loss: 0.008077  acc: 0.9973
+ epoch: 89   batch: 9    loss: 0.00742   acc: 0.998
+ epoch: 89   batch: 10   loss: 0.01166   acc: 0.997
+ epoch: 89   batch: 11   loss: 0.01391   acc: 0.9967
+ epoch: 89   batch: 12   loss: 0.005241  acc: 0.9983
+ epoch: 89   batch: 13   loss: 0.01404   acc: 0.9953
+ epoch: 89   batch: 14   loss: 0.01262   acc: 0.9953
+ epoch: 89   batch: 15   loss: 0.009985  acc: 0.997
+ epoch: 89   batch: 16   loss: 0.008392  acc: 0.9983
+ epoch: 89   batch: 17   loss: 0.0123    acc: 0.995
+ epoch: 89   batch: 18   loss: 0.01413   acc: 0.996
+ epoch: 89   batch: 19   loss: 0.00934   acc: 0.9973
+ epoch: 89   batch: 20   loss: 0.01399   acc: 0.9953
+ means -->               loss: 0.01079   acc: 0.9966]
+[norms of weights -> l1: 49111.701, l2: 60.858189]
+[epoch fit time: 3.8836958 s]
+EPOCH: 90/100...
+[fit info (epoch 90):
+ epoch: 90   batch: 1    loss: 0.01242   acc: 0.9957
+ epoch: 90   batch: 2    loss: 0.01011   acc: 0.997
+ epoch: 90   batch: 3    loss: 0.006272  acc: 0.9987
+ epoch: 90   batch: 4    loss: 0.01258   acc: 0.995
+ epoch: 90   batch: 5    loss: 0.01026   acc: 0.9963
+ epoch: 90   batch: 6    loss: 0.01006   acc: 0.9963
+ epoch: 90   batch: 7    loss: 0.02335   acc: 0.9927
+ epoch: 90   batch: 8    loss: 0.0109    acc: 0.996
+ epoch: 90   batch: 9    loss: 0.006965  acc: 0.998
+ epoch: 90   batch: 10   loss: 0.005678  acc: 0.998
+ epoch: 90   batch: 11   loss: 0.006222  acc: 0.9977
+ epoch: 90   batch: 12   loss: 0.00748   acc: 0.9973
+ epoch: 90   batch: 13   loss: 0.01156   acc: 0.9967
+ epoch: 90   batch: 14   loss: 0.02271   acc: 0.9913
+ epoch: 90   batch: 15   loss: 0.0182    acc: 0.9923
+ epoch: 90   batch: 16   loss: 0.006742  acc: 0.9983
+ epoch: 90   batch: 17   loss: 0.01103   acc: 0.996
+ epoch: 90   batch: 18   loss: 0.005591  acc: 0.9987
+ epoch: 90   batch: 19   loss: 0.01022   acc: 0.9967
+ epoch: 90   batch: 20   loss: 0.01035   acc: 0.9967
+ means -->               loss: 0.01094   acc: 0.9963]
+[norms of weights -> l1: 49137.758, l2: 60.901954]
+[epoch fit time: 3.5650897 s]
+EPOCH: 91/100...
+[fit info (epoch 91):
+ epoch: 91   batch: 1    loss: 0.007076  acc: 0.998
+ epoch: 91   batch: 2    loss: 0.01886   acc: 0.9937
+ epoch: 91   batch: 3    loss: 0.01233   acc: 0.9973
+ epoch: 91   batch: 4    loss: 0.004817  acc: 0.9987
+ epoch: 91   batch: 5    loss: 0.00782   acc: 0.9977
+ epoch: 91   batch: 6    loss: 0.008554  acc: 0.9967
+ epoch: 91   batch: 7    loss: 0.01489   acc: 0.995
+ epoch: 91   batch: 8    loss: 0.00545   acc: 0.9987
+ epoch: 91   batch: 9    loss: 0.01486   acc: 0.9963
+ epoch: 91   batch: 10   loss: 0.01376   acc: 0.995
+ epoch: 91   batch: 11   loss: 0.01075   acc: 0.997
+ epoch: 91   batch: 12   loss: 0.02683   acc: 0.9903
+ epoch: 91   batch: 13   loss: 0.01014   acc: 0.9963
+ epoch: 91   batch: 14   loss: 0.01847   acc: 0.993
+ epoch: 91   batch: 15   loss: 0.006949  acc: 0.9977
+ epoch: 91   batch: 16   loss: 0.01363   acc: 0.9953
+ epoch: 91   batch: 17   loss: 0.01007   acc: 0.9967
+ epoch: 91   batch: 18   loss: 0.01041   acc: 0.9967
+ epoch: 91   batch: 19   loss: 0.009111  acc: 0.996
+ epoch: 91   batch: 20   loss: 0.02272   acc: 0.9933
+ means -->               loss: 0.01237   acc: 0.996]
+[norms of weights -> l1: 49163.743, l2: 60.948357]
+[epoch fit time: 3.5873644 s]
+EPOCH: 92/100...
+[fit info (epoch 92):
+ epoch: 92   batch: 1    loss: 0.01643   acc: 0.9937
+ epoch: 92   batch: 2    loss: 0.01187   acc: 0.9957
+ epoch: 92   batch: 3    loss: 0.006107  acc: 0.998
+ epoch: 92   batch: 4    loss: 0.01384   acc: 0.994
+ epoch: 92   batch: 5    loss: 0.01149   acc: 0.996
+ epoch: 92   batch: 6    loss: 0.01139   acc: 0.996
+ epoch: 92   batch: 7    loss: 0.02051   acc: 0.992
+ epoch: 92   batch: 8    loss: 0.01113   acc: 0.997
+ epoch: 92   batch: 9    loss: 0.009085  acc: 0.9973
+ epoch: 92   batch: 10   loss: 0.01076   acc: 0.995
+ epoch: 92   batch: 11   loss: 0.01336   acc: 0.9953
+ epoch: 92   batch: 12   loss: 0.01121   acc: 0.9967
+ epoch: 92   batch: 13   loss: 0.0163    acc: 0.994
+ epoch: 92   batch: 14   loss: 0.01411   acc: 0.9967
+ epoch: 92   batch: 15   loss: 0.005843  acc: 0.998
+ epoch: 92   batch: 16   loss: 0.01062   acc: 0.9953
+ epoch: 92   batch: 17   loss: 0.0115    acc: 0.996
+ epoch: 92   batch: 18   loss: 0.00815   acc: 0.9977
+ epoch: 92   batch: 19   loss: 0.01291   acc: 0.9967
+ epoch: 92   batch: 20   loss: 0.01642   acc: 0.994
+ means -->               loss: 0.01215   acc: 0.9957]
+[norms of weights -> l1: 49189.845, l2: 60.994881]
+[epoch fit time: 3.7672226 s]
+EPOCH: 93/100...
+[fit info (epoch 93):
+ epoch: 93   batch: 1    loss: 0.01276   acc: 0.9947
+ epoch: 93   batch: 2    loss: 0.009474  acc: 0.997
+ epoch: 93   batch: 3    loss: 0.01184   acc: 0.996
+ epoch: 93   batch: 4    loss: 0.006996  acc: 0.9977
+ epoch: 93   batch: 5    loss: 0.01043   acc: 0.9967
+ epoch: 93   batch: 6    loss: 0.004069  acc: 0.9993
+ epoch: 93   batch: 7    loss: 0.01506   acc: 0.9937
+ epoch: 93   batch: 8    loss: 0.002875  acc: 0.9987
+ epoch: 93   batch: 9    loss: 0.007519  acc: 0.997
+ epoch: 93   batch: 10   loss: 0.01362   acc: 0.9963
+ epoch: 93   batch: 11   loss: 0.004747  acc: 0.9993
+ epoch: 93   batch: 12   loss: 0.005175  acc: 0.9987
+ epoch: 93   batch: 13   loss: 0.009604  acc: 0.9973
+ epoch: 93   batch: 14   loss: 0.004106  acc: 0.999
+ epoch: 93   batch: 15   loss: 0.01788   acc: 0.9943
+ epoch: 93   batch: 16   loss: 0.009277  acc: 0.9967
+ epoch: 93   batch: 17   loss: 0.008204  acc: 0.997
+ epoch: 93   batch: 18   loss: 0.01323   acc: 0.9953
+ epoch: 93   batch: 19   loss: 0.01903   acc: 0.9927
+ epoch: 93   batch: 20   loss: 0.02125   acc: 0.9953
+ means -->               loss: 0.01036   acc: 0.9966]
+[norms of weights -> l1: 49212.918, l2: 61.036859]
+[epoch fit time: 3.7317882 s]
+EPOCH: 94/100...
+[fit info (epoch 94):
+ epoch: 94   batch: 1    loss: 0.002613  acc: 0.9997
+ epoch: 94   batch: 2    loss: 0.01207   acc: 0.9967
+ epoch: 94   batch: 3    loss: 0.00707   acc: 0.997
+ epoch: 94   batch: 4    loss: 0.01082   acc: 0.9977
+ epoch: 94   batch: 5    loss: 0.01466   acc: 0.9947
+ epoch: 94   batch: 6    loss: 0.01231   acc: 0.995
+ epoch: 94   batch: 7    loss: 0.003721  acc: 0.9993
+ epoch: 94   batch: 8    loss: 0.01636   acc: 0.9947
+ epoch: 94   batch: 9    loss: 0.007472  acc: 0.9973
+ epoch: 94   batch: 10   loss: 0.01178   acc: 0.9967
+ epoch: 94   batch: 11   loss: 0.006267  acc: 0.9977
+ epoch: 94   batch: 12   loss: 0.003816  acc: 0.9983
+ epoch: 94   batch: 13   loss: 0.0114    acc: 0.9963
+ epoch: 94   batch: 14   loss: 0.01147   acc: 0.9967
+ epoch: 94   batch: 15   loss: 0.01076   acc: 0.9963
+ epoch: 94   batch: 16   loss: 0.006877  acc: 0.9973
+ epoch: 94   batch: 17   loss: 0.01455   acc: 0.996
+ epoch: 94   batch: 18   loss: 0.007899  acc: 0.9973
+ epoch: 94   batch: 19   loss: 0.008573  acc: 0.9973
+ epoch: 94   batch: 20   loss: 0.009571  acc: 0.998
+ means -->               loss: 0.009503  acc: 0.997]
+[norms of weights -> l1: 49233.67, l2: 61.073387]
+[epoch fit time: 4.3978422 s]
+EPOCH: 95/100...
+[fit info (epoch 95):
+ epoch: 95   batch: 1    loss: 0.00451   acc: 0.9983
+ epoch: 95   batch: 2    loss: 0.009229  acc: 0.9963
+ epoch: 95   batch: 3    loss: 0.02115   acc: 0.9917
+ epoch: 95   batch: 4    loss: 0.01546   acc: 0.995
+ epoch: 95   batch: 5    loss: 0.006646  acc: 0.997
+ epoch: 95   batch: 6    loss: 0.01741   acc: 0.9937
+ epoch: 95   batch: 7    loss: 0.01035   acc: 0.9957
+ epoch: 95   batch: 8    loss: 0.009805  acc: 0.9967
+ epoch: 95   batch: 9    loss: 0.008496  acc: 0.9973
+ epoch: 95   batch: 10   loss: 0.004253  acc: 0.9987
+ epoch: 95   batch: 11   loss: 0.008133  acc: 0.997
+ epoch: 95   batch: 12   loss: 0.009246  acc: 0.9963
+ epoch: 95   batch: 13   loss: 0.008541  acc: 0.9963
+ epoch: 95   batch: 14   loss: 0.01064   acc: 0.9973
+ epoch: 95   batch: 15   loss: 0.01316   acc: 0.9963
+ epoch: 95   batch: 16   loss: 0.008686  acc: 0.997
+ epoch: 95   batch: 17   loss: 0.01474   acc: 0.9947
+ epoch: 95   batch: 18   loss: 0.008199  acc: 0.996
+ epoch: 95   batch: 19   loss: 0.01374   acc: 0.996
+ epoch: 95   batch: 20   loss: 0.01679   acc: 0.9953
+ means -->               loss: 0.01096   acc: 0.9961]
+[norms of weights -> l1: 49255.519, l2: 61.112139]
+[epoch fit time: 3.8546286 s]
+EPOCH: 96/100...
+[fit info (epoch 96):
+ epoch: 96   batch: 1    loss: 0.008371  acc: 0.9977
+ epoch: 96   batch: 2    loss: 0.01015   acc: 0.9973
+ epoch: 96   batch: 3    loss: 0.01003   acc: 0.9967
+ epoch: 96   batch: 4    loss: 0.007257  acc: 0.9973
+ epoch: 96   batch: 5    loss: 0.008093  acc: 0.9977
+ epoch: 96   batch: 6    loss: 0.008122  acc: 0.9973
+ epoch: 96   batch: 7    loss: 0.01077   acc: 0.9977
+ epoch: 96   batch: 8    loss: 0.004779  acc: 0.9983
+ epoch: 96   batch: 9    loss: 0.005842  acc: 0.9983
+ epoch: 96   batch: 10   loss: 0.005685  acc: 0.9977
+ epoch: 96   batch: 11   loss: 0.008888  acc: 0.9977
+ epoch: 96   batch: 12   loss: 0.009833  acc: 0.9967
+ epoch: 96   batch: 13   loss: 0.01043   acc: 0.9963
+ epoch: 96   batch: 14   loss: 0.01299   acc: 0.9943
+ epoch: 96   batch: 15   loss: 0.003564  acc: 0.9997
+ epoch: 96   batch: 16   loss: 0.008398  acc: 0.9977
+ epoch: 96   batch: 17   loss: 0.008396  acc: 0.9967
+ epoch: 96   batch: 18   loss: 0.006616  acc: 0.9967
+ epoch: 96   batch: 19   loss: 0.006149  acc: 0.9987
+ epoch: 96   batch: 20   loss: 0.007348  acc: 0.997
+ means -->               loss: 0.008085  acc: 0.9974]
+[norms of weights -> l1: 49276.823, l2: 61.151075]
+[epoch fit time: 4.1153283 s]
+EPOCH: 97/100...
+[fit info (epoch 97):
+ epoch: 97   batch: 1    loss: 0.01209   acc: 0.996
+ epoch: 97   batch: 2    loss: 0.009392  acc: 0.9977
+ epoch: 97   batch: 3    loss: 0.009922  acc: 0.997
+ epoch: 97   batch: 4    loss: 0.006678  acc: 0.9977
+ epoch: 97   batch: 5    loss: 0.009804  acc: 0.997
+ epoch: 97   batch: 6    loss: 0.01481   acc: 0.9937
+ epoch: 97   batch: 7    loss: 0.006755  acc: 0.9977
+ epoch: 97   batch: 8    loss: 0.006556  acc: 0.998
+ epoch: 97   batch: 9    loss: 0.01004   acc: 0.9967
+ epoch: 97   batch: 10   loss: 0.002981  acc: 0.9987
+ epoch: 97   batch: 11   loss: 0.008813  acc: 0.996
+ epoch: 97   batch: 12   loss: 0.00501   acc: 0.998
+ epoch: 97   batch: 13   loss: 0.007028  acc: 0.9983
+ epoch: 97   batch: 14   loss: 0.01553   acc: 0.9943
+ epoch: 97   batch: 15   loss: 0.01143   acc: 0.9957
+ epoch: 97   batch: 16   loss: 0.006092  acc: 0.9983
+ epoch: 97   batch: 17   loss: 0.006209  acc: 0.9977
+ epoch: 97   batch: 18   loss: 0.008746  acc: 0.9973
+ epoch: 97   batch: 19   loss: 0.0104    acc: 0.9973
+ epoch: 97   batch: 20   loss: 0.009256  acc: 0.997
+ means -->               loss: 0.008876  acc: 0.997]
+[norms of weights -> l1: 49299.058, l2: 61.190259]
+[epoch fit time: 4.4467859 s]
+EPOCH: 98/100...
+[fit info (epoch 98):
+ epoch: 98   batch: 1    loss: 0.005016  acc: 0.9987
+ epoch: 98   batch: 2    loss: 0.008561  acc: 0.9967
+ epoch: 98   batch: 3    loss: 0.004953  acc: 0.9977
+ epoch: 98   batch: 4    loss: 0.004464  acc: 0.999
+ epoch: 98   batch: 5    loss: 0.003558  acc: 0.9993
+ epoch: 98   batch: 6    loss: 0.006858  acc: 0.998
+ epoch: 98   batch: 7    loss: 0.009247  acc: 0.9967
+ epoch: 98   batch: 8    loss: 0.0143    acc: 0.9943
+ epoch: 98   batch: 9    loss: 0.002967  acc: 0.999
+ epoch: 98   batch: 10   loss: 0.00657   acc: 0.9983
+ epoch: 98   batch: 11   loss: 0.006116  acc: 0.9987
+ epoch: 98   batch: 12   loss: 0.006931  acc: 0.9977
+ epoch: 98   batch: 13   loss: 0.01578   acc: 0.9947
+ epoch: 98   batch: 14   loss: 0.005147  acc: 0.9973
+ epoch: 98   batch: 15   loss: 0.007521  acc: 0.997
+ epoch: 98   batch: 16   loss: 0.004813  acc: 0.9993
+ epoch: 98   batch: 17   loss: 0.008335  acc: 0.997
+ epoch: 98   batch: 18   loss: 0.006542  acc: 0.9977
+ epoch: 98   batch: 19   loss: 0.007549  acc: 0.9973
+ epoch: 98   batch: 20   loss: 0.008139  acc: 0.998
+ means -->               loss: 0.007168  acc: 0.9976]
+[norms of weights -> l1: 49320.336, l2: 61.229659]
+[epoch fit time: 4.3756611 s]
+EPOCH: 99/100...
+[fit info (epoch 99):
+ epoch: 99   batch: 1    loss: 0.01163   acc: 0.996
+ epoch: 99   batch: 2    loss: 0.007686  acc: 0.9973
+ epoch: 99   batch: 3    loss: 0.006168  acc: 0.9973
+ epoch: 99   batch: 4    loss: 0.007766  acc: 0.9983
+ epoch: 99   batch: 5    loss: 0.009584  acc: 0.9973
+ epoch: 99   batch: 6    loss: 0.005823  acc: 0.9983
+ epoch: 99   batch: 7    loss: 0.008067  acc: 0.9973
+ epoch: 99   batch: 8    loss: 0.008092  acc: 0.9977
+ epoch: 99   batch: 9    loss: 0.00885   acc: 0.9967
+ epoch: 99   batch: 10   loss: 0.01169   acc: 0.9973
+ epoch: 99   batch: 11   loss: 0.01769   acc: 0.9917
+ epoch: 99   batch: 12   loss: 0.008211  acc: 0.997
+ epoch: 99   batch: 13   loss: 0.00821   acc: 0.9973
+ epoch: 99   batch: 14   loss: 0.005588  acc: 0.999
+ epoch: 99   batch: 15   loss: 0.007537  acc: 0.9967
+ epoch: 99   batch: 16   loss: 0.004465  acc: 0.9983
+ epoch: 99   batch: 17   loss: 0.004947  acc: 0.998
+ epoch: 99   batch: 18   loss: 0.006032  acc: 0.9977
+ epoch: 99   batch: 19   loss: 0.01722   acc: 0.9937
+ epoch: 99   batch: 20   loss: 0.00845   acc: 0.9973
+ means -->               loss: 0.008686  acc: 0.997]
+[norms of weights -> l1: 49339.492, l2: 61.264212]
+[epoch fit time: 4.4136307 s]
+EPOCH: 100/100...
+[fit info (epoch 100):
+ epoch: 100  batch: 1    loss: 0.01052   acc: 0.9963
+ epoch: 100  batch: 2    loss: 0.01342   acc: 0.9957
+ epoch: 100  batch: 3    loss: 0.006176  acc: 0.9983
+ epoch: 100  batch: 4    loss: 0.009549  acc: 0.9973
+ epoch: 100  batch: 5    loss: 0.007245  acc: 0.9983
+ epoch: 100  batch: 6    loss: 0.01859   acc: 0.9923
+ epoch: 100  batch: 7    loss: 0.01072   acc: 0.9967
+ epoch: 100  batch: 8    loss: 0.01798   acc: 0.993
+ epoch: 100  batch: 9    loss: 0.02359   acc: 0.9933
+ epoch: 100  batch: 10   loss: 0.007555  acc: 0.9967
+ epoch: 100  batch: 11   loss: 0.006653  acc: 0.9983
+ epoch: 100  batch: 12   loss: 0.009166  acc: 0.9967
+ epoch: 100  batch: 13   loss: 0.01858   acc: 0.993
+ epoch: 100  batch: 14   loss: 0.02082   acc: 0.991
+ epoch: 100  batch: 15   loss: 0.008773  acc: 0.9963
+ epoch: 100  batch: 16   loss: 0.005579  acc: 0.999
+ epoch: 100  batch: 17   loss: 0.01017   acc: 0.997
+ epoch: 100  batch: 18   loss: 0.007066  acc: 0.9967
+ epoch: 100  batch: 19   loss: 0.01321   acc: 0.9947
+ epoch: 100  batch: 20   loss: 0.01436   acc: 0.994
+ means -->               loss: 0.01199   acc: 0.9957]
+[norms of weights -> l1: 49361.747, l2: 61.304708]
+[epoch fit time: 4.1120484 s]
+HMDL FIT DONE. [time: 292.26746678352356 s]
+DO PICKLE... [to: ./hmdl_clfs/grid_a100-7-40c_mig_7g_40gb/0491196249_hmdl_clf.bin]
+DO PICKLE DONE. [time: 0.3681950569152832 s]
+
+HMDL CLF ACC AND LOSS... [after fit]
+[train acc: 0.9991666666666666, train loss: 0.0033031480852514505]
+[test acc: 0.9801, test loss: 0.08164019137620926]
+HMDL CLF ACC AND LOSS DONE. [time: 0.9919087886810303 s]
+
+
+KERAS MODEL SUMMARY:
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ f0 (Flatten)                (None, 784)               0         
+                                                                 
+ d1 (Dense)                  (None, 512)               401920    
+                                                                 
+ dr2 (Dropout)               (None, 512)               0         
+                                                                 
+ d3 (Dense)                  (None, 512)               262656    
+                                                                 
+ dr4 (Dropout)               (None, 512)               0         
+                                                                 
+ d5 (Dense)                  (None, 512)               262656    
+                                                                 
+ dr6 (Dropout)               (None, 512)               0         
+                                                                 
+ d7 (Dense)                  (None, 10)                5130      
+                                                                 
+=================================================================
+Total params: 932,362
+Trainable params: 932,362
+Non-trainable params: 0
+_________________________________________________________________
+
+KERAS CLF ACC AND LOSS... [before fit]
+   1/1875 [..............................] - ETA: 1:35:09 - loss: 2.5008 - accuracy: 0.1250  39/1875 [..............................] - ETA: 2s - loss: 2.5853 - accuracy: 0.0793       82/1875 [>.............................] - ETA: 2s - loss: 2.5735 - accuracy: 0.0816 126/1875 [=>............................] - ETA: 2s - loss: 2.5700 - accuracy: 0.0878 171/1875 [=>............................] - ETA: 2s - loss: 2.5695 - accuracy: 0.0905 215/1875 [==>...........................] - ETA: 1s - loss: 2.5666 - accuracy: 0.0901 259/1875 [===>..........................] - ETA: 1s - loss: 2.5657 - accuracy: 0.0898 302/1875 [===>..........................] - ETA: 1s - loss: 2.5671 - accuracy: 0.0883 346/1875 [====>.........................] - ETA: 1s - loss: 2.5675 - accuracy: 0.0875 389/1875 [=====>........................] - ETA: 1s - loss: 2.5688 - accuracy: 0.0876 434/1875 [=====>........................] - ETA: 1s - loss: 2.5687 - accuracy: 0.0878 479/1875 [======>.......................] - ETA: 1s - loss: 2.5698 - accuracy: 0.0872 523/1875 [=======>......................] - ETA: 1s - loss: 2.5717 - accuracy: 0.0868 560/1875 [=======>......................] - ETA: 1s - loss: 2.5700 - accuracy: 0.0868 596/1875 [========>.....................] - ETA: 1s - loss: 2.5712 - accuracy: 0.0865 633/1875 [=========>....................] - ETA: 1s - loss: 2.5717 - accuracy: 0.0861 671/1875 [=========>....................] - ETA: 1s - loss: 2.5710 - accuracy: 0.0863 711/1875 [==========>...................] - ETA: 1s - loss: 2.5713 - accuracy: 0.0868 755/1875 [===========>..................] - ETA: 1s - loss: 2.5713 - accuracy: 0.0872 799/1875 [===========>..................] - ETA: 1s - loss: 2.5717 - accuracy: 0.0870 844/1875 [============>.................] - ETA: 1s - loss: 2.5723 - accuracy: 0.0873 889/1875 [=============>................] - ETA: 1s - loss: 2.5727 - accuracy: 0.0877 935/1875 [=============>................] - ETA: 1s - loss: 2.5723 - accuracy: 0.0878 981/1875 [==============>...............] - ETA: 1s - loss: 2.5742 - accuracy: 0.08741027/1875 [===============>..............] - ETA: 1s - loss: 2.5747 - accuracy: 0.08671072/1875 [================>.............] - ETA: 0s - loss: 2.5741 - accuracy: 0.08631118/1875 [================>.............] - ETA: 0s - loss: 2.5742 - accuracy: 0.08581164/1875 [=================>............] - ETA: 0s - loss: 2.5735 - accuracy: 0.08601209/1875 [==================>...........] - ETA: 0s - loss: 2.5735 - accuracy: 0.08641255/1875 [===================>..........] - ETA: 0s - loss: 2.5728 - accuracy: 0.08671301/1875 [===================>..........] - ETA: 0s - loss: 2.5728 - accuracy: 0.08681346/1875 [====================>.........] - ETA: 0s - loss: 2.5719 - accuracy: 0.08691392/1875 [=====================>........] - ETA: 0s - loss: 2.5715 - accuracy: 0.08681437/1875 [=====================>........] - ETA: 0s - loss: 2.5722 - accuracy: 0.08671482/1875 [======================>.......] - ETA: 0s - loss: 2.5722 - accuracy: 0.08691528/1875 [=======================>......] - ETA: 0s - loss: 2.5728 - accuracy: 0.08651573/1875 [========================>.....] - ETA: 0s - loss: 2.5735 - accuracy: 0.08641618/1875 [========================>.....] - ETA: 0s - loss: 2.5733 - accuracy: 0.08621664/1875 [=========================>....] - ETA: 0s - loss: 2.5734 - accuracy: 0.08621710/1875 [==========================>...] - ETA: 0s - loss: 2.5736 - accuracy: 0.08621756/1875 [===========================>..] - ETA: 0s - loss: 2.5731 - accuracy: 0.08621802/1875 [===========================>..] - ETA: 0s - loss: 2.5724 - accuracy: 0.08641847/1875 [============================>.] - ETA: 0s - loss: 2.5729 - accuracy: 0.08631875/1875 [==============================] - 5s 1ms/step - loss: 2.5737 - accuracy: 0.0860
+  1/313 [..............................] - ETA: 47s - loss: 2.7307 - accuracy: 0.0000e+00 37/313 [==>...........................] - ETA: 0s - loss: 2.5684 - accuracy: 0.0144      74/313 [======>.......................] - ETA: 0s - loss: 2.5365 - accuracy: 0.0093111/313 [=========>....................] - ETA: 0s - loss: 2.5233 - accuracy: 0.0208149/313 [=============>................] - ETA: 0s - loss: 2.5604 - accuracy: 0.0283187/313 [================>.............] - ETA: 0s - loss: 2.4617 - accuracy: 0.0974224/313 [====================>.........] - ETA: 0s - loss: 2.5044 - accuracy: 0.0862259/313 [=======================>......] - ETA: 0s - loss: 2.5480 - accuracy: 0.0823295/313 [===========================>..] - ETA: 0s - loss: 2.5321 - accuracy: 0.0918313/313 [==============================] - 1s 1ms/step - loss: 2.5651 - accuracy: 0.0868
+
+[train acc: 0.08603333681821823, train loss: 2.5737216472625732]
+[test acc: 0.0868000015616417, test loss: 2.5650594234466553]
+KERAS CLF ACC AND LOSS DONE. [time: 7.177307605743408 s]
+
+[keras clf norms of weights before fit -> l1: 46169.91, l2: 55.55942]
+
+KERAS FIT...
+Epoch 1/100
+ 1/20 [>.............................] - ETA: 1:35 - loss: 2.8360 - accuracy: 0.090011/20 [===============>..............] - ETA: 0s - loss: 1.8552 - accuracy: 0.4612  20/20 [==============================] - 5s 5ms/step - loss: 1.3072 - accuracy: 0.6119
+Epoch 2/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.4793 - accuracy: 0.849012/20 [=================>............] - ETA: 0s - loss: 0.4182 - accuracy: 0.871120/20 [==============================] - 0s 5ms/step - loss: 0.3783 - accuracy: 0.8838
+Epoch 3/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.2707 - accuracy: 0.916713/20 [==================>...........] - ETA: 0s - loss: 0.2487 - accuracy: 0.924020/20 [==============================] - 0s 5ms/step - loss: 0.2341 - accuracy: 0.9284
+Epoch 4/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.2373 - accuracy: 0.932012/20 [=================>............] - ETA: 0s - loss: 0.1773 - accuracy: 0.945920/20 [==============================] - 0s 5ms/step - loss: 0.1686 - accuracy: 0.9488
+Epoch 5/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.1427 - accuracy: 0.958012/20 [=================>............] - ETA: 0s - loss: 0.1301 - accuracy: 0.959620/20 [==============================] - 0s 5ms/step - loss: 0.1297 - accuracy: 0.9603
+Epoch 6/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.1068 - accuracy: 0.969312/20 [=================>............] - ETA: 0s - loss: 0.1058 - accuracy: 0.966920/20 [==============================] - 0s 5ms/step - loss: 0.1063 - accuracy: 0.9669
+Epoch 7/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0982 - accuracy: 0.967313/20 [==================>...........] - ETA: 0s - loss: 0.0926 - accuracy: 0.971220/20 [==============================] - 0s 5ms/step - loss: 0.0921 - accuracy: 0.9714
+Epoch 8/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0915 - accuracy: 0.969313/20 [==================>...........] - ETA: 0s - loss: 0.0822 - accuracy: 0.974120/20 [==============================] - 0s 5ms/step - loss: 0.0794 - accuracy: 0.9749
+Epoch 9/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0824 - accuracy: 0.972712/20 [=================>............] - ETA: 0s - loss: 0.0688 - accuracy: 0.977720/20 [==============================] - 0s 5ms/step - loss: 0.0686 - accuracy: 0.9781
+Epoch 10/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0581 - accuracy: 0.981712/20 [=================>............] - ETA: 0s - loss: 0.0598 - accuracy: 0.980320/20 [==============================] - 0s 5ms/step - loss: 0.0615 - accuracy: 0.9801
+Epoch 11/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0506 - accuracy: 0.983712/20 [=================>............] - ETA: 0s - loss: 0.0526 - accuracy: 0.983320/20 [==============================] - 0s 5ms/step - loss: 0.0532 - accuracy: 0.9827
+Epoch 12/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0394 - accuracy: 0.985011/20 [===============>..............] - ETA: 0s - loss: 0.0458 - accuracy: 0.984020/20 [==============================] - 0s 5ms/step - loss: 0.0473 - accuracy: 0.9841
+Epoch 13/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0454 - accuracy: 0.983311/20 [===============>..............] - ETA: 0s - loss: 0.0401 - accuracy: 0.986520/20 [==============================] - 0s 5ms/step - loss: 0.0418 - accuracy: 0.9861
+Epoch 14/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0401 - accuracy: 0.985711/20 [===============>..............] - ETA: 0s - loss: 0.0397 - accuracy: 0.986820/20 [==============================] - 0s 5ms/step - loss: 0.0374 - accuracy: 0.9875
+Epoch 15/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0411 - accuracy: 0.984311/20 [===============>..............] - ETA: 0s - loss: 0.0326 - accuracy: 0.988520/20 [==============================] - 0s 5ms/step - loss: 0.0346 - accuracy: 0.9883
+Epoch 16/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0298 - accuracy: 0.990311/20 [===============>..............] - ETA: 0s - loss: 0.0349 - accuracy: 0.988120/20 [==============================] - 0s 5ms/step - loss: 0.0345 - accuracy: 0.9882
+Epoch 17/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0276 - accuracy: 0.989313/20 [==================>...........] - ETA: 0s - loss: 0.0311 - accuracy: 0.989720/20 [==============================] - 0s 5ms/step - loss: 0.0313 - accuracy: 0.9897
+Epoch 18/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0319 - accuracy: 0.989313/20 [==================>...........] - ETA: 0s - loss: 0.0286 - accuracy: 0.990120/20 [==============================] - 0s 5ms/step - loss: 0.0293 - accuracy: 0.9900
+Epoch 19/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0263 - accuracy: 0.992013/20 [==================>...........] - ETA: 0s - loss: 0.0273 - accuracy: 0.990720/20 [==============================] - 0s 5ms/step - loss: 0.0277 - accuracy: 0.9907
+Epoch 20/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0205 - accuracy: 0.993013/20 [==================>...........] - ETA: 0s - loss: 0.0245 - accuracy: 0.991920/20 [==============================] - 0s 5ms/step - loss: 0.0245 - accuracy: 0.9919
+Epoch 21/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0222 - accuracy: 0.990713/20 [==================>...........] - ETA: 0s - loss: 0.0241 - accuracy: 0.991720/20 [==============================] - 0s 5ms/step - loss: 0.0245 - accuracy: 0.9916
+Epoch 22/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0198 - accuracy: 0.994711/20 [===============>..............] - ETA: 0s - loss: 0.0228 - accuracy: 0.992420/20 [==============================] - 0s 5ms/step - loss: 0.0224 - accuracy: 0.9923
+Epoch 23/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0160 - accuracy: 0.993713/20 [==================>...........] - ETA: 0s - loss: 0.0202 - accuracy: 0.993320/20 [==============================] - 0s 5ms/step - loss: 0.0209 - accuracy: 0.9931
+Epoch 24/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0216 - accuracy: 0.992313/20 [==================>...........] - ETA: 0s - loss: 0.0209 - accuracy: 0.993420/20 [==============================] - 0s 5ms/step - loss: 0.0209 - accuracy: 0.9932
+Epoch 25/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0202 - accuracy: 0.993313/20 [==================>...........] - ETA: 0s - loss: 0.0186 - accuracy: 0.993720/20 [==============================] - 0s 5ms/step - loss: 0.0190 - accuracy: 0.9936
+Epoch 26/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0117 - accuracy: 0.997013/20 [==================>...........] - ETA: 0s - loss: 0.0168 - accuracy: 0.994520/20 [==============================] - 0s 5ms/step - loss: 0.0183 - accuracy: 0.9937
+Epoch 27/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0258 - accuracy: 0.989013/20 [==================>...........] - ETA: 0s - loss: 0.0201 - accuracy: 0.992920/20 [==============================] - 0s 5ms/step - loss: 0.0203 - accuracy: 0.9927
+Epoch 28/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0134 - accuracy: 0.996011/20 [===============>..............] - ETA: 0s - loss: 0.0166 - accuracy: 0.994220/20 [==============================] - 0s 5ms/step - loss: 0.0159 - accuracy: 0.9945
+Epoch 29/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0146 - accuracy: 0.994012/20 [=================>............] - ETA: 0s - loss: 0.0169 - accuracy: 0.994220/20 [==============================] - 0s 5ms/step - loss: 0.0166 - accuracy: 0.9944
+Epoch 30/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0142 - accuracy: 0.994312/20 [=================>............] - ETA: 0s - loss: 0.0167 - accuracy: 0.994020/20 [==============================] - 0s 5ms/step - loss: 0.0167 - accuracy: 0.9942
+Epoch 31/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0173 - accuracy: 0.993312/20 [=================>............] - ETA: 0s - loss: 0.0153 - accuracy: 0.994820/20 [==============================] - 0s 5ms/step - loss: 0.0149 - accuracy: 0.9948
+Epoch 32/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0130 - accuracy: 0.995312/20 [=================>............] - ETA: 0s - loss: 0.0142 - accuracy: 0.995320/20 [==============================] - 0s 5ms/step - loss: 0.0149 - accuracy: 0.9950
+Epoch 33/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0178 - accuracy: 0.992712/20 [=================>............] - ETA: 0s - loss: 0.0160 - accuracy: 0.994120/20 [==============================] - 0s 5ms/step - loss: 0.0159 - accuracy: 0.9943
+Epoch 34/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0204 - accuracy: 0.992312/20 [=================>............] - ETA: 0s - loss: 0.0144 - accuracy: 0.994920/20 [==============================] - 0s 5ms/step - loss: 0.0154 - accuracy: 0.9945
+Epoch 35/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0112 - accuracy: 0.996013/20 [==================>...........] - ETA: 0s - loss: 0.0139 - accuracy: 0.995120/20 [==============================] - 0s 5ms/step - loss: 0.0141 - accuracy: 0.9952
+Epoch 36/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0137 - accuracy: 0.996013/20 [==================>...........] - ETA: 0s - loss: 0.0139 - accuracy: 0.994920/20 [==============================] - 0s 5ms/step - loss: 0.0130 - accuracy: 0.9951
+Epoch 37/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0106 - accuracy: 0.995713/20 [==================>...........] - ETA: 0s - loss: 0.0135 - accuracy: 0.995120/20 [==============================] - 0s 5ms/step - loss: 0.0142 - accuracy: 0.9949
+Epoch 38/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0078 - accuracy: 0.998712/20 [=================>............] - ETA: 0s - loss: 0.0132 - accuracy: 0.995720/20 [==============================] - 0s 5ms/step - loss: 0.0139 - accuracy: 0.9954
+Epoch 39/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0130 - accuracy: 0.994311/20 [===============>..............] - ETA: 0s - loss: 0.0133 - accuracy: 0.995220/20 [==============================] - 0s 6ms/step - loss: 0.0147 - accuracy: 0.9947
+Epoch 40/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0164 - accuracy: 0.994711/20 [===============>..............] - ETA: 0s - loss: 0.0155 - accuracy: 0.994820/20 [==============================] - 0s 5ms/step - loss: 0.0138 - accuracy: 0.9952
+Epoch 41/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0145 - accuracy: 0.995011/20 [===============>..............] - ETA: 0s - loss: 0.0132 - accuracy: 0.995420/20 [==============================] - 0s 5ms/step - loss: 0.0128 - accuracy: 0.9956
+Epoch 42/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0150 - accuracy: 0.994312/20 [=================>............] - ETA: 0s - loss: 0.0112 - accuracy: 0.996120/20 [==============================] - 0s 5ms/step - loss: 0.0116 - accuracy: 0.9960
+Epoch 43/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0052 - accuracy: 0.999012/20 [=================>............] - ETA: 0s - loss: 0.0104 - accuracy: 0.996620/20 [==============================] - 0s 5ms/step - loss: 0.0103 - accuracy: 0.9965
+Epoch 44/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0076 - accuracy: 0.997312/20 [=================>............] - ETA: 0s - loss: 0.0106 - accuracy: 0.996520/20 [==============================] - 0s 5ms/step - loss: 0.0107 - accuracy: 0.9966
+Epoch 45/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0068 - accuracy: 0.998711/20 [===============>..............] - ETA: 0s - loss: 0.0130 - accuracy: 0.995920/20 [==============================] - ETA: 0s - loss: 0.0128 - accuracy: 0.995820/20 [==============================] - 0s 5ms/step - loss: 0.0128 - accuracy: 0.9958
+Epoch 46/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0101 - accuracy: 0.995310/20 [==============>...............] - ETA: 0s - loss: 0.0117 - accuracy: 0.995919/20 [===========================>..] - ETA: 0s - loss: 0.0122 - accuracy: 0.995820/20 [==============================] - 0s 6ms/step - loss: 0.0128 - accuracy: 0.9957
+Epoch 47/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0105 - accuracy: 0.995310/20 [==============>...............] - ETA: 0s - loss: 0.0120 - accuracy: 0.995819/20 [===========================>..] - ETA: 0s - loss: 0.0112 - accuracy: 0.996120/20 [==============================] - 0s 6ms/step - loss: 0.0112 - accuracy: 0.9961
+Epoch 48/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0071 - accuracy: 0.997710/20 [==============>...............] - ETA: 0s - loss: 0.0107 - accuracy: 0.996719/20 [===========================>..] - ETA: 0s - loss: 0.0107 - accuracy: 0.996820/20 [==============================] - 0s 6ms/step - loss: 0.0111 - accuracy: 0.9966
+Epoch 49/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0060 - accuracy: 0.998310/20 [==============>...............] - ETA: 0s - loss: 0.0109 - accuracy: 0.996819/20 [===========================>..] - ETA: 0s - loss: 0.0110 - accuracy: 0.996620/20 [==============================] - 0s 6ms/step - loss: 0.0108 - accuracy: 0.9966
+Epoch 50/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0088 - accuracy: 0.996310/20 [==============>...............] - ETA: 0s - loss: 0.0095 - accuracy: 0.996718/20 [==========================>...] - ETA: 0s - loss: 0.0089 - accuracy: 0.997020/20 [==============================] - 0s 6ms/step - loss: 0.0087 - accuracy: 0.9971
+Epoch 51/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0080 - accuracy: 0.9970 9/20 [============>.................] - ETA: 0s - loss: 0.0105 - accuracy: 0.996618/20 [==========================>...] - ETA: 0s - loss: 0.0105 - accuracy: 0.996520/20 [==============================] - 0s 7ms/step - loss: 0.0103 - accuracy: 0.9966
+Epoch 52/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0098 - accuracy: 0.996311/20 [===============>..............] - ETA: 0s - loss: 0.0089 - accuracy: 0.997020/20 [==============================] - 0s 5ms/step - loss: 0.0097 - accuracy: 0.9966
+Epoch 53/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0057 - accuracy: 0.997313/20 [==================>...........] - ETA: 0s - loss: 0.0085 - accuracy: 0.996920/20 [==============================] - 0s 5ms/step - loss: 0.0102 - accuracy: 0.9964
+Epoch 54/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0130 - accuracy: 0.996311/20 [===============>..............] - ETA: 0s - loss: 0.0108 - accuracy: 0.996420/20 [==============================] - 0s 5ms/step - loss: 0.0116 - accuracy: 0.9962
+Epoch 55/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0082 - accuracy: 0.997013/20 [==================>...........] - ETA: 0s - loss: 0.0097 - accuracy: 0.996820/20 [==============================] - 0s 5ms/step - loss: 0.0095 - accuracy: 0.9967
+Epoch 56/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0102 - accuracy: 0.996712/20 [=================>............] - ETA: 0s - loss: 0.0086 - accuracy: 0.996920/20 [==============================] - 0s 5ms/step - loss: 0.0085 - accuracy: 0.9971
+Epoch 57/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0096 - accuracy: 0.996312/20 [=================>............] - ETA: 0s - loss: 0.0083 - accuracy: 0.997520/20 [==============================] - 0s 5ms/step - loss: 0.0090 - accuracy: 0.9972
+Epoch 58/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0073 - accuracy: 0.998012/20 [=================>............] - ETA: 0s - loss: 0.0093 - accuracy: 0.996920/20 [==============================] - 0s 5ms/step - loss: 0.0091 - accuracy: 0.9969
+Epoch 59/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0101 - accuracy: 0.996012/20 [=================>............] - ETA: 0s - loss: 0.0100 - accuracy: 0.996520/20 [==============================] - 0s 5ms/step - loss: 0.0099 - accuracy: 0.9965
+Epoch 60/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0100 - accuracy: 0.996013/20 [==================>...........] - ETA: 0s - loss: 0.0103 - accuracy: 0.996820/20 [==============================] - 0s 5ms/step - loss: 0.0100 - accuracy: 0.9966
+Epoch 61/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0109 - accuracy: 0.996011/20 [===============>..............] - ETA: 0s - loss: 0.0091 - accuracy: 0.996820/20 [==============================] - 0s 5ms/step - loss: 0.0108 - accuracy: 0.9964
+Epoch 62/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0094 - accuracy: 0.996711/20 [===============>..............] - ETA: 0s - loss: 0.0098 - accuracy: 0.996520/20 [==============================] - 0s 5ms/step - loss: 0.0089 - accuracy: 0.9969
+Epoch 63/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0069 - accuracy: 0.997711/20 [===============>..............] - ETA: 0s - loss: 0.0066 - accuracy: 0.997720/20 [==============================] - ETA: 0s - loss: 0.0080 - accuracy: 0.997420/20 [==============================] - 0s 5ms/step - loss: 0.0080 - accuracy: 0.9974
+Epoch 64/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0140 - accuracy: 0.996711/20 [===============>..............] - ETA: 0s - loss: 0.0087 - accuracy: 0.996920/20 [==============================] - ETA: 0s - loss: 0.0094 - accuracy: 0.996820/20 [==============================] - 0s 6ms/step - loss: 0.0094 - accuracy: 0.9968
+Epoch 65/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0093 - accuracy: 0.997011/20 [===============>..............] - ETA: 0s - loss: 0.0079 - accuracy: 0.997420/20 [==============================] - 0s 5ms/step - loss: 0.0075 - accuracy: 0.9974
+Epoch 66/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0128 - accuracy: 0.996011/20 [===============>..............] - ETA: 0s - loss: 0.0100 - accuracy: 0.996720/20 [==============================] - 0s 5ms/step - loss: 0.0090 - accuracy: 0.9969
+Epoch 67/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0061 - accuracy: 0.998710/20 [==============>...............] - ETA: 0s - loss: 0.0095 - accuracy: 0.997019/20 [===========================>..] - ETA: 0s - loss: 0.0087 - accuracy: 0.997220/20 [==============================] - 0s 6ms/step - loss: 0.0088 - accuracy: 0.9971
+Epoch 68/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0086 - accuracy: 0.995711/20 [===============>..............] - ETA: 0s - loss: 0.0078 - accuracy: 0.996820/20 [==============================] - 0s 5ms/step - loss: 0.0071 - accuracy: 0.9972
+Epoch 69/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0073 - accuracy: 0.997310/20 [==============>...............] - ETA: 0s - loss: 0.0071 - accuracy: 0.997419/20 [===========================>..] - ETA: 0s - loss: 0.0066 - accuracy: 0.997720/20 [==============================] - 0s 6ms/step - loss: 0.0069 - accuracy: 0.9976
+Epoch 70/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0081 - accuracy: 0.997311/20 [===============>..............] - ETA: 0s - loss: 0.0084 - accuracy: 0.997120/20 [==============================] - 0s 5ms/step - loss: 0.0083 - accuracy: 0.9971
+Epoch 71/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0036 - accuracy: 0.998311/20 [===============>..............] - ETA: 0s - loss: 0.0071 - accuracy: 0.997420/20 [==============================] - 0s 5ms/step - loss: 0.0077 - accuracy: 0.9974
+Epoch 72/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0056 - accuracy: 0.998712/20 [=================>............] - ETA: 0s - loss: 0.0081 - accuracy: 0.997620/20 [==============================] - 0s 5ms/step - loss: 0.0083 - accuracy: 0.9974
+Epoch 73/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0078 - accuracy: 0.997012/20 [=================>............] - ETA: 0s - loss: 0.0078 - accuracy: 0.997420/20 [==============================] - 0s 5ms/step - loss: 0.0086 - accuracy: 0.9970
+Epoch 74/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0048 - accuracy: 0.998313/20 [==================>...........] - ETA: 0s - loss: 0.0074 - accuracy: 0.997420/20 [==============================] - 0s 5ms/step - loss: 0.0078 - accuracy: 0.9972
+Epoch 75/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0040 - accuracy: 0.998312/20 [=================>............] - ETA: 0s - loss: 0.0087 - accuracy: 0.997020/20 [==============================] - 0s 5ms/step - loss: 0.0075 - accuracy: 0.9974
+Epoch 76/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0068 - accuracy: 0.998012/20 [=================>............] - ETA: 0s - loss: 0.0075 - accuracy: 0.997320/20 [==============================] - 0s 5ms/step - loss: 0.0070 - accuracy: 0.9975
+Epoch 77/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0032 - accuracy: 0.998713/20 [==================>...........] - ETA: 0s - loss: 0.0065 - accuracy: 0.997920/20 [==============================] - 0s 5ms/step - loss: 0.0072 - accuracy: 0.9978
+Epoch 78/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0039 - accuracy: 0.998312/20 [=================>............] - ETA: 0s - loss: 0.0070 - accuracy: 0.997520/20 [==============================] - 0s 5ms/step - loss: 0.0072 - accuracy: 0.9975
+Epoch 79/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0062 - accuracy: 0.997712/20 [=================>............] - ETA: 0s - loss: 0.0071 - accuracy: 0.997620/20 [==============================] - 0s 5ms/step - loss: 0.0083 - accuracy: 0.9972
+Epoch 80/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0076 - accuracy: 0.997312/20 [=================>............] - ETA: 0s - loss: 0.0082 - accuracy: 0.997720/20 [==============================] - 0s 5ms/step - loss: 0.0083 - accuracy: 0.9975
+Epoch 81/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0063 - accuracy: 0.998012/20 [=================>............] - ETA: 0s - loss: 0.0095 - accuracy: 0.997320/20 [==============================] - 0s 5ms/step - loss: 0.0088 - accuracy: 0.9973
+Epoch 82/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0032 - accuracy: 0.998712/20 [=================>............] - ETA: 0s - loss: 0.0067 - accuracy: 0.997720/20 [==============================] - 0s 5ms/step - loss: 0.0066 - accuracy: 0.9978
+Epoch 83/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0033 - accuracy: 0.998712/20 [=================>............] - ETA: 0s - loss: 0.0069 - accuracy: 0.997720/20 [==============================] - 0s 5ms/step - loss: 0.0076 - accuracy: 0.9974
+Epoch 84/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0111 - accuracy: 0.997012/20 [=================>............] - ETA: 0s - loss: 0.0063 - accuracy: 0.998020/20 [==============================] - 0s 5ms/step - loss: 0.0069 - accuracy: 0.9977
+Epoch 85/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0054 - accuracy: 0.998312/20 [=================>............] - ETA: 0s - loss: 0.0079 - accuracy: 0.997620/20 [==============================] - 0s 5ms/step - loss: 0.0073 - accuracy: 0.9976
+Epoch 86/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0089 - accuracy: 0.997011/20 [===============>..............] - ETA: 0s - loss: 0.0076 - accuracy: 0.997620/20 [==============================] - 0s 5ms/step - loss: 0.0085 - accuracy: 0.9972
+Epoch 87/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0079 - accuracy: 0.997012/20 [=================>............] - ETA: 0s - loss: 0.0073 - accuracy: 0.997620/20 [==============================] - 0s 5ms/step - loss: 0.0067 - accuracy: 0.9977
+Epoch 88/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0083 - accuracy: 0.997011/20 [===============>..............] - ETA: 0s - loss: 0.0078 - accuracy: 0.997220/20 [==============================] - 0s 5ms/step - loss: 0.0074 - accuracy: 0.9974
+Epoch 89/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0094 - accuracy: 0.996710/20 [==============>...............] - ETA: 0s - loss: 0.0081 - accuracy: 0.997219/20 [===========================>..] - ETA: 0s - loss: 0.0086 - accuracy: 0.997120/20 [==============================] - 0s 6ms/step - loss: 0.0086 - accuracy: 0.9971
+Epoch 90/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0080 - accuracy: 0.998310/20 [==============>...............] - ETA: 0s - loss: 0.0084 - accuracy: 0.997418/20 [==========================>...] - ETA: 0s - loss: 0.0077 - accuracy: 0.997620/20 [==============================] - 0s 6ms/step - loss: 0.0075 - accuracy: 0.9976
+Epoch 91/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0039 - accuracy: 0.998710/20 [==============>...............] - ETA: 0s - loss: 0.0066 - accuracy: 0.997619/20 [===========================>..] - ETA: 0s - loss: 0.0067 - accuracy: 0.997720/20 [==============================] - 0s 6ms/step - loss: 0.0066 - accuracy: 0.9977
+Epoch 92/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0061 - accuracy: 0.9980 9/20 [============>.................] - ETA: 0s - loss: 0.0083 - accuracy: 0.997218/20 [==========================>...] - ETA: 0s - loss: 0.0077 - accuracy: 0.997420/20 [==============================] - 0s 6ms/step - loss: 0.0075 - accuracy: 0.9975
+Epoch 93/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0076 - accuracy: 0.997310/20 [==============>...............] - ETA: 0s - loss: 0.0055 - accuracy: 0.998219/20 [===========================>..] - ETA: 0s - loss: 0.0057 - accuracy: 0.998320/20 [==============================] - 0s 6ms/step - loss: 0.0058 - accuracy: 0.9983
+Epoch 94/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0049 - accuracy: 0.9987 9/20 [============>.................] - ETA: 0s - loss: 0.0065 - accuracy: 0.997718/20 [==========================>...] - ETA: 0s - loss: 0.0063 - accuracy: 0.997820/20 [==============================] - 0s 6ms/step - loss: 0.0063 - accuracy: 0.9978
+Epoch 95/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0060 - accuracy: 0.998310/20 [==============>...............] - ETA: 0s - loss: 0.0059 - accuracy: 0.997920/20 [==============================] - ETA: 0s - loss: 0.0069 - accuracy: 0.997620/20 [==============================] - 0s 6ms/step - loss: 0.0069 - accuracy: 0.9976
+Epoch 96/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0073 - accuracy: 0.997312/20 [=================>............] - ETA: 0s - loss: 0.0061 - accuracy: 0.997820/20 [==============================] - 0s 5ms/step - loss: 0.0063 - accuracy: 0.9978
+Epoch 97/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0077 - accuracy: 0.996710/20 [==============>...............] - ETA: 0s - loss: 0.0057 - accuracy: 0.997819/20 [===========================>..] - ETA: 0s - loss: 0.0065 - accuracy: 0.997620/20 [==============================] - 0s 6ms/step - loss: 0.0066 - accuracy: 0.9976
+Epoch 98/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0027 - accuracy: 0.999310/20 [==============>...............] - ETA: 0s - loss: 0.0071 - accuracy: 0.997919/20 [===========================>..] - ETA: 0s - loss: 0.0070 - accuracy: 0.997920/20 [==============================] - 0s 6ms/step - loss: 0.0068 - accuracy: 0.9980
+Epoch 99/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0053 - accuracy: 0.998010/20 [==============>...............] - ETA: 0s - loss: 0.0068 - accuracy: 0.998019/20 [===========================>..] - ETA: 0s - loss: 0.0068 - accuracy: 0.997920/20 [==============================] - 0s 6ms/step - loss: 0.0066 - accuracy: 0.9980
+Epoch 100/100
+ 1/20 [>.............................] - ETA: 0s - loss: 0.0027 - accuracy: 0.999710/20 [==============>...............] - ETA: 0s - loss: 0.0065 - accuracy: 0.998120/20 [==============================] - ETA: 0s - loss: 0.0069 - accuracy: 0.997720/20 [==============================] - 0s 6ms/step - loss: 0.0069 - accuracy: 0.9977
+KERAS FIT DONE. [time: 15.620644807815552 s]
+
+[keras clf norms of weights after fit -> l1: 53940.59, l2: 68.60519]
+
+KERAS CLF ACC AND LOSS... [after fit]
+   1/1875 [..............................] - ETA: 4:47 - loss: 8.6005e-04 - accuracy: 1.0000  48/1875 [..............................] - ETA: 1s - loss: 0.0017 - accuracy: 0.9987        94/1875 [>.............................] - ETA: 1s - loss: 0.0019 - accuracy: 0.9990 139/1875 [=>............................] - ETA: 1s - loss: 0.0014 - accuracy: 0.9993 184/1875 [=>............................] - ETA: 1s - loss: 0.0017 - accuracy: 0.9993 229/1875 [==>...........................] - ETA: 1s - loss: 0.0017 - accuracy: 0.9993 275/1875 [===>..........................] - ETA: 1s - loss: 0.0015 - accuracy: 0.9993 321/1875 [====>.........................] - ETA: 1s - loss: 0.0019 - accuracy: 0.9993 366/1875 [====>.........................] - ETA: 1s - loss: 0.0019 - accuracy: 0.9992 410/1875 [=====>........................] - ETA: 1s - loss: 0.0017 - accuracy: 0.9993 455/1875 [======>.......................] - ETA: 1s - loss: 0.0017 - accuracy: 0.9994 501/1875 [=======>......................] - ETA: 1s - loss: 0.0018 - accuracy: 0.9993 546/1875 [=======>......................] - ETA: 1s - loss: 0.0017 - accuracy: 0.9994 591/1875 [========>.....................] - ETA: 1s - loss: 0.0016 - accuracy: 0.9994 637/1875 [=========>....................] - ETA: 1s - loss: 0.0016 - accuracy: 0.9994 683/1875 [=========>....................] - ETA: 1s - loss: 0.0016 - accuracy: 0.9994 728/1875 [==========>...................] - ETA: 1s - loss: 0.0018 - accuracy: 0.9993 772/1875 [===========>..................] - ETA: 1s - loss: 0.0018 - accuracy: 0.9993 817/1875 [============>.................] - ETA: 1s - loss: 0.0019 - accuracy: 0.9993 857/1875 [============>.................] - ETA: 1s - loss: 0.0018 - accuracy: 0.9993 902/1875 [=============>................] - ETA: 1s - loss: 0.0018 - accuracy: 0.9993 947/1875 [==============>...............] - ETA: 1s - loss: 0.0018 - accuracy: 0.9993 992/1875 [==============>...............] - ETA: 0s - loss: 0.0018 - accuracy: 0.99931038/1875 [===============>..............] - ETA: 0s - loss: 0.0017 - accuracy: 0.99931083/1875 [================>.............] - ETA: 0s - loss: 0.0019 - accuracy: 0.99921126/1875 [=================>............] - ETA: 0s - loss: 0.0019 - accuracy: 0.99921172/1875 [=================>............] - ETA: 0s - loss: 0.0019 - accuracy: 0.99921217/1875 [==================>...........] - ETA: 0s - loss: 0.0019 - accuracy: 0.99921262/1875 [===================>..........] - ETA: 0s - loss: 0.0019 - accuracy: 0.99921307/1875 [===================>..........] - ETA: 0s - loss: 0.0020 - accuracy: 0.99921352/1875 [====================>.........] - ETA: 0s - loss: 0.0021 - accuracy: 0.99911397/1875 [=====================>........] - ETA: 0s - loss: 0.0020 - accuracy: 0.99921442/1875 [======================>.......] - ETA: 0s - loss: 0.0020 - accuracy: 0.99921487/1875 [======================>.......] - ETA: 0s - loss: 0.0019 - accuracy: 0.99921533/1875 [=======================>......] - ETA: 0s - loss: 0.0020 - accuracy: 0.99921579/1875 [========================>.....] - ETA: 0s - loss: 0.0020 - accuracy: 0.99921624/1875 [========================>.....] - ETA: 0s - loss: 0.0019 - accuracy: 0.99921670/1875 [=========================>....] - ETA: 0s - loss: 0.0019 - accuracy: 0.99921716/1875 [==========================>...] - ETA: 0s - loss: 0.0019 - accuracy: 0.99921759/1875 [===========================>..] - ETA: 0s - loss: 0.0019 - accuracy: 0.99931804/1875 [===========================>..] - ETA: 0s - loss: 0.0019 - accuracy: 0.99931850/1875 [============================>.] - ETA: 0s - loss: 0.0019 - accuracy: 0.99931875/1875 [==============================] - 2s 1ms/step - loss: 0.0019 - accuracy: 0.9992
+  1/313 [..............................] - ETA: 13s - loss: 2.4877e-04 - accuracy: 1.0000 41/313 [==>...........................] - ETA: 0s - loss: 0.0424 - accuracy: 0.9947      82/313 [======>.......................] - ETA: 0s - loss: 0.0454 - accuracy: 0.9931124/313 [==========>...................] - ETA: 0s - loss: 0.0578 - accuracy: 0.9912166/313 [==============>...............] - ETA: 0s - loss: 0.0720 - accuracy: 0.9876207/313 [==================>...........] - ETA: 0s - loss: 0.0956 - accuracy: 0.9849249/313 [======================>.......] - ETA: 0s - loss: 0.0878 - accuracy: 0.9853291/313 [==========================>...] - ETA: 0s - loss: 0.0947 - accuracy: 0.9844313/313 [==============================] - 0s 1ms/step - loss: 0.0930 - accuracy: 0.9841
+
+[train acc: 0.9992499947547913, train loss: 0.0019015079597011209]
+[test acc: 0.9840999841690063, test loss: 0.09296395629644394]
+KERAS CLF ACC AND LOSS DONE. [time: 2.866316080093384 s]
+
+HMDL MEANS -> FIT TIME: 292.26746678352356, TEST ACC: 0.9801, TEST LOSS: 0.08164019137620926
+KERAS MEANS -> FIT TIME: 15.620644807815552, TEST ACC: 0.9840999841690063, TEST LOSS: 0.09296395629644394
+
+ALL DONE FOR EXPERIMENT WITH ID: 0491196249. [time: 334.60666251182556 s]
