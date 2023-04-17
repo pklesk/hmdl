@@ -29,8 +29,8 @@ PICKLE_DATA = False # set True if given data set is read and generated for the f
 
 UNPICKLE_HMDL_CLF = False
 COPY_INITIAL_WEIGHTS_KERAS_TO_HMDL = False
-FIT_OR_REFIT_HMDL_CLF = False
-PICKLE_HMDL_CLF = False
+FIT_OR_REFIT_HMDL_CLF = True
+PICKLE_HMDL_CLF = True
 
 LOAD_KERAS_CLF = False
 COPY_INITIAL_WEIGHTS_HMDL_TO_KERAS = False
