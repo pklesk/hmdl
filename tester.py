@@ -207,7 +207,7 @@ if __name__ == "__main__":
             plt.plot(xs, ys, label=str(params_values_copy), **{**style, **{"marker": "o", "markersize": PLOT_MARKERSIZE}})                    
         plt.xlabel(arg_label, fontsize=PLOT_FONTSIZE_AXES)            
         plt.ylabel("TIME [s]", fontsize=PLOT_FONTSIZE_AXES)
-        plt.yscale("log")    
+        plt.yscale("log")
         plt.legend(loc=PLOT_LEGEND_LOC, prop={"size": PLOT_FONTSIZE_LEGEND}, handlelength=PLOT_LEGEND_HANDLELENGTH)        
         plt.grid(color=PLOT_GRID_COLOR, zorder=0, dashes=PLOT_GRID_DASHES)                  
         plt.show()

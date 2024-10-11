@@ -12,8 +12,6 @@ import warnings
         
 warnings.simplefilter("ignore", category=NumbaPerformanceWarning) 
 
-__version__ = "1.0.0"
-
 MAX_EXP_ARG = 0.5 * np.log(np.finfo(np.float32).max)
 MIN_NON_ZERO = 1e-7
 MAX_IMG_SIDE = 256
@@ -275,8 +273,8 @@ class Conv2D(Layer):
                 impl_backward = "numba_cuda_direct"
         else:
             impl_forward = "cv2"
-            impl_backward = "numba_jit"
-            impl_backward_output = "numba_jit"
+            impl_backward = "numba_jit_gemm"
+            impl_backward_output = "numba_jit_gemm"
         return impl_forward, impl_backward, impl_backward_output
             
     def do_forward(self):
@@ -881,13 +879,13 @@ class Conv2D(Layer):
         if a < kernel_size and b < kernel_size:
             sub_gradient_0_batch_[i, a, b, c, f] = temp
                                                 
-    def do_backward_numba_jit(self):
+    def do_backward_numba_jit_gemm(self):
         self.gradient_[0] = np.zeros((self.kernel_size_, self.kernel_size_, self.n_channels_, self.n_kernels_), dtype=np.float32)
         Conv2D.do_backward_numba_jit_job(self.input_, self.height_, self.width_, self.n_channels_, self.n_kernels_, self.kernel_size_, self.delta_, self.gradient_[0], self.gradient_[1])            
     
     @staticmethod
     @jit(void(float32[:, :, :, :], int32, int32, int32, int32, int32, float32[:, :, :, :], float32[:, :, :, :], float32[:]), nopython=True, cache=True)
-    def do_backward_numba_jit_job(self_input_, self_height_, self_width_, self_n_channels_, self_n_kernels_, self_kernel_size_, self_delta_, self_gradient_0_, self_gradient_1_):
+    def do_backward_numba_jit_gemm_job(self_input_, self_height_, self_width_, self_n_channels_, self_n_kernels_, self_kernel_size_, self_delta_, self_gradient_0_, self_gradient_1_):
         ksh = self_kernel_size_ // 2
         kssc = self_kernel_size_**2 * self_n_channels_
         input_padded = np.zeros((self_input_.shape[0], self_height_ + 2 * ksh, self_width_ + 2 * ksh, self_n_channels_), dtype=np.float32)
@@ -909,7 +907,7 @@ class Conv2D(Layer):
                 self_gradient_0_[:, :, :, s] += np.reshape(row_delta_s.dot(column_tiled_inputs), (self_kernel_size_, self_kernel_size_, self_n_channels_))
                 self_gradient_1_[s] += row_delta_s.dot(input_ones)[0, 0]                
                         
-    def do_backward_numpy(self):
+    def do_backward_numpy_gemm(self):
         ksh = self.kernel_size_ // 2
         kssc = self.kernel_size_**2 * self.n_channels_
         input_padded = np.zeros((self.input_.shape[0], self.height_ + 2 * ksh, self.width_ + 2 * ksh, self.n_channels_), dtype=np.float32)
@@ -1213,12 +1211,12 @@ class Conv2D(Layer):
             index_src = (indexer[0], indexer[1], indexer[2], indexer[3])                                             
             dest_[index_dest] = src_[index_src].real                  
                     
-    def do_backward_output_numba_jit(self):
+    def do_backward_output_numba_jit_gemm(self):
         Conv2D.do_backward_output_numba_jit_job(self.height_, self.width_, self.n_channels_, self.n_kernels_, self.kernel_size_, self.delta_, self.weights_[0], self.delta_backward_output_)
     
     @staticmethod
     @jit(void(int32, int32, int32, int32, int32, float32[:, :, :, :], float32[:, :, :, :], float32[:, :, :, :]), nopython=True, cache=True)
-    def do_backward_output_numba_jit_job(self_height_, self_width_, self_n_channels_, self_n_kernels_, self_kernel_size_, self_delta_, self_weights_0_, self_delta_backward_output_):
+    def do_backward_output_numba_jit_gemm_job(self_height_, self_width_, self_n_channels_, self_n_kernels_, self_kernel_size_, self_delta_, self_weights_0_, self_delta_backward_output_):
         ksh = self_kernel_size_ // 2
         kssk = self_kernel_size_**2 * self_n_kernels_
         m = self_delta_backward_output_.shape[0]
@@ -1243,7 +1241,7 @@ class Conv2D(Layer):
                         index += 1
                 self_delta_backward_output_[i, :, :, s] = np.reshape(row_w_mirrored_s.dot(column_tiled_deltas), (self_height_, self_width_))
                                 
-    def do_backward_output_numpy(self):
+    def do_backward_output_numpy_gemm(self):
         self.delta_backward_output_ = np.empty(self.input_.shape, dtype=np.float32)
         ksh = self.kernel_size_ // 2
         kssk = self.kernel_size_**2 * self.n_kernels_
@@ -1580,7 +1578,7 @@ class Dense(Layer):
         self.do_backward_function_()
     
     def do_backward_numpy(self):
-        self.prev_correction_ = [np.copy(dc) for dc in self.gradient_]
+        self.prev_correction_ = [np.copy(dc) for dc in self.gradient_] # for some learning algorithms (e.g. classical momentum backprop)
         self.gradient_[0] = self.delta_.T.dot(self.input_) # correction for weights - summation of corrections over the batch takes place here
         self.gradient_[1] = self.delta_.T.dot(np.ones(self.input_.shape[0], dtype=np.float32)) # correction for intercepts - summation of corrections over the batch size place here
         
@@ -1634,7 +1632,7 @@ class SequentialClassifier(BaseEstimator, ClassifierMixin):
         self.fit_ongoing_ = True
         self.class_labels_ = np.unique(y)
         m = y.shape[0]
-        if X.dtype !=  np.float32:
+        if X.dtype != np.float32:
             X = X.astype(np.float32)
         y_ord = np.zeros(m, dtype=np.int16)
         for index, label in enumerate(self.class_labels_):
@@ -1648,7 +1646,7 @@ class SequentialClassifier(BaseEstimator, ClassifierMixin):
             print(f"EPOCH: {t + 1}/{self.n_epochs_}...")
             t1_epoch = time.time()
             self.learning_rate_now_ *= 1.0 / (1.0 + self.decay_rate_ * t)             
-            p = np.random.permutation(m)            
+            p = np.random.permutation(m)          
             for b in range(self.n_batches_):
                 indexes = p[batch_ranges[b] : batch_ranges[b + 1]]
                 X_b = np.ascontiguousarray(X[indexes]) # forcing contiguous array for potential cuda purposes
